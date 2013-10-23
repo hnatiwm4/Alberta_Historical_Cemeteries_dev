@@ -1,0 +1,70 @@
+/* page setup */
+
+/* initial pargins for everything set to 0 for wrapper */
+* { margin: 0; 
+    /* border used to view box containers on webpage */
+    border: 1px solid red; }
+html{
+    margin: 0 auto;
+    height: 100%;
+}
+
+body {
+    
+    background: rgba(241, 241, 241, 1); /* rgb(38,36,36) */
+}
+
+#page_wrapper{
+    min-height: 100%; /* enables sticky footer */
+    height: 100%; /* enables sticky footer for IE */
+    position: relative;
+    text-align: left;
+}
+
+#page_main{
+    clear: both;
+    overflow: auto;
+    padding-bottom: 200px;
+   /*** must be same size as footer bottom footer ***/
+}
+
+
+#nav-bar{
+    /*sition: fixed; /* stays static, even when scrolling */
+    height: 60px;
+    width: 100%;
+    float: right;
+    list-style: none;
+    background: rgba(38, 36, 36, 0.834);
+    color: #FFFFF; }
+
+#nav-bar ul{
+    list-style: none; 
+    margin-right: 5em;  }
+
+#nav-bar li{
+    float: right; }
+
+#nav-bar li a{
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #cc;
+    font-weight: bold; 
+    color: #fff; }
+
+#nav-bar li a:hover{
+    text-decoration: underline;
+    background-color: #ffff;
+    color: yellow; }
+
+/* sticky footer */
+
+#footer{
+    clear: both;
+    position: reltaive;
+    margin-top: -200px; /* must be same as height */
+    height: 200px; /* height of footer */
+    background: rgba(38, 36, 36, 0.834);
+}

@@ -1,0 +1,20 @@
+   <p>
+     <strong>Cemetery CID:</strong>
+     <%= @cemeteries.cemCID %>
+   </p>
+
+   <p>
+     <strong>Cemetery Name:</strong>
+     <%= @cemeteries.cemName %>
+   </p>
+
+   <p>
+     <strong>Cemetery Approval:</strong>
+     <%=  @cemeteries.cemApproved %>
+   </p>
+
+   <p>
+     <strong>Last Updated:</strong>
+     <%=  @cemeteries.cemUpdated %>
+   </p>
+<%= link_to 'Back', cemeteries_path %>

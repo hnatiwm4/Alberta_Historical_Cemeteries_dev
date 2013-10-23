@@ -1,0 +1,15 @@
+<!-- partial file with fields to search for a given cemetery -->
+
+<!-- url: method of cemeteries_helper will send POST request to route -->
+<%= form_for :cemetery, url: cemeteries_path do |c| %>
+  
+  <p>
+    <%= c.label :Name %><br>
+    <%= c.text_field :cemName %>
+  </p>
+
+  <p>
+    <%= c.submit %>
+  </p>
+
+<% end %>

@@ -1,0 +1,24 @@
+
+<h1>Cemetery Listing</h1>
+
+<% @cemeteries.each do |cem| %>
+   <p>
+     <strong>Cemetery CID:</strong>
+     <%= cem.cemCID %>
+   </p>
+
+   <p>
+     <strong>Cemetery Name:</strong>
+     <%= cem.cemName %>
+   </p>
+
+   <p>
+     <strong>Cemetery Approval:</strong>
+     <%= cem.cemApproved %>
+   </p>
+
+   <p>
+     <strong>Last Updated:</strong>
+     <%= cem.cemUpdated %>
+   </p>
+<% end %>
