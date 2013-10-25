@@ -2,6 +2,8 @@
 <h1>Cemetery Listing</h1>
 
 <% @cemeteries.each do |cem| %>
+<div class="rounded-div">
+  <span>
    <p>
      <strong>Cemetery CID:</strong>
      <%= cem.cemCID %>
@@ -21,4 +23,9 @@
      <strong>Last Updated:</strong>
      <%= cem.cemUpdated %>
    </p>
+   </span>
+  <!-- to make div clickable, use CSS, pass key :id to query for clicked data-->
+  <%= link_to '', cemetery_path(:id => cem.cemID), :class => 'div-clickable' %>
+</div>
+<br>
 <% end %>

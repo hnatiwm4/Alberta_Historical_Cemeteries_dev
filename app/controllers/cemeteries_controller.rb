@@ -8,12 +8,12 @@ end
 
 # action to create new Cemetery object
 def new
-  @cemetery = Cemetery.new
+  # @cemetery = Cemetery.new
 end
 
 # index action displays all cemetery records
 def index
-  @cemeteries = Cemetery.all
+  @cemeteries = Cemetery.order("cemeteries.cemCID ASC").all
   # set view as index
   @view = 'index'
   # render template layout
@@ -30,7 +30,7 @@ end
 # action queries the database for results
 def create  
   # invokve cemetery instance, retrieve one cemetery name
-  @cemeteries = Cemetery.where(params[:cemetery]).take(5)
+  @cemeteries = Cemetery.where(params[:cemetery]).take
   
   # ensure result returned, otherwise reload page
   if @cemeteries.blank?
@@ -50,7 +50,6 @@ def show
   @view = 'show'
   # render template layout
   render template: 'cemeteries/template'
-
 end
 
 

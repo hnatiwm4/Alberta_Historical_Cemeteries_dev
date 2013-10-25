@@ -17,7 +17,6 @@ HistoricalCemeteriesDev::Application.routes.draw do
       get :search
     end
   end
-  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

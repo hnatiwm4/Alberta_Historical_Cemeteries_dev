@@ -11,9 +11,10 @@ self.establish_connection(
   :username => "root",
   :password => "c3m3t3ry",
   :database => "canada_headstone_schema"
-  )
+)
 
-# method validates data
-  validates :cemName, presence: true
+# method validates data input
+  validates :cemName, presence: true,
+  length: { minimum: 3 }
 
 end

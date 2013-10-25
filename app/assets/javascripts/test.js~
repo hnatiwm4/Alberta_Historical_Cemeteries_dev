@@ -1,0 +1,5 @@
+# make entire div clickable
+var cemetery-div = document.getElementbyId("rounded-div");
+cemetery-div.onmouseover = function(){
+    this.style.backgroundColor = 'red';
+};
