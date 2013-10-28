@@ -1,0 +1,2 @@
+module GravestonesHelper
+end

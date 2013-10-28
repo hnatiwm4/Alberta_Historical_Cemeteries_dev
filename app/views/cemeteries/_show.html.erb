@@ -20,6 +20,43 @@
      <%=  @cemeteries.cemUpdated %>
    </p>
    <br>
+
    <%= link_to 'Back', :back %>
 </div>
 <br>
+
+<!-- display all gravestones associated with a cemetery,
+  embed countyID within photo string -->
+<!-- NOTE: this is bad, long, complicated and ugly, need to fix -->
+<% @cemeteries.gravestones.each do |grave| 
+       url = "http://www.canadianheadstones.com/ab/photos/"
+       photo = "#{url}#{@cid['CT_PhotoPath']}/#{grave.photoURL}" %>
+<div class="rounded-div">
+   <p>
+     <strong>FirstName:</strong>
+     <%= grave.first %>
+   </p>
+
+   <p>
+     <strong>LastName:</strong>
+     <%= grave.last %>
+   </p>
+   <p>
+     <strong>Cemetery:</strong>
+     <%= grave.cemetery %>
+   </p>
+   <p>
+     <strong>CemeteryID:</strong>
+     <%= grave.cemeteryID %>
+   </p>
+   <p>
+     <strong>Comments:</strong>
+     <%= grave.comments %>
+   </p>
+   <p>
+     <strong>Photo:</strong>
+     <img src=<%= photo %>></img>
+   </p>
+</div>
+<br>
+<% end %>

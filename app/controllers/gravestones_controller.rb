@@ -1,0 +1,4 @@
+class GravestonesController < ApplicationController
+  
+
+end

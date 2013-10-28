@@ -16,6 +16,8 @@ HistoricalCemeteriesDev::Application.routes.draw do
       get :home
       get :search
     end
+
+    resources :gravestones
   end
 
   # Example of regular route:

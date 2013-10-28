@@ -1,4 +1,4 @@
-class Cemetery < ActiveRecord::Base
+class Database < ActiveRecord::Base
 # NOTE: attributes/fields within database table
 # can be referenced like instance.cemName,
 # in the same way attributes added to a migration
@@ -12,12 +12,5 @@ class Cemetery < ActiveRecord::Base
                             :password => "c3m3t3ry",
                             :database => "canada_headstone_schema"
                             )
-
-  # fix association to use proper foreign key (ie cemetery foreign key in each gravestone row)
-  has_many :gravestones, :foreign_key => "cemeteryID"
-
-# method validates data input
-  validates :cemName, presence: true,
-  length: { minimum: 3 }
 
 end

@@ -1,0 +1,4 @@
+class Gravestone < ActiveRecord::Base
+  belongs_to :cemetery
+
+end

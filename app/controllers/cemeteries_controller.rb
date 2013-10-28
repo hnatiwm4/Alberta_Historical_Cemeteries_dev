@@ -2,8 +2,9 @@ class CemeteriesController < ApplicationController
 
 # custom action displays the default homepage
 def home
-  @view = 'home'
-  render template: 'cemeteries/template'
+  # render template layout (view is home) 
+  render template: 'cemeteries/template',
+         :locals => {:view => 'home' }
 end
 
 # action to create new Cemetery object
@@ -14,17 +15,15 @@ end
 # index action displays all cemetery records
 def index
   @cemeteries = Cemetery.order("cemeteries.cemCID ASC").all
-  # set view as index
-  @view = 'index'
-  # render template layout
-  render template: 'cemeteries/template'
+  # render template layout (view is index)
+  render template: 'cemeteries/template', 
+         :locals => {:view => 'index' } 
 end
 
 def search
-  # set view as index
-  @view = 'search'
-  # render template layout
-  render template: 'cemeteries/template'
+  # render template layout (view is search)
+  render template: 'cemeteries/template', 
+         :locals => {:view => 'search' } 
 end
 
 # action queries the database for results
@@ -46,10 +45,12 @@ end
 def show
   # NOTE: calls params[:id] to retrieve query result by id, always do this
   @cemeteries = Cemetery.find(params[:id])
-  # set view as show
-  @view = 'show'
-  # render template layout
-  render template: 'cemeteries/template'
+  @cid = Database.connection.select(
+        "SELECT CT_PhotoPath FROM countylist 
+        WHERE CountyID=#{@cemeteries.cemCID}").first;
+  # render template layout (view is show)
+  render template: 'cemeteries/template', 
+         :locals => {:view =>'show'} 
 end
 
 
