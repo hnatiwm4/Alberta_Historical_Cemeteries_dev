@@ -15,6 +15,9 @@ HistoricalCemeteriesDev::Application.routes.draw do
     collection do
       get :home
       get :search
+      get :search_results
+      post :search_results
+      get :submit
     end
 
     resources :gravestones

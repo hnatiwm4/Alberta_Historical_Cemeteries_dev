@@ -28,9 +28,10 @@
 <!-- display all gravestones associated with a cemetery,
   embed countyID within photo string -->
 <!-- NOTE: this is bad, long, complicated and ugly, need to fix -->
-<% @cemeteries.gravestones.each do |grave| 
-       url = "http://www.canadianheadstones.com/ab/photos/"
-       photo = "#{url}#{@cid['CT_PhotoPath']}/#{grave.photoURL}" %>
+<% @cemeteries.gravestones.each do |grave|
+       url = "http://www.canadianheadstones.com/ab"
+       photo = "#{url}/photos/#{@cid['CT_PhotoPath']}/#{grave.photoURL}"
+       page = "#{url}/view.php?id=#{grave.groupid}"%>
 <div class="rounded-div">
    <p>
      <strong>FirstName:</strong>
@@ -53,10 +54,9 @@
      <strong>Comments:</strong>
      <%= grave.comments %>
    </p>
-   <p>
-     <strong>Photo:</strong>
-     <img src=<%= photo %>></img>
-   </p>
+   <a href=<%= page %> target="_blank" alt="">
+     <img class="img-grave" src=<%= photo %>></img>
+   </a>
 </div>
 <br>
 <% end %>

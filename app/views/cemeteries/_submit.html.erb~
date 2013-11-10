@@ -1,0 +1,22 @@
+<h2>Submit Cemetery Data</h2>
+<%= form_for :cemetery, url: cemeteries_path do |c| %>
+  <p>
+    <%= c.label "Cemetery Name" %><br>
+    <%= c.text_field :cemName %>
+  </p>
+  <p>
+    <%= c.label "County ID" %><br>
+    <%= c.text_field :cemCID %>
+  </p>
+  
+  <h3> NOTE: just a placeholder since cemDirection field has no feault value</h3>
+  <p>
+    <%= c.label "Directions" %><br>
+    <%= c.text_field :cemDirections %>
+  </p>
+
+  <p>
+    <%= c.submit %>
+  </p>
+
+<% end %>

@@ -3,10 +3,9 @@
 <!-- url: method of cemeteries_helper will send POST request to route -->
 
 <!-- NOTE: cemName is a column name within the cemeteries tbale in the DB, read in table values like this -->
-<%= form_for :cemetery, url: cemeteries_path do |c| %>
-  
+<%= form_for :cemetery, url: search_results_cemeteries_path do |c| %>
   <p>
-    <%= c.label :Name %><br>
+    <%= c.label "Cemetery Name" %><br>
     <%= c.text_field :cemName %>
   </p>
 
