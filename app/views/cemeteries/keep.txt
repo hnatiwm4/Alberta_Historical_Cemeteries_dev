@@ -1,0 +1,33 @@
+<!-- display all gravestones associated with a cemetery,
+  embed countyID within photo string -->
+<!-- NOTE: this is bad, long, complicated and ugly, need to fix -->
+<!--<% @cemeteries.gravestones.each do |grave|
+       url = "http://www.canadianheadstones.com/ab"
+       photo = "#{url}/photos/#{@cid['CT_PhotoPath']}/#{grave.photoURL}"
+       page = "#{url}/view.php?id=#{grave.groupid}"%>-->
+<!--<% @cemeteries.graves.each do |grave| %>
+<div class="rounded-div">
+   <p>
+     <strong>FirstName:</strong>
+     <%= grave.first_name %>
+   </p>
+
+   <p>
+     <strong>LastName:</strong>
+     <%= grave.last_name %>
+   </p>
+
+   <!-- need to query to bring up associated cemetery 
+   <p>
+     <strong>CemeteryID:</strong>
+     <%= grave.cem_lev_id %>
+   </p>
+   <p>
+     <strong>Notes:</strong>
+     <%= grave.notes %>
+   </p>
+   <!--<a href=<%= page %> target="_blank" alt="">
+     <img class="img-grave" src=<%= photo %>></img>
+   </a>
+</div>
+<% end %>-->

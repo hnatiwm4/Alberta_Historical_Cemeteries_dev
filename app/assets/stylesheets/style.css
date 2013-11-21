@@ -3,7 +3,8 @@
 /* initial pargins for everything set to 0 for wrapper */
 * { margin: 0; 
     /* border used to view box containers on webpage */
-    /*border: 1px solid red;*/ }
+    /*border: 1px solid red;*/ 
+}
 html{
     margin: 0 auto;
     height: 100%;
@@ -37,31 +38,31 @@ span{
 }
 
 
-#nav-bar{
+.nav-bar{
     /*position: fixed; /* stays static, even when scrolling */
     height: 60px;
     width: 100%;
-    list-style: none;
+    text-align: center;
     background: rgba(38, 36, 36, 0.834);
     color: #FFFFF; }
 
-#nav-bar ul{
-    list-style: none; 
+.nav-bar ul{
     margin-right: 5em;  }
 
-#nav-bar li{
+.nav-bar li{
+    display: inline;
     float: right; }
 
-#nav-bar li a{
+.nav-bar li a{
     display: block;
     padding: 10px 20px;
     text-decoration: none;
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #cc;
+    /*border-right: 1px solid #ccc;
+    border-left: 1px solid #cc;*/
     font-weight: bold; 
     color: #fff; }
 
-#nav-bar li a:hover{
+.nav-bar li a:hover{
     text-decoration: underline;
     background-color: #ffff;
     color: yellow; }

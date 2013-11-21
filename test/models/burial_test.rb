@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GravestonesControllerTest < ActionController::TestCase
+class BurialTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

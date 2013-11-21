@@ -1,4 +1,0 @@
-class GravestonesController < ApplicationController
-  
-
-end

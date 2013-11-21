@@ -11,190 +11,164 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131026193239) do
+ActiveRecord::Schema.define(version: 20131119070756) do
 
-  create_table "AncestryStatus", id: false, force: true do |t|
-    t.string   "Trans",   limit: 1, default: "", null: false
-    t.integer  "id",                default: 0,  null: false
-    t.datetime "Updated",                        null: false
+  create_table "cem_lev", primary_key: "id_cem_lev", force: true do |t|
+    t.string    "cem_name",      limit: 45,                          default: "", null: false
+    t.integer   "reg_num",                                           default: 0,  null: false
+    t.integer   "site_type",                                         default: 0,  null: false
+    t.integer   "active",                                            default: 0,  null: false
+    t.integer   "public",                                            default: 0,  null: false
+    t.string    "rel_lit",       limit: 45,                          default: "", null: false
+    t.integer   "county",                                            default: 0,  null: false
+    t.integer   "loc_auth",                                          default: 0,  null: false
+    t.integer   "parish",                                            default: 0,  null: false
+    t.string    "address",       limit: 45,                          default: "", null: false
+    t.string    "post_code",     limit: 7,                           default: "", null: false
+    t.decimal   "lat",                      precision: 16, scale: 0, default: 0,  null: false
+    t.decimal   "long",                     precision: 16, scale: 0, default: 0,  null: false
+    t.integer   "situation",                                         default: 0,  null: false
+    t.integer   "sur_land",                                          default: 0,  null: false
+    t.integer   "ext",                                               default: 0,  null: false
+    t.integer   "enclosed",                                          default: 0,  null: false
+    t.integer   "num_entrance",                                      default: 0,  null: false
+    t.integer   "ent_dec",                                           default: 0,  null: false
+    t.integer   "intramural",                                        default: 0,  null: false
+    t.integer   "vandalism",                                         default: 0,  null: false
+    t.integer   "litter",                                            default: 0,  null: false
+    t.integer   "landscaping",                                       default: 0,  null: false
+    t.integer   "gen_condition",                                     default: 0,  null: false
+    t.string    "owner",         limit: 45,                          default: "", null: false
+    t.string    "maintain",      limit: 45,                          default: "", null: false
+    t.string    "groups",        limit: 45,                          default: "", null: false
+    t.integer   "care",                                              default: 0,  null: false
+    t.string    "notes",                                             default: "", null: false
+    t.integer   "contr_rec_id"
+    t.string    "approved",      limit: 1,                           default: "", null: false
+    t.string    "photo_URL",     limit: 45,                          default: "", null: false
+    t.integer   "county_id"
+    t.integer   "surveyor_id"
+    t.timestamp "date_updated",                                                   null: false
+    t.timestamp "date_created",                                                   null: false
   end
 
-  add_index "AncestryStatus", ["id"], name: "id", using: :btree
+  add_index "cem_lev", ["contr_rec_id"], name: "fk_cem_lev_contributer_idx", using: :btree
+  add_index "cem_lev", ["county_id"], name: "fk_cem_lev_county1_idx", using: :btree
+  add_index "cem_lev", ["surveyor_id"], name: "fk_cem_lev_surveyor1_idx", using: :btree
 
-  create_table "AncestryTrans", id: false, force: true do |t|
-    t.string   "Trans",    limit: 1,  default: "", null: false
-    t.integer  "id",                  default: 0,  null: false
-    t.string   "Given",    limit: 60
-    t.string   "Surname",  limit: 30
-    t.string   "Cemetery", limit: 75
-    t.string   "County",   limit: 40
-    t.text     "Notes"
-    t.datetime "Updated",                          null: false
-  end
-
-  add_index "AncestryTrans", ["id"], name: "id", using: :btree
-
-  create_table "AncestryView", id: false, force: true do |t|
-    t.string   "Trans",    limit: 1,  default: ""
-    t.integer  "id",                  default: 0,  null: false
-    t.string   "Given",    limit: 60
-    t.string   "Surname",  limit: 30
-    t.string   "Cemetery", limit: 75
-    t.string   "County",   limit: 40, default: ""
-    t.text     "Notes"
-    t.datetime "Updated",                          null: false
-    t.datetime "Last"
-  end
-
-  create_table "cemeteries", primary_key: "cemID", force: true do |t|
-    t.integer   "cemCID",                   default: 0,   null: false
-    t.string    "cemApproved",   limit: 1,  default: "N", null: false
-    t.string    "cemName",       limit: 75, default: "",  null: false
-    t.string    "cemTownship",   limit: 60, default: "",  null: false
-    t.text      "cemDirections",                          null: false
-    t.string    "cemPhotoURL",   limit: 60, default: "",  null: false
-    t.timestamp "cemUpdated",                             null: false
-  end
-
-  create_table "countyaccess", primary_key: "ca_id", force: true do |t|
-    t.integer "ca_uid",              default: 0, null: false
-    t.integer "ca_cid",              default: 0, null: false
-    t.integer "ca_access", limit: 2, default: 0, null: false
-  end
-
-  create_table "countylist", primary_key: "CountyID", force: true do |t|
-    t.string   "CT_Name",          limit: 40,  default: "", null: false
-    t.string   "CT_HomePage",      limit: 100
-    t.string   "CT_PhotoPath",     limit: 75
-    t.string   "CT_SubmitAddr",    limit: 50
-    t.string   "CT_ContactAddr",   limit: 50
-    t.integer  "CT_CoordinatorID",             default: 0,  null: false
-    t.integer  "CT_QtyApproved",               default: 0,  null: false
-    t.integer  "CT_QtyUnapproved",             default: 0,  null: false
-    t.integer  "CT_QtyTrash",                  default: 0,  null: false
-    t.integer  "CT_QtyTotal",                  default: 0,  null: false
-    t.integer  "CT_QtyPhotos",                 default: 0,  null: false
-    t.integer  "CT_DiskSpace",                 default: 0,  null: false
-    t.datetime "CT_LastUpdated",                            null: false
-    t.string   "CT_Flag",          limit: 1,   default: "", null: false
-  end
-
-  add_index "countylist", ["CountyID"], name: "CountyID", using: :btree
-
-  create_table "databases", force: true do |t|
+  create_table "cem_levs", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "gravestone", primary_key: "entryid", force: true do |t|
-    t.integer  "groupid",                   default: 0,   null: false
-    t.integer  "CID",                       default: 0,   null: false
-    t.string   "last",          limit: 30
-    t.string   "first",         limit: 60
-    t.string   "cemetery",      limit: 75
-    t.integer  "cemeteryID",                default: 0,   null: false
-    t.string   "photoURL",      limit: 150
-    t.integer  "filesize",      limit: 3,   default: 0,   null: false
-    t.integer  "width",         limit: 2,   default: 0,   null: false
-    t.integer  "height",        limit: 2,   default: 0,   null: false
-    t.text     "comments"
-    t.string   "email_address", limit: 55
-    t.string   "hide_email",    limit: 1,   default: "N", null: false
-    t.string   "approved",      limit: 1,   default: "N", null: false
-    t.string   "tempfile",      limit: 50,  default: "",  null: false
-    t.integer  "viewcount",                 default: 0,   null: false
-    t.datetime "lastview",                                null: false
-    t.datetime "dt_submit",                               null: false
-    t.datetime "dt_active",                               null: false
-    t.datetime "dt_updated",                              null: false
-    t.integer  "archived",      limit: 1,   default: 0,   null: false
+  create_table "contributor", primary_key: "id_contr_rec", force: true do |t|
+    t.string  "name",      limit: 45, null: false
+    t.integer "ex_rec_id",            null: false
+    t.integer "contr_id",             null: false
   end
 
-  add_index "gravestone", ["CID"], name: "CID", using: :btree
-  add_index "gravestone", ["approved"], name: "approved", using: :btree
-  add_index "gravestone", ["cemeteryID"], name: "cemeteryID", using: :btree
-  add_index "gravestone", ["dt_submit"], name: "DT_Submit", using: :btree
-  add_index "gravestone", ["groupid"], name: "groupid", using: :btree
-  add_index "gravestone", ["photoURL"], name: "photoURL", using: :btree
-
-  create_table "htmltext", primary_key: "htmID", force: true do |t|
-    t.string   "htmCat",       limit: 30, default: "",  null: false
-    t.string   "htmSect",      limit: 30, default: "",  null: false
-    t.text     "htmText"
-    t.datetime "htmCreated",                            null: false
-    t.datetime "htmUpdated",                            null: false
-    t.string   "htmUpdatedBy", limit: 25, default: "",  null: false
-    t.string   "htmStatus",    limit: 1,  default: "0", null: false
+  create_table "county", primary_key: "id_county", force: true do |t|
+    t.string  "name",         limit: 45, null: false
+    t.integer "contr_rec_id"
   end
 
-  add_index "htmltext", ["htmCat", "htmSect"], name: "Key", unique: true, length: {"htmCat"=>6, "htmSect"=>6}, using: :btree
+  add_index "county", ["contr_rec_id"], name: "fk_county_contributor1_idx", using: :btree
 
-  create_table "notice", force: true do |t|
-    t.string   "name",      limit: 100, default: "", null: false
-    t.text     "notes",                              null: false
-    t.string   "status",    limit: 3,   default: "", null: false
-    t.datetime "submitted",                          null: false
-    t.date     "send",                               null: false
-    t.datetime "sent",                               null: false
+  create_table "direction", primary_key: "id_direction", force: true do |t|
+    t.binary  "N",            limit: 1
+    t.binary  "S",            limit: 1
+    t.binary  "E",            limit: 1
+    t.binary  "W",            limit: 1
+    t.binary  "U",            limit: 1
+    t.binary  "D",            limit: 1
+    t.binary  "All",          limit: 1
+    t.integer "land_feat_id",           null: false
   end
 
-  create_table "online", primary_key: "idx", force: true do |t|
-    t.string   "hash",    limit: 50, default: "", null: false
-    t.string   "page",    limit: 50, default: "", null: false
-    t.datetime "thetime",                         null: false
+  add_index "direction", ["land_feat_id"], name: "fk_direction_land_feat1_idx", using: :btree
+
+  create_table "indiv_lev", primary_key: "id_indiv_lev", force: true do |t|
+    t.string    "sex",          limit: 2,  null: false
+    t.string    "first_name",   limit: 45, null: false
+    t.string    "last_name",    limit: 45, null: false
+    t.date      "birth_date",              null: false
+    t.date      "death_date",              null: false
+    t.string    "occupation",   limit: 45, null: false
+    t.string    "birth_place",  limit: 45, null: false
+    t.integer   "contr_rec_id"
+    t.string    "approved",     limit: 1,  null: false
+    t.string    "photo_URL",    limit: 45, null: false
+    t.integer   "cem_lev_id"
+    t.string    "notes",                   null: false
+    t.integer   "county_id"
+    t.integer   "surveyor_id"
+    t.timestamp "date_updated",            null: false
+    t.timestamp "date_created",            null: false
   end
 
-  create_table "postings", primary_key: "pID", force: true do |t|
-    t.integer  "pGraveID",              default: 0,  null: false
-    t.string   "pName",     limit: 60,  default: "", null: false
-    t.string   "pEmail",    limit: 60,  default: "", null: false
-    t.string   "pURL",      limit: 100, default: "", null: false
-    t.string   "pURLTitle", limit: 100, default: "", null: false
-    t.string   "pNote",                 default: "", null: false
-    t.string   "pPasswd",   limit: 50,  default: "", null: false
-    t.datetime "pCreated",                           null: false
-    t.datetime "pUpdated",                           null: false
+  add_index "indiv_lev", ["cem_lev_id"], name: "fk_indiv_lev_cem_lev1_idx", using: :btree
+  add_index "indiv_lev", ["contr_rec_id"], name: "fk_indiv_lev_contributer1_idx", using: :btree
+  add_index "indiv_lev", ["county_id"], name: "fk_indiv_lev_county1_idx", using: :btree
+  add_index "indiv_lev", ["surveyor_id"], name: "fk_indiv_lev_surveyor1_idx", using: :btree
+
+  create_table "land_feat", primary_key: "id_land_feat", force: true do |t|
+    t.integer "mon_level_id_mon_level",            null: false
+    t.string  "feat_type",              limit: 45, null: false
   end
 
-  add_index "postings", ["pGraveID"], name: "pGraveID", using: :btree
+  add_index "land_feat", ["mon_level_id_mon_level"], name: "fk_land_feat_mon_level1_idx", using: :btree
 
-  create_table "prefs", primary_key: "prefID", force: true do |t|
-    t.string    "prefKey",     limit: 25, default: "", null: false
-    t.string    "prefValue",              default: "", null: false
-    t.timestamp "prefUpdated",                         null: false
+  create_table "mon_level", primary_key: "id_mon_level", force: true do |t|
+    t.string    "exposure",      limit: 23, null: false
+    t.string    "exp_faces",     limit: 4,  null: false
+    t.string    "face_orient",   limit: 1,  null: false
+    t.integer   "material",                 null: false
+    t.integer   "insc_tech",                null: false
+    t.integer   "paint",                    null: false
+    t.integer   "num_block",                null: false
+    t.integer   "dim_height",               null: false
+    t.integer   "dim_width",                null: false
+    t.integer   "dim_depth",                null: false
+    t.integer   "foundation",               null: false
+    t.integer   "class",                    null: false
+    t.integer   "decor",                    null: false
+    t.integer   "insc_det",                 null: false
+    t.string    "insc_transc",   limit: 45, null: false
+    t.integer   "shape",                    null: false
+    t.integer   "num_indiv",                null: false
+    t.integer   "add_feat",                 null: false
+    t.integer   "cond_move",                null: false
+    t.integer   "cond_break",               null: false
+    t.integer   "cond_chip",                null: false
+    t.integer   "cond_rep",                 null: false
+    t.integer   "cond_veg",                 null: false
+    t.integer   "grass",                    null: false
+    t.string    "animals",       limit: 45, null: false
+    t.string    "people",        limit: 45, null: false
+    t.integer   "decay",                    null: false
+    t.string    "mem_date",      limit: 45, null: false
+    t.string    "decay_factors", limit: 45, null: false
+    t.integer   "contr_rec_id"
+    t.string    "approved",      limit: 1,  null: false
+    t.string    "photo_URL",     limit: 45, null: false
+    t.integer   "surveyor_id"
+    t.integer   "county_id"
+    t.timestamp "date_updated",             null: false
+    t.timestamp "date_created",             null: false
   end
 
-  add_index "prefs", ["prefKey"], name: "prefKey", using: :btree
+  add_index "mon_level", ["contr_rec_id"], name: "fk_mon_level_contributer1_idx", using: :btree
+  add_index "mon_level", ["county_id"], name: "fk_mon_level_county1_idx", using: :btree
+  add_index "mon_level", ["surveyor_id"], name: "fk_mon_level_surveyor1_idx", using: :btree
 
-  create_table "todo", force: true do |t|
-    t.string   "name",      limit: 100, default: "", null: false
-    t.text     "notes",                              null: false
-    t.string   "status",    limit: 3,   default: "", null: false
-    t.datetime "submitted",                          null: false
+  create_table "surveyor", primary_key: "id_surveyor", force: true do |t|
+    t.string  "first_name",     limit: 45, null: false
+    t.string  "last_name",      limit: 45, null: false
+    t.string  "organization",   limit: 45, null: false
+    t.date    "date_of_survey",            null: false
+    t.string  "email",          limit: 45, null: false
+    t.integer "res_prox",                  null: false
+    t.string  "cem_assoc",      limit: 45, null: false
   end
-
-  create_table "users", primary_key: "u_ID", force: true do |t|
-    t.string   "u_Name",      limit: 25, default: "",  null: false
-    t.string   "u_Login",     limit: 15, default: "",  null: false
-    t.string   "u_Pwd",       limit: 40, default: "",  null: false
-    t.binary   "u_Passwd",                             null: false
-    t.integer  "u_County",               default: 0,   null: false
-    t.string   "u_Email",     limit: 50, default: "",  null: false
-    t.string   "u_Street",    limit: 50, default: "",  null: false
-    t.string   "u_CSZ",       limit: 50, default: "",  null: false
-    t.string   "u_Phone",     limit: 50, default: "",  null: false
-    t.string   "u_Title",     limit: 40, default: "",  null: false
-    t.integer  "u_Access",               default: 0,   null: false
-    t.datetime "u_Created",                            null: false
-    t.datetime "u_Updated",                            null: false
-    t.string   "u_Status",    limit: 1,  default: "",  null: false
-    t.string   "u_Type",      limit: 1,  default: "R", null: false
-    t.integer  "u_LastNews",             default: 0,   null: false
-    t.datetime "u_LastLogin",                          null: false
-  end
-
-  add_index "users", ["u_County"], name: "u_County", using: :btree
-  add_index "users", ["u_ID"], name: "u_ID", using: :btree
-  add_index "users", ["u_Login"], name: "u_Login", using: :btree
 
 end

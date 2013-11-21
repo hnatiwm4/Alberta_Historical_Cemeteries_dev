@@ -10,7 +10,7 @@ class Database < ActiveRecord::Base
                             :host     => "localhost",
                             :username => "root",
                             :password => "c3m3t3ry",
-                            :database => "canada_headstone_schema"
+                            :database => "mydb"
                             )
 
 end

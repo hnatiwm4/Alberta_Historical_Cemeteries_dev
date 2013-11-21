@@ -1,23 +1,18 @@
 <br>
 <div class="rounded-div">
    <p>
-     <strong>Cemetery CID:</strong>
-     <%= @cemeteries.cemCID %>
+     <strong>Cemetery ID:</strong>
+     <%= @cemeteries.id_cem_lev %>
    </p>
 
    <p>
      <strong>Cemetery Name:</strong>
-     <%= @cemeteries.cemName %>
-   </p>
-
-   <p>
-     <strong>Cemetery Approval:</strong>
-     <%=  @cemeteries.cemApproved %>
+     <%= @cemeteries.cem_name %>
    </p>
 
    <p>
      <strong>Last Updated:</strong>
-     <%=  @cemeteries.cemUpdated %>
+     <%=  @cemeteries.date_updated %>
    </p>
    <br>
 
@@ -25,38 +20,24 @@
 </div>
 <br>
 
-<!-- display all gravestones associated with a cemetery,
-  embed countyID within photo string -->
-<!-- NOTE: this is bad, long, complicated and ugly, need to fix -->
-<% @cemeteries.gravestones.each do |grave|
-       url = "http://www.canadianheadstones.com/ab"
-       photo = "#{url}/photos/#{@cid['CT_PhotoPath']}/#{grave.photoURL}"
-       page = "#{url}/view.php?id=#{grave.groupid}"%>
+<% @cemeteries.burials.each do |b| %>
 <div class="rounded-div">
    <p>
-     <strong>FirstName:</strong>
-     <%= grave.first %>
+     <strong>First Name</strong>
+     <%= b.first_name %>
    </p>
 
    <p>
-     <strong>LastName:</strong>
-     <%= grave.last %>
+     <strong>Last Name:</strong>
+     <%= b.last_name %>
    </p>
+
    <p>
-     <strong>Cemetery:</strong>
-     <%= grave.cemetery %>
+     <strong>Cemetery ID</strong>
+     <%= b.cem_lev_id %>
    </p>
-   <p>
-     <strong>CemeteryID:</strong>
-     <%= grave.cemeteryID %>
-   </p>
-   <p>
-     <strong>Comments:</strong>
-     <%= grave.comments %>
-   </p>
-   <a href=<%= page %> target="_blank" alt="">
-     <img class="img-grave" src=<%= photo %>></img>
-   </a>
+
 </div>
 <br>
+
 <% end %>

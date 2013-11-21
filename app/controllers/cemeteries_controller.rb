@@ -9,16 +9,16 @@ end
 
 # action to create new Cemetery object
 # NOTE: sent here if cem_params not met in create method
-def new
-  @cemeteries = Cemetery.new
-end
+#def new
+#  @cemeteries = Cemetery.new
+#end
 
 # index action displays all cemetery records
 def index
-  @cemeteries = Cemetery.order("cemeteries.cemCID ASC").all
+  @cemeteries = Cemetery.order("id_cem_lev ASC").all
   # render template layout (view is index)
   render template: 'cemeteries/template', 
-         :locals => {:view => 'index' } 
+         :locals => {:view => 'index' }
 end
 
 # render submit page to submit cemetery data (on submit, redirects to create action)
@@ -63,19 +63,19 @@ end
 def show
   # NOTE: calls params[:id] to retrieve query result by id, always do this
   @cemeteries = Cemetery.find(params[:id])
-  @cid = Database.connection.select(
-        "SELECT CT_PhotoPath FROM countylist 
-        WHERE CountyID=#{@cemeteries.cemCID}").first
+  # @cid = Database.connection.select(
+  #      "SELECT CT_PhotoPath FROM countylist 
+  #      WHERE CountyID=#{@cemeteries.cemCID}").first
   # render template layout (view is show)
-  render template: 'cemeteries/template', 
-         :locals => {:view =>'show'} 
+  render template: 'cemeteries/template',
+         :locals => {:view => 'show'}
 end
 
 
 
 private
   def cem_params
-    allow = [:cemName, :cemCID, :cemDirections]
+    allow = [:cem_name]
     params.require(:cemetery).permit(allow)
   end
 

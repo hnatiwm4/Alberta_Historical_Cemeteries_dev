@@ -6,31 +6,21 @@
   <span>
    <p>
      <strong>Cemetery ID:</strong>
-     <%= cem.cemID %>
-   </p>
-
-   <p>
-     <strong>Cemetery CID:</strong>
-     <%= cem.cemCID %>
+     <%= cem.id_cem_lev %>
    </p>
 
    <p>
      <strong>Cemetery Name:</strong>
-     <%= cem.cemName %>
-   </p>
-
-   <p>
-     <strong>Cemetery Approval:</strong>
-     <%= cem.cemApproved %>
+     <%= cem.cem_name %>
    </p>
 
    <p>
      <strong>Last Updated:</strong>
-     <%= cem.cemUpdated %>
+     <%= cem.date_updated %>
    </p>
    </span>
   <!-- to make div clickable, use CSS, pass key :id to query for clicked data-->
-  <%= link_to '', cemetery_path(:id => cem.cemID), :class => 'div-clickable' %>
+  <%= link_to '', cemetery_path(:id => cem.id_cem_lev), :class => 'div-clickable' %>
 </div>
 <br>
 <% end %>

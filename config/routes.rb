@@ -20,8 +20,9 @@ HistoricalCemeteriesDev::Application.routes.draw do
       get :submit
     end
 
-    resources :gravestones
+    resources :burials
   end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
