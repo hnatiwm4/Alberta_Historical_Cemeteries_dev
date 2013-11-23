@@ -1,12 +1,5 @@
 class CemeteriesController < ApplicationController
 
-# custom action displays the default homepage
-def home
-  # render template layout (view is home) 
-  render template: 'cemeteries/template',
-         :locals => {:view => 'home' }
-end
-
 # action to create new Cemetery object
 # NOTE: sent here if cem_params not met in create method
 #def new
@@ -16,15 +9,10 @@ end
 # index action displays all cemetery records
 def index
   @cemeteries = Cemetery.order("id_cem_lev ASC").all
-  # render template layout (view is index)
-  render template: 'cemeteries/template', 
-         :locals => {:view => 'index' }
 end
 
 # render submit page to submit cemetery data (on submit, redirects to create action)
 def submit
-  render template: 'cemeteries/template', 
-           :locals => {:view => 'submit' }
 end
 
 # acquire param values from submit action, insert into outside sql database
@@ -34,15 +22,13 @@ def create
     redirect_to @cemeteries
   else
     # redirect back to submit page
-    redner 'submit'
+    render 'submit'
   end
 
 end
 
+# render search view
 def search
-  # render template layout (view is search)
-  render template: 'cemeteries/template', 
-         :locals => {:view => 'search' } 
 end
 
 # action queries the database for results
@@ -67,8 +53,8 @@ def show
   #      "SELECT CT_PhotoPath FROM countylist 
   #      WHERE CountyID=#{@cemeteries.cemCID}").first
   # render template layout (view is show)
-  render template: 'cemeteries/template',
-         :locals => {:view => 'show'}
+  #render template: 'cemeteries/template',
+   #      :locals => {:view => 'show'}
 end
 
 

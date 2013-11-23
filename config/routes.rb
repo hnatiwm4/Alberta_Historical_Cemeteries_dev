@@ -1,14 +1,25 @@
 HistoricalCemeteriesDev::Application.routes.draw do
-  #get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  
+  # specify root or default home page
+  root to: 'pages#home'
+
+  # get routes for static pages for general layout
+  #get "pages/home"
+  match '/home', to: 'pages#home', via: 'get'
+  #get "pages/about"
+  match '/about', to: 'pages#about', via: 'get'
+  #get "pages/contact"
+  match '/contact', to: 'pages#contact', via: 'get'
+
 
   # You can have the root of your site routed with "root"
   #root 'welcome#index'
 
   #NOTE: to specify a custom action, add to resouce with appropreiate routes
   # define default page route
-  root to: 'cemeteries#home'
+  #root to: 'cemeteries#home'
 
   # resource for cemetery records
   resources :cemeteries do
