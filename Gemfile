@@ -43,3 +43,12 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# use Geocoder for geolocations
+gem 'geocoder'
+
+# Use gmaps4rails for Google Maps Support
+gem 'gmaps4rails'
+
+# Use underscore-rails (unserscore.js) with gmaps4rails
+gem 'underscore-rails'

@@ -26,17 +26,59 @@ span{
     min-height: 100%; /* enables sticky footer */
     position: relative;
     padding: 0;
+    /*background: white;*/
 }
 
 #page_main{
-    width: 85%; /* container set to 85% of page width */
-    overflow: auto;
-    margin: auto;
+    width: 98%; /* container set to 98% of page width (create gap on sides) */
+    overflow: hidden;
+    margin: 10px;
     text-align: left;
     padding-bottom: 200px;
+    position: relative;
    /*** must be same size as footer bottom footer ***/
 }
 
+/*** implement Faux column method for 2 columns, one with
+     the overview map container, one with the search sidebar ***/
+
+#overview_map{
+    /* 100 - width of side bar - gap from page_main */
+    width: 70%;
+    position: relative;
+}
+
+
+#search_sidebar{
+    /* 100 - width of map container - gap from page main */
+    width: 26%;
+    min-height: 400px;
+    text-align: center;
+    /*** ensure z-index set to put infront of other elements ***/
+    z-index: 10;
+    padding: 0;
+    background: rgba(120, 120, 120, 0.834);
+}
+
+/* sticky footer */
+#footer{
+    bottom: 0; /*** Ensures footer at bottom of container ***/
+    position: absolute; 
+    width: 100%;
+    height: 200px; /* height of footer */
+    background: rgba(38, 36, 36, 0.834);
+}
+
+
+/* =========== CLASSES ============ */
+
+/* used for common atrributes of 2 column layout */
+.two-col-common{
+    float: left;
+    height: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 .nav-bar{
     /*position: fixed; /* stays static, even when scrolling */
@@ -66,19 +108,6 @@ span{
     text-decoration: underline;
     background-color: #ffff;
     color: yellow; }
-
-/* sticky footer */
-
-#footer{
-    bottom: 0; /*** Ensures footer at bottom of container ***/
-    position: absolute; 
-    width: 100%;
-    height: 200px; /* height of footer */
-    background: rgba(38, 36, 36, 0.834);
-}
-
-
-/* =========== CLASSES ============ */
 
 /* class used with div to create counded cornered containers */
 .rounded-div{
