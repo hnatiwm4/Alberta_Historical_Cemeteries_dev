@@ -26,7 +26,6 @@ span{
     min-height: 100%; /* enables sticky footer */
     position: relative;
     padding: 0;
-    /*background: white;*/
 }
 
 #page_main{
@@ -39,25 +38,44 @@ span{
    /*** must be same size as footer bottom footer ***/
 }
 
-/*** implement Faux column method for 2 columns, one with
-     the overview map container, one with the search sidebar ***/
 
+/*** 16:9   888px x 500px ***/
 #overview_map{
     /* 100 - width of side bar - gap from page_main */
-    width: 70%;
-    position: relative;
+    width: 74%;
 }
 
+/*** 16:9   770px x 447px ***/
+#layout_map{
+    /* 100 - width of side bar - gap from page_main */
+    width: 64%
+}
 
 #search_sidebar{
     /* 100 - width of map container - gap from page main */
-    width: 26%;
-    min-height: 400px;
-    text-align: center;
-    /*** ensure z-index set to put infront of other elements ***/
-    z-index: 10;
-    padding: 0;
-    background: rgba(120, 120, 120, 0.834);
+    width: 22%;
+    min-height: 500px;
+}
+
+#layout_sidebar{
+    /* 100 - width of map container - gap from page main */
+    width: 32%;
+    min-height: 447px;
+    margin-left: 20px;
+}
+
+/* container that contains description of Cemetery */
+#cem_header{
+    float: left;
+    width: 100%;
+    background: rgba(241,241,241,1);
+}
+
+/* container for cemetery information on layout page */
+#cem_info{
+    float: left;
+    width: 64%;
+    margin-bottom: 10px;
 }
 
 /* sticky footer */
@@ -71,6 +89,20 @@ span{
 
 
 /* =========== CLASSES ============ */
+
+/* common attributes among the different map containers*/
+.map{
+    position: relative;
+    border: 1px solid black;
+}
+
+/* common attributes among the differen sidebars */
+.sidebar{
+    text-align: left;
+    /*** ensure z-index set to put infront of other elements ***/
+    padding-left: 10px;
+    border: 1px solid black;
+}
 
 /* used for common atrributes of 2 column layout */
 .two-col-common{

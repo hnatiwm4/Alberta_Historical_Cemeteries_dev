@@ -27,17 +27,13 @@ def create
 
 end
 
-# render search view
-def search
-end
-
 # action queries the database for results
-def search_results
+def search
   # invokve cemetery instance, retrieve one cemetery name
   @cemeteries = Cemetery.where(params[:cemetery]).take 
   # ensure result returned, otherwise reload page
   if @cemeteries.blank?
-    render '_no_results'
+    render 'pages/_no_results'
   else
     # redirect to show action
     redirect_to @cemeteries

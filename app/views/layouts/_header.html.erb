@@ -1,8 +1,7 @@
-  <div class="nav-bar">
-    <!--page links -->
-    <ul>
+  <div class="nav-bar navbar-inner">
+    <!--page links (pull-right bootstrap class) -->
+    <ul class="pull-right">
       <!-- since float right, display in reverse order -->	
-      <li><%= link_to 'Search', search_cemeteries_path %> </li>
       <li><%= link_to 'Submit', submit_cemeteries_path %> </li>
       <li><%= link_to 'All Cemeteries', cemeteries_path %> </li>
       <li><%= link_to 'About', about_path %> </li>
