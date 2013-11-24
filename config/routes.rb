@@ -1,5 +1,7 @@
 HistoricalCemeteriesDev::Application.routes.draw do
-  get "users/new"
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   
@@ -7,14 +9,18 @@ HistoricalCemeteriesDev::Application.routes.draw do
   root to: 'pages#home'
 
   # get routes for static pages for general layout
-  #get "pages/home"
+  # get "pages/home"
   match '/home', to: 'pages#home', via: 'get'
-  #get "pages/about"
+  # get "pages/about"
   match '/about', to: 'pages#about', via: 'get'
-  #get "pages/contact"
+  # get "pages/contact"
   match '/contact', to: 'pages#contact', via: 'get'
-  #get "pages/signup"
+  # get "users/signup"
   match '/signup', to: 'users#new', via: 'get'
+  # get "sessions/signin"
+  match '/signin', to: 'sessions#new', via: 'get'
+  # delete "sessions/signout"
+  match '/signout', to: 'sessions#destroy', via: 'delete'
 
 
   # You can have the root of your site routed with "root"

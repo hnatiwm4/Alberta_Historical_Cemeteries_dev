@@ -23,17 +23,17 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: 
+  database: mydb
   pool: 5
   username: root
   password: c3m3t3ry
-  socket: /var/run/mysqld/mysqld.sock
+  socket: /private/tmp/mysql.sock
 
 production:
   adapter: mysql2
   encoding: utf8
-  database: 
+  database: mydb
   pool: 5
   username: root
   password: c3m3t3ry
-  socket: /var/run/mysqld/mysqld.sock
+  socket: /private/tmp/mysql.sock
