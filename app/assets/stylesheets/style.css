@@ -29,7 +29,8 @@ span{
 }
 
 #page_main{
-    width: 98%; /* container set to 98% of page width (create gap on sides) */
+    /*container set to 98% of page width (create gap on sides) */
+    width: 98%; 
     overflow: hidden;
     margin: 10px;
     text-align: left;
@@ -47,8 +48,9 @@ span{
 
 /*** 16:9   770px x 447px ***/
 #layout_map{
-    /* 100 - width of side bar - gap from page_main */
-    width: 64%
+    /*** NOTE: relies on cem_container for adjusting width */
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 #search_sidebar{
@@ -61,7 +63,9 @@ span{
     /* 100 - width of map container - gap from page main */
     width: 32%;
     min-height: 447px;
-    margin-left: 20px;
+    margin-left: 40px;
+    overflow: auto; 
+    /* makes it scrollable when content > than height */
 }
 
 /* container that contains description of Cemetery */
@@ -74,8 +78,13 @@ span{
 /* container for cemetery information on layout page */
 #cem_info{
     float: left;
-    width: 64%;
-    margin-bottom: 10px;
+    width: 100%;
+}
+
+/* container to encompass the layout map and the cemetery info */
+#cem_container{
+    /* 100 - width of side bar - gap from page_main */
+    width: 64%
 }
 
 /* sticky footer */
@@ -99,7 +108,6 @@ span{
 /* common attributes among the differen sidebars */
 .sidebar{
     text-align: left;
-    /*** ensure z-index set to put infront of other elements ***/
     padding-left: 10px;
     border: 1px solid black;
 }
@@ -109,7 +117,7 @@ span{
     float: left;
     height: 100%;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .nav-bar{

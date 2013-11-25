@@ -14,21 +14,27 @@
 
 <!-- Generate Google Map Example -->
 <script type="text/javascript">
+    var mapOptions = {
+       // Long and Lat for Alberta in general
+       center: new google.maps.LatLng(54.400,-115.000),
+       // zoom 6 for just Alberta
+       zoom: 5
+    };
     handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers([
-    {
-      "lat": 0,
-      "lng": 0,
-      "picture": {
-        "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-        "width":  36,
-        "height": 36
-      },
-      "infowindow": "hello!"
-    }
-    ]);
-    handler.bounds.extendWith(markers);
+    handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
+    // markers = handler.addMarkers([
+    //{
+    //  "lat": 0,
+    //  "lng": 0,
+    //  "picture": {
+    //    "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+    //    "width":  36,
+    //    "height": 36
+    //  },
+    //  "infowindow": "hello!"
+    // }
+    //]);
+    //handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
     });
 </script>

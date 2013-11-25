@@ -8,10 +8,8 @@ def search
   q = param_rm_blanks(params[:burial])
   # get count of number of objects to be returned)
   c = Burial.where(q).count
-  # copy count for use in where where() method
-  l = c
   # find all results
-  @burials = Burial.where(q).limit(l)
+  @burials = Burial.where(q).limit(c)
   # ensure result returned, otherwise reload page
   if @burials.blank?
     render 'pages/_no_results'

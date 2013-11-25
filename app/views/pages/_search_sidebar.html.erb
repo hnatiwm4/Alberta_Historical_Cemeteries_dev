@@ -20,10 +20,10 @@
 	      <%= c.text_field :address %>
 	    </p>
 
-	    <p>
-	      <%= submit_tag("Search Cemeteries") %>
+	    <!--<p>
+	      < submit_tag("Search Cemeteries") >
 	    </p>
-	    <% end %>
+	    < end > <!-- form_or :cemtery -->
 	  </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
       </div>
       <div class="accordion-body collapse" id="collapse2">
 	  <div class="accordion-inner">
-	    <%= form_for :burial, url: search_burials_path do |b|%>
+	    <%= c.fields_for :burial, url: search_burials_path do |b|%>
 	    <p>
 	      <%= b.label "Individual's First Name" %><br>
 	      <%= b.text_field :first_name %>
@@ -46,9 +46,9 @@
 	      <%= b.text_field :last_name %>
 	    </p>
 
-	    <p>
-	      <%= b.submit "Search Burials" %>
-	    </p>
+	    <!--<p>
+	      < b.submit "Search Burials" >
+	    </p>-->
 	    <% end %>
 	  </div>
       </div>
@@ -67,6 +67,11 @@
       </div>
     </div>
 
-
   </div> <!-- search_accordion -->
+
+
+  <p>
+    <%= submit_tag("Search Cemeteries") %>
+  </p>
+  <% end %> <!-- form_for cemtery -->
 </div> <!-- side bar search -->
