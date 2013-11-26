@@ -32,6 +32,9 @@ end
 
 # action displays query result on show page for a single burial
 def show
+  # for testing
+  # county026
+  # c026_wiebe_j_id24685.jpg
   @burials = Burial.find(params[:id])
 end
 
