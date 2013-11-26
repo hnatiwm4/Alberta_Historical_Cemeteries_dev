@@ -13,7 +13,7 @@
 	   <img class="img-thumb" src="http://placehold.it/192x143" alt="" />
       </div>
   </div>
-
+  <!-- container containing all individual information for current burial -->
   <div id="indiv_info" class="two-col-common rounded-div">
     <ul class="nav nav-tabs">
      <h4>
@@ -25,30 +25,62 @@
 	<strong>Birth Date</strong>
 	<%= @burials.birth_date %>
       </p>
+      <p>
+	<strong>Death Date</strong>
+	<%= @burials.death_date %>
+      </p>
+      <p>
+	<strong>Age</strong>
+
+      </p>
+      <p>
+	<strong>Sex</strong>
+	<%= @burials.sex %>
+      </p>
+      <p>
+	<strong>Birth Place</strong>
+	<%= @burials.birth_place %>
+      </p>
+      <p>
+	<strong>Occupation</strong>
+	<%= @burials.occupation %>
+      </p>
+    </span>
+
+  </div> <!-- indiv_info -->
+  
+  <!-- monument info container -->
+  <div id="mon_info" class="rounded-div">
+    <ul class="nav nav-tabs">
+     <h4>Monument Info</h4>
+    </ul>
+    <span>
+
 
     </span>
-    <!-- accordion style for more information -->
+    <!-- accordion style for more monument information -->
     <div class="accordion">
       <div class="accordion-group">
 	<div class="accordion-heading">
-	  <a href="#indiv_collapse" data-toggle="collapse" class="accordion-toggle">
+	  <a href="#mon_collapse" data-toggle="collapse" class="accordion-toggle">
 	    <h5>>>Load More Fields</h5>
 	  </a>
 	</div>
 	<!-- accordion style for more information -->
-	<div class="accordion-body collapse" id="indiv_collapse">
+	<div class="accordion-body collapse" id="mon_collapse">
 	  <div class="accordion-inner">
-	    <%= render 'burial_info_more_fields' %>
+
 	  </div>
 	</div>
       </div>
     </div>
 
-  </div> <!-- indiv_info -->
+  </div> <!-- mon_info -->
+
 
 </div>
 
 <!-- individual burial side bar options -->
-<div id="indiv_sidebar" class="two-col-common sidebar">
+<div id="burial_sidebar" class="two-col-common sidebar">
   <%= render 'burial_sidebar' %>
 </div>

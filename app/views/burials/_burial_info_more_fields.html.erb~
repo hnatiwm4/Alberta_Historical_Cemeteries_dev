@@ -1,5 +1,0 @@
-<!-- Load More Indiv Data in information container -->
-<p>
-  <strong>Occupation</strong>
-  <%= @burials.ccupation %>
-</p>

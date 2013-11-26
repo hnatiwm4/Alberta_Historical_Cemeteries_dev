@@ -68,11 +68,30 @@ span{
     /* makes it scrollable when content > than height */
 }
 
-#indiv_sidebar{
+#burial_sidebar{
     /* 100 - width of map container - gap from page main */
     width: 22%;
     min-height: 574px;
     min-width: 100px;
+}
+
+/* container that contains description of Cemetery */
+#cem_header{
+    float: left;
+    width: 100%;
+    background: rgba(241,241,241,1);
+}
+
+/* container to encompass the layout map and the cemetery info */
+#cem_container{
+    /* 100 - width of side bar - gap from page_main */
+    width: 64%;
+}
+
+/* container for cemetery information on layout page */
+#cem_info{
+    float: left;
+    width: 100%;
 }
 
 /* container to encompass the indivduals pictures and the info */
@@ -87,26 +106,16 @@ span{
 #indiv_info{
     float: left;
     width: 65%;
+    min-height: 230px;
+    max-height: 270px;
     margin-left: 10px;
 }
 
-/* container that contains description of Cemetery */
-#cem_header{
+/* container containing information for a specific monument */
+#mon_info{
     float: left;
-    width: 100%;
-    background: rgba(241,241,241,1);
-}
-
-/* container for cemetery information on layout page */
-#cem_info{
-    float: left;
-    width: 100%;
-}
-
-/* container to encompass the layout map and the cemetery info */
-#cem_container{
-    /* 100 - width of side bar - gap from page_main */
-    width: 64%;
+    width: 98%;
+    margin: 10px 0 10px 10px;
 }
 
 /* sticky footer */
@@ -139,7 +148,7 @@ span{
     float: left;
     height: 100%;
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .nav-bar{
