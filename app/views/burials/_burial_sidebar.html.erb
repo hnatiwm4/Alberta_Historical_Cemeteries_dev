@@ -1,0 +1,41 @@
+  <div id="search_accordion" class="accordion">
+    <!-- burial search -->
+    <div class="accordion-group">
+      <div class="accordion-heading">
+	<a href="#collapse2" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle">
+	  <h4>Burial Search</h4>
+	</a>
+      </div>
+      <div class="accordion-body collapse" id="collapse2">
+	  <div class="accordion-inner">
+	    <%= form_for :burial, url: search_burials_path do |b|%>
+	    <p>
+	      <%= b.label "Individual's First Name" %><br>
+	      <%= b.text_field :first_name %>
+	    </p>
+	    <p>
+	      <%= b.label "Individual's Last Name" %><br>
+	      <%= b.text_field :last_name %>
+	    </p>
+	    <p>
+	      <%= b.submit "Search Burials" %>
+	    </p>
+	    <% end %> <!-- burial form -->
+	  </div>
+      </div>
+    </div>
+    <!-- Filters -->
+    <div class="accordion-group">
+      <div class="accordion-heading">
+	<a href="#collapse3" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle">
+	  <h4>Filter Options</h4>
+	</a>
+      </div>
+      <div class="accordion-body collapse" id="collapse3">
+	  <div class="accordion-inner">
+
+	  </div>
+      </div>
+    </div>
+
+  </div> <!-- search_accordion -->

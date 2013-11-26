@@ -1,0 +1,23 @@
+<h1>Burial SEARCH RESULTS</h1>
+
+<% @burials.each do |b| %>
+<div class="rounded-div">
+   <p>
+     <strong>First Name</strong>
+     <%= b.first_name %>
+   </p>
+
+   <p>
+     <strong>Last Name:</strong>
+     <%= b.last_name %>
+   </p>
+
+   <p>
+     <strong>Cemetery ID</strong>
+     <%= b.cem_lev_id %>
+   </p>
+
+</div>
+<br>
+
+<% end %>

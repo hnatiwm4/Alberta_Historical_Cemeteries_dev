@@ -1,2 +1,0 @@
-class Burial < ActiveRecord::Base
-end

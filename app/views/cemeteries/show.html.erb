@@ -1,43 +1,57 @@
-<br>
-<div class="rounded-div">
-   <p>
-     <strong>Cemetery ID:</strong>
-     <%= @cemeteries.id_cem_lev %>
-   </p>
-
-   <p>
-     <strong>Cemetery Name:</strong>
-     <%= @cemeteries.cem_name %>
-   </p>
-
-   <p>
-     <strong>Last Updated:</strong>
-     <%=  @cemeteries.date_updated %>
-   </p>
-   <br>
-
-   <%= link_to 'Back', :back %>
+<!-- Cemetery Heaader containing Cemetery name and descriptio/history-->
+<div id="cem_header">
+  <%= render 'cem_header' %>
 </div>
-<br>
 
-<% @cemeteries.burials.each do |b| %>
-<div class="rounded-div">
-   <p>
-     <strong>First Name</strong>
-     <%= b.first_name %>
-   </p>
+<!-- LAYOUT MAP FOR EACH INDIVIDUAL CEMETERY -->
+<div id="cem_container" class="two-col-common">
+  <div id="layout_map" class="map">
+    <!-- placeholder for layout -->
+    <div>
+      <div style='height: 447px;'>
+	<img src="http://placehold.it/768x447">
+      </div>
+    </div>
+  </div>
 
-   <p>
-     <strong>Last Name:</strong>
-     <%= b.last_name %>
-   </p>
-
-   <p>
-     <strong>Cemetery ID</strong>
-     <%= b.cem_lev_id %>
-   </p>
+  <!-- Cemetery information container -->
+  <div id="cem_info" class="rounded-div">
+    <ul class="nav nav-tabs">
+     <h4>Cemetery Information: </h4>
+    </ul>
+    <p>
+      <strong>Address</strong>
+      <%= @cemeteries.address %>
+    </p>
+    <p>
+      <strong>Postal Code</strong>
+      <%= @cemeteries.post_code %>
+    </p>
+    <p>
+      <strong>County</strong>
+      <%= @cemeteries.county %>
+    </p>
+    <!-- accordion style for more information -->
+    <div class="accordion">
+      <div class="accordion-group">
+	<div class="accordion-heading">
+	  <a href="#cem_collapse" data-toggle="collapse" class="accordion-toggle">
+	    <h5>>>Load More Fields</h5>
+	  </a>
+	</div>
+	<!-- accordion style for more information -->
+	<div class="accordion-body collapse" id="cem_collapse">
+	  <div class="accordion-inner">
+	    <%= render 'cem_more_fields' %>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
 
 </div>
-<br>
 
-<% end %>
+<!-- layout side bar for each cemetery page-->
+<div id="layout_sidebar" class="two-col-common sidebar">
+  <%= render 'cem_sidebar' %>
+</div>

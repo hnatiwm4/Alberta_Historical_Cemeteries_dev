@@ -30,7 +30,7 @@ end
 # action queries the database for results
 def search
   # invokve cemetery instance, retrieve one cemetery name
-  @cemeteries = Cemetery.where(params[:cemetery]).take 
+  @cemeteries = Cemetery.where(params[:cemetery]).take
   # ensure result returned, otherwise reload page
   if @cemeteries.blank?
     render 'pages/_no_results'

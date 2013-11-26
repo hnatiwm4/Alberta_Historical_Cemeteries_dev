@@ -4,8 +4,9 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-# Use bootstrap
-gem 'bootstrap-sass', '2.3.2.0'
+
+# Use boostrap to create custom sass based styl widgets and containers
+gem 'bootstrap-sass'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
@@ -51,7 +52,7 @@ end
 # use Geocoder for geolocations
 gem 'geocoder'
 
-# Use gmaps4rails for Google Maps Support
+# Use gmaps4rails for Google Maps Support through FORK request
 gem 'gmaps4rails'
 
 # Use underscore-rails (unserscore.js) with gmaps4rails

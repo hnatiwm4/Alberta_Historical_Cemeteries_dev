@@ -27,23 +27,22 @@ HistoricalCemeteriesDev::Application.routes.draw do
   # You can have the root of your site routed with "root"
   #root 'welcome#index'
 
-  #NOTE: to specify a custom action, add to resouce with appropreiate routes
-  # define default page route
-  #root to: 'cemeteries#home'
-
   # resource for cemetery records
   resources :cemeteries do
     collection do
-      get :home
       get :search
-      get :search_results
-      post :search_results
+      post :search
       get :submit
     end
 
-    resources :burials
   end
 
+  resources :burials do
+    collection do
+      get :search
+      post :search
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
