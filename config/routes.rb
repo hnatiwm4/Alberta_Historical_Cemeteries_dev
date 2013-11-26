@@ -22,6 +22,7 @@ HistoricalCemeteriesDev::Application.routes.draw do
   # delete "sessions/signout"
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
+  match '/users_path', to: 'users#index', via: 'get'
 
   # You can have the root of your site routed with "root"
   #root 'welcome#index'
