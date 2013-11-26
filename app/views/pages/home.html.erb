@@ -4,8 +4,8 @@
 <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' type='text/javascript'>
 </script>
 
-<!-- MAIN IVERVIEW MAP OF ALBERTA -->
-<div id="overview_map" class="two-col-common">
+<!-- MAIN OVERVIEW MAP OF ALBERTA -->
+<div id="overview_map" class="two-col-common map">
   <!-- implement simple google map api example -->
   <div>
     <div id="map" style='height: 500px;'></div>
@@ -14,40 +14,32 @@
 
 <!-- Generate Google Map Example -->
 <script type="text/javascript">
+    var mapOptions = {
+       // Long and Lat for Alberta in general
+       center: new google.maps.LatLng(54.400,-115.000),
+       // zoom 6 for just Alberta
+       zoom: 5
+    };
     handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers([
-    {
-      "lat": 0,
-      "lng": 0,
-      "picture": {
-        "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-        "width":  36,
-        "height": 36
-      },
-      "infowindow": "hello!"
-    }
-    ]);
-    handler.bounds.extendWith(markers);
+    handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
+    // markers = handler.addMarkers([
+    //{
+    //  "lat": 0,
+    //  "lng": 0,
+    //  "picture": {
+    //    "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+    //    "width":  36,
+    //    "height": 36
+    //  },
+    //  "infowindow": "hello!"
+    // }
+    //]);
+    //handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
     });
 </script>
 
+<!-- SEARCH SIDEBAR -->
+<%= render 'search_sidebar' %>
 
-<!-- url: method of cemeteries_helper will send POST request to route -->
 
-<!-- NOTE: cemName is a column name within the cemeteries tbale in the DB, read in table values like this -->
-<!-- :cemetery is a namespace -->
-<div id="search_sidebar" class="two-col-common">
-  <%= form_for :cemetery, url: search_results_cemeteries_path do |c| %>
-  <p>
-    <%= c.label "Cemetery Name" %><br>
-    <%= c.text_field :cem_name %>
-  </p>
-
-  <p>
-    <%= c.submit %>
-  </p>
-
-  <% end %>
-</div>
