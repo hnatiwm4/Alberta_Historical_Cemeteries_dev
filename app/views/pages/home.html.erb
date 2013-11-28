@@ -18,11 +18,13 @@
        // Long and Lat for Alberta in general
        center: new google.maps.LatLng(54.400,-115.000),
        // zoom 6 for just Alberta
-       zoom: 5
+       zoom: 6
     };
+    
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
-    // markers = handler.addMarkers([
+    // use add_markers helper to retrieve all valid markers for all valid cemeteries
+    markers = handler.addMarkers(<%=raw add_markers.to_json %>);
     //{
     //  "lat": 0,
     //  "lng": 0,
@@ -34,7 +36,7 @@
     //  "infowindow": "hello!"
     // }
     //]);
-    //handler.bounds.extendWith(markers);
+    handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
     });
 </script>
