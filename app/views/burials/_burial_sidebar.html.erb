@@ -17,23 +17,30 @@
 	      <%= b.label "Individual's Last Name" %><br>
 	      <%= b.text_field :last_name %>
 	    </p>
+	     <!-- Filters -->
+	     <div class="accordion-group">
+	       <div class="accordion-heading">
+		<a href="#collapse3" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle">
+		  <h4>Burial Filter Options</h4>
+		</a>
+	      </div>
+	      <div class="accordion-body collapse" id="collapse3">
+		<div class="accordion-inner">
+		  <!-- use max INT size in ruby for default ALL -->
+		  <%= label_tag "# of Results" %>
+		  <%= select_tag 'limit',options_for_select([['All',2147483647],['1',1],['<=10',10]],2147483647) %>
+		  <%= label_tag "Order Results" %>
+		  <%= select_tag 'order',options_for_select([['Surname',:last_name],['FirstName',:first_name]],:last_name) %>
+		</div>
+	      </div>
+	    </div>
+
+	    <!-- submit button for burial search -->
+	    </br>
 	    <p>
 	      <%= b.submit "Search Burials" %>
 	    </p>
 	    <% end %> <!-- burial form -->
-	  </div>
-      </div>
-    </div>
-    <!-- Filters -->
-    <div class="accordion-group">
-      <div class="accordion-heading">
-	<a href="#collapse3" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle">
-	  <h4>Filter Options</h4>
-	</a>
-      </div>
-      <div class="accordion-body collapse" id="collapse3">
-	  <div class="accordion-inner">
-
 	  </div>
       </div>
     </div>

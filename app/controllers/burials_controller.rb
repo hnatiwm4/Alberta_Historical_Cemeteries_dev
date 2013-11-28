@@ -4,16 +4,14 @@ def index
 end
 
 def search
-  # remove blank fields before search
-  q = param_rm_blanks(params[:burial])
-  # get count of number of objects to be returned)
-  c = Burial.where(q).count
-  # find all results
-  @burials = Burial.where(q).limit(c)
+  # call helper function to remove blanks from burial param
+  query = params_rm_blanks(params[:burial]);
+  # find results (use limit and define order from form)
+  @burials = Burial.where(query).limit(params[:limit]).order(params[:order])
   # ensure result returned, otherwise reload page
   if @burials.blank?
     render 'pages/_no_results'
-  elsif c > 1
+  elsif params[:limit].to_i > 1
     # render results list page
     render 'burials/search_results'
   else
@@ -36,6 +34,14 @@ def show
   # county026
   # c026_wiebe_j_id24685.jpg
   @burials = Burial.find(params[:id])
+end
+
+
+# use of AJAX to redner partial _submit view
+def submit
+  respond_to do |format|
+    format.js
+  end
 end
 
 

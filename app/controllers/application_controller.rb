@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   
   # remove blank values from burial searchs before
   # those values are saved and sent to the Database
-  def param_rm_blanks(search)
+  def params_rm_blanks(search)
     search.each do |k,v|
       if v.blank?
         search.delete(k)

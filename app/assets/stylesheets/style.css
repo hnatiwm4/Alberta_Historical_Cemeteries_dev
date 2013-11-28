@@ -7,11 +7,13 @@
 }
 html{
     margin: 0 auto;
+    padding: 0 auto;
     height: 100%;
 }
 
 body {
-    margin: 0 auto;
+    margin-top: 10px;
+    padding: 0 auto;
     height: 100%;
     text-align: left;
 }
@@ -34,8 +36,8 @@ span{
     overflow: hidden;
     margin: 10px;
     text-align: left;
-    padding-bottom: 200px;
     position: relative;
+    padding-bottom: 200px;
    /*** must be same size as footer bottom footer ***/
 }
 
@@ -55,7 +57,7 @@ span{
 
 #search_sidebar{
     /* 100 - width of map container - gap from page main */
-    width: 22%;
+    width: 24%;
     min-height: 500px;
 }
 
@@ -63,7 +65,7 @@ span{
     /* 100 - width of map container - gap from page main */
     width: 32%;
     min-height: 447px;
-    margin-left: 40px;
+    margin-left: 10px;
     overflow: auto; 
     /* makes it scrollable when content > than height */
 }
@@ -91,7 +93,7 @@ span{
 /* container for cemetery information on layout page */
 #cem_info{
     float: left;
-    width: 100%;
+    width: 97%;
 }
 
 /* container to encompass the indivduals pictures and the info */
@@ -105,16 +107,26 @@ span{
 /* container for individual information on layout page */
 #indiv_info{
     float: left;
-    width: 65%;
+    /* width of indiv_container - 12 (account for margins) */
+    width: 62%;
     min-height: 230px;
     max-height: 270px;
+    margin-left: 10px;
+}
+
+/* container containing the inscription for a given burial */
+#inscription{
+    float: left;
+    /* width of indiv_container - 12 (account for margins) */
+    width: 62%;
+    min-height: 200;
     margin-left: 10px;
 }
 
 /* container containing information for a specific monument */
 #mon_info{
     float: left;
-    width: 98%;
+    width: 95%;
     margin: 10px 0 10px 10px;
 }
 
