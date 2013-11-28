@@ -1,0 +1,23 @@
+<div class="container">
+<!-- tabbed header for different submit forms on the submit page -->
+  <div id="submit_tab">
+    <ul class="nav nav-tabs">
+      <li class="active">
+	<%= link_to 'Cemetery Info', 'cemeteries/submit', :data => {:toggle => "tab"}, :remote => true %>
+      </li>
+      <li>
+	<%= link_to 'Burial Info', 'burials/submit', :data => {:toggle => "tab"}, :remote => true %>
+      </li>
+    </ul>
+  </div>
+
+  <!--placeholder div where partial view for certain submit page will render -->
+  <!-- NOTE: need id so js.erb files can correclty render inside container -->
+  <div class="row">
+    <div id="submit_container" class="span6 offset3">
+    
+    </div>
+  </div>
+
+
+</div>

@@ -15,24 +15,26 @@ HistoricalCemeteriesDev::Application.routes.draw do
   match '/about', to: 'pages#about', via: 'get'
   # get "pages/contact"
   match '/contact', to: 'pages#contact', via: 'get'
+  # get "pages/submit"
+  match '/submit', to: 'pages#submit', via: 'get'
   # get "users/signup"
   match '/signup', to: 'users#new', via: 'get'
   # get "sessions/signin"
   match '/signin', to: 'sessions#new', via: 'get'
   # delete "sessions/signout"
   match '/signout', to: 'sessions#destroy', via: 'delete'
-
+  # get "users/index"
   match '/users_path', to: 'users#index', via: 'get'
 
-  # You can have the root of your site routed with "root"
-  #root 'welcome#index'
+  # rendered partials using AJAX for submit tabs on submit page (must have corresponding .js.erb files)
+  match "cemeteries/submit", to: 'cemeteries#submit', via: 'get'
+  match "burials/submit", to: 'burials#submit', via: 'get'
 
   # resource for cemetery records
   resources :cemeteries do
     collection do
       get :search
       post :search
-      get :submit
     end
 
   end
@@ -42,6 +44,7 @@ HistoricalCemeteriesDev::Application.routes.draw do
       get :search
       post :search
     end
+
   end
 
   # Example of regular route:

@@ -1,0 +1,18 @@
+
+<h2>Submit Burial Data</h2>
+<%= form_for :burial, url: burials_path do |b| %>
+  <p>
+    <%= b.label "First Name" %><br>
+    <%= b.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= b.label "Last Name" %><br>
+    <%= b.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= b.submit %>
+  </p>
+
+<% end %>

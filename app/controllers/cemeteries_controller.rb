@@ -11,10 +11,6 @@ def index
   @cemeteries = Cemetery.order("id_cem_lev ASC").all
 end
 
-# render submit page to submit cemetery data (on submit, redirects to create action)
-def submit
-end
-
 # acquire param values from submit action, insert into outside sql database
 def create
   @cemeteries = Cemetery.create(cem_params)
@@ -53,6 +49,13 @@ def show
    #      :locals => {:view => 'show'}
 end
 
+
+# use of AJAX to redner partial _submit view
+def submit
+  respond_to do |format|
+    format.js
+  end
+end
 
 
 private
