@@ -16,7 +16,8 @@
      <strong>Cemetery ID</strong>
      <%= b.cem_lev_id %>
    </p>
-
+   <!-- makes div clickable-->
+   <%= link_to '', burial_path(:id => b.id_indiv_lev), :class => 'div-clickable' %>
 </div>
 <br>
 

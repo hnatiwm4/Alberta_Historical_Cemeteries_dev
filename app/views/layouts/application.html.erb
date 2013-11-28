@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Alberta Historical Cemeteries Project</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
@@ -38,7 +38,8 @@
 <%= debug(params) if Rails.env.development? %>
 
 </div>
-
+  <!-- included personal JS files to perform different tasks -->
+  <%= javascript_include_tag "tabs" %>
 
 </body>
 </html>
