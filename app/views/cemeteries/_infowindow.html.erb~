@@ -1,0 +1,2 @@
+<h4><%= cemetery.cem_name %></h4>
+<%= link_to 'Load Cemetery Information', cemetery_path(:id => cemetery.id_cem_lev) %>

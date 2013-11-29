@@ -3,10 +3,10 @@
   <div id="submit_tab">
     <ul class="nav nav-tabs">
       <li class="active">
-	<%= link_to 'Cemetery Info', 'cemeteries/submit', :data => {:toggle => 'tab'}, :remote => true %>
+	<%= link_to 'Burial Info', 'burials/submit', :data => {:toggle => 'tab'}, :remote => true %>
       </li>
       <li>
-	<%= link_to 'Burial Info', 'burials/submit', :data => {:toggle => 'tab'}, :remote => true %>
+	<%= link_to 'Cemetery Info', 'cemeteries/submit', :data => {:toggle => 'tab'}, :remote => true %>
       </li>
     </ul>
   </div>
@@ -15,7 +15,8 @@
   <!-- NOTE: need id so js.erb files can correclty render inside container -->
   <div class="row">
     <div id="submit_container" class="span6 offset3">
-    
+      <!-- load default individual form on load -->
+      <%= render 'burials/submit', :remote => true %>
     </div>
   </div>
 

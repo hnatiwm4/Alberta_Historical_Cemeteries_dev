@@ -41,6 +41,15 @@ span{
    /*** must be same size as footer bottom footer ***/
 }
 
+/*** NOTE: boostrap distorts some Google Maps Overlays, to fix added this css ***/
+/* Source: http://github.com/twbs/boostrap/issues/1552 */
+#map label{ 
+    width: auto;
+    display: inline;
+}
+#map img{
+    max-width: none;
+}
 
 /*** 16:9   888px x 500px ***/
 #overview_map{
