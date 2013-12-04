@@ -17,6 +17,14 @@ def add_markers
 
 end
 
+def add_cem_marker(cem_id)
+   # use ActionController to create object instance to use render_to_string method
+  info = ActionController::Base.new()
+  # get cemeteries object passed to 
+
+
+
+end
 
 
 end

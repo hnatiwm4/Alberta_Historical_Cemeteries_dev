@@ -34,7 +34,6 @@ span{
     /*container set to 98% of page width (create gap on sides) */
     width: 98%; 
     overflow: hidden;
-    margin: 10px;
     text-align: left;
     position: relative;
     padding-bottom: 200px;
@@ -55,6 +54,7 @@ span{
 #overview_map{
     /* 100 - width of side bar - gap from page_main */
     width: 74%;
+    margin: 0;
 }
 
 /*** 16:9   770px x 447px ***/

@@ -3,7 +3,7 @@ class BurialsController < ApplicationController
 def index
 end
 
-def search
+def search_results
   # call helper function to remove blanks from burial param
   query = params_rm_blanks(params[:burial]);
   # find results (use limit and define order from form)
@@ -24,10 +24,6 @@ def search
 
 end
 
-# action displays a list of query results 
-def search_results
-end
-
 # action displays query result on show page for a single burial
 def show
   # for testing
@@ -37,7 +33,14 @@ def show
 end
 
 
-# use of AJAX to redner partial _submit view
+# use of AJAX to render partial _search view
+def search
+  respond_to do |format|
+    format.js
+  end
+end
+
+# use of AJAX to render partial _submit view
 def submit
   respond_to do |format|
     format.js

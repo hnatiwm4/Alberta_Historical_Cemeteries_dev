@@ -1,0 +1,13 @@
+<%= form_for :cemetery, url: search_results_cemeteries_path do |c| %>
+<p>
+  <%= c.label "Cemetery Name" %>
+  <%= c.text_field :cem_name %>
+</p>
+<p>
+  <%= c.label "Full Address" %>
+  <%= c.text_field :address %>
+</p>
+<p>
+  <%= submit_tag("Search Cemeteries") %>
+</p>
+<% end %> <!-- cemtery form -->

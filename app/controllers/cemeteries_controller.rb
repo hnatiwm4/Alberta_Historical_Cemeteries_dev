@@ -24,7 +24,7 @@ def create
 end
 
 # action queries the database for results
-def search
+def search_results
   # invokve cemetery instance, retrieve one cemetery name
   @cemeteries = Cemetery.where(params[:cemetery]).take 
   # ensure result returned, otherwise reload page
@@ -49,6 +49,12 @@ def show
    #      :locals => {:view => 'show'}
 end
 
+# use of AJAX to render partial _search view
+def search
+  respond_to do |format|
+    format.js
+  end
+end
 
 # use of AJAX to redner partial _submit view
 def submit
