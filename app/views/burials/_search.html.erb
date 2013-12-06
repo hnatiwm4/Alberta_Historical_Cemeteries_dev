@@ -1,18 +1,52 @@
+<h1>Burial Search</h1>
 <%= form_for :burial, url: search_results_burials_path do |b|%>
 <p>
-  <%= b.label "Individual's First Name" %>
-  <%= b.text_field :first_name %>
+  <%= b.label "Given Name:" %>
+  <%= b.text_field(:first_name) %>
 </p>
 <p>
-  <%= b.label "Individual's Last Name" %>
-  <%= b.text_field :last_name %>
+  <%= b.label "SurName:" %>
+  <%= b.text_field(:last_name) %>
 </p>
-
+<p>
+  <%= b.label "Gender:" %>
+  <%= b.radio_button(:sex,"M") %>
+  <%= b.label "Male", :class => "radio inline" %>
+  <%= b.radio_button(:sex,"F") %>
+  <%= b.label "Female", :class => "radio inline" %>
+</p>
+<p>
+  <%= b.label "Birth Year:" %>  
+</p>
+<p>
+  <%= b.label "Death Year:" %>  
+</p>
+<!-- Advanced Searcher -->
+<div class="accordion-group">
+  <div class="accordion-heading">
+    <a href="#adv_collapse" data-toggle="collapse" class="accordion-toggle">
+      <h5>Advanced Search</h5>
+    </a>
+  </div>
+  <!-- accordion style for more information -->
+  <div class="accordion-body collapse" id="adv_collapse">
+    <div class="accordion-inner">
+      <p>
+	<%= b.label "Place of Birth:" %>
+	<%= b.text_field(:birth_place) %>
+      </p>
+      <p>
+	<%= b.label "Occupation" %>
+	<%= b.text_field(:occupation) %>
+      </p>
+    </div>
+  </div>
+</div>
 <!-- Filters -->
 <div class="accordion-group">
   <div class="accordion-heading">
     <a href="#collapse3" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle">
-      <h4>Burial Filter Options</h4>
+      <h5>Burial Filter Options</h5>
     </a>
   </div>
   <div class="accordion-body collapse" id="collapse3">
@@ -26,8 +60,10 @@
   </div>
 </div>
 <!-- submit button for burial search -->
-	    </br>
-<p>
-  <%= b.submit "Search Burials" %>
+</br>
+<p                     >
+  <%= b.submit "Search Burials", class: "btn btn-large btn-primary" %>
+  <%= b.submit "Reset Form", :type => "reset" %>
 </p>
+
 <% end %> <!-- burial form -->

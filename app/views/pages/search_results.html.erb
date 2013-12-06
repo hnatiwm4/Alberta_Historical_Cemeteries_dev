@@ -1,0 +1,27 @@
+
+<div class="inner-container">
+  <h1><%= title %></h1>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <!-- sidebar with query information and search options -->
+      <div class="span3">
+	<h4>Searched For:</h4>
+	<hr/>
+	<p>
+          <% params.each do |key,val| %>
+	      <%= key %>: <%= val %>
+	      <br/>
+	  <% end %>
+	</p>
+      </div>
+      <!-- main content, table of search results -->
+      <div class="span9">
+	<h4 style='text-align: right;'>Results Returned: <%= object.count %></h4>
+	<hr/>
+	<!-- render partial and pass object to generate table -->
+	<%= render :partial => table, :locals=> {:object => object} %>
+      </div>
+
+    </div>
+  </div>
+</div>

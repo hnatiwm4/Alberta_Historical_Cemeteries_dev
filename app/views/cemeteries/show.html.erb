@@ -16,9 +16,12 @@
     <div>
     <!-- placeholder for layout -->
     <div id="map" style='height: 447px;'>
-      <% if @cemeteries.lat == 0.0 && @cemeteries.long == 0.0 %>
+      <!--<if @cemeteries.lat == 0.0 && @cemeteries.long == 0.0 >
          <img src="http://placehold.it/768x447">
-      <% end %>
+      < end >-->
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
     </div>
     </div>
   </div>

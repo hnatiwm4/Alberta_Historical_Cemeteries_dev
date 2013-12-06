@@ -25,13 +25,24 @@ end
 
 # action queries the database for results
 def search_results
+  # call helper to remove blank fields from param
+  ApplicationHelper.params_rm_blanks(params[:cemetery]);
+  # call helper to create query string for basic keyword search
+  query = ApplicationHelper.basic_keyword_search(params[:cemetery])
   # invokve cemetery instance, retrieve one cemetery name
-  @cemeteries = Cemetery.where(params[:cemetery]).take 
+  @cemeteries = Cemetery.find(:all, :conditions => query)
   # ensure result returned, otherwise reload page
   if @cemeteries.blank?
     render 'pages/_no_results'
+  elsif @cemeteries.count > 1
+    # if multiple results matched, return results page
+    render 'pages/search_results',
+    :locals => {:title => "Cemetery Search Results",
+                :table => 'cemeteries/results_table',
+                :params => params[:cemetery],
+                :object => @cemeteries}
   else
-    # redirect to show action
+    # redirect to show action (single result)
     redirect_to @cemeteries
   end
 
@@ -41,6 +52,11 @@ end
 def show
   # NOTE: calls params[:id] to retrieve query result by id, always do this
   @cemeteries = Cemetery.find(params[:id])
+  # create flash message with appropreiate message if cemetery
+  # record does not contain lat or longitudinal information
+  if @cemeteries.lat == 0.0 && @cemeteries.long == 0.0
+    flash.now[:notice] = 'Information for Map Unavailable'
+  end
   # @cid = Database.connection.select(
   #      "SELECT CT_PhotoPath FROM countylist 
   #      WHERE CountyID=#{@cemeteries.cemCID}").first

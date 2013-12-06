@@ -5,7 +5,8 @@ ruby '2.0.0'
 gem 'rails', '4.0.0'
 
 
-# Use boostrap to create custom sass based styl widgets and containers
+# Use boostrap to create custom sass based style widgets and containers
+# NOTE: Latest version 2.3.2
 gem 'bootstrap-sass'
 
 # Use mysql as the database for Active Record

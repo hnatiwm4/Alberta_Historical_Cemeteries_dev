@@ -31,8 +31,7 @@ span{
 }
 
 #page_main{
-    /*container set to 98% of page width (create gap on sides) */
-    width: 98%; 
+    width: 100%; 
     overflow: hidden;
     text-align: left;
     position: relative;
@@ -52,7 +51,7 @@ span{
 
 /*** 16:9   888px x 500px ***/
 #overview_map{
-    /* 100 - width of side bar - gap from page_main */
+    /* 100 - width of side bar */
     width: 74%;
     margin: 0;
 }
@@ -139,6 +138,17 @@ span{
     margin: 10px 0 10px 10px;
 }
 
+
+/* container used for search page */
+#search_container{
+    border: 1px solid #E5E5E5;
+    padding: 10px;
+}
+
+
+
+
+
 /* sticky footer */
 #footer{
     bottom: 0; /*** Ensures footer at bottom of container ***/
@@ -150,6 +160,15 @@ span{
 
 
 /* =========== CLASSES ============ */
+
+/* defines results and form pages */
+.inner-container{
+    width: 90%;
+    padding: 1em;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid #E5E5E5;
+}
 
 /* common attributes among the different map containers*/
 .map{
@@ -225,6 +244,13 @@ span{
     height: 100%;
     width: 100%;
     text-decoration: none;
+}
+
+/* class for clickable link for a table row */
+.row-link{
+    display: block;
+    height: 100%;
+    width: 100%;
 }
 
 

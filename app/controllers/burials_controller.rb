@@ -4,22 +4,25 @@ def index
 end
 
 def search_results
-  # call helper function to remove blanks from burial param
-  query = params_rm_blanks(params[:burial]);
+  # call helper function to remove blanks from param
+  ApplicationHelper.params_rm_blanks(params[:burial]);
+  # call helper to create query string for basic keyword search
+  query = ApplicationHelper.basic_keyword_search(params[:burial])
   # find results (use limit and define order from form)
-  @burials = Burial.where(query).limit(params[:limit]).order(params[:order])
+  @burials = Burial.find(:all, :conditions => query, :limit => params[:limit], :order => params[:order])
   # ensure result returned, otherwise reload page
   if @burials.blank?
     render 'pages/_no_results'
   elsif params[:limit].to_i > 1
-    # render results list page
-    render 'burials/search_results'
+    # render results list page if limit anything other than 1
+    render 'pages/search_results',
+    :locals => {:title => "Burial Search Results",
+                :table => 'burials/results_table',
+                :params => params[:burial],
+                :object => @burials}
   else
     # redirect to show action (single result)
-    # NOTE: since abouve where() creates a relation and
-    # not a single records, for single record cases just use
-    # the .first method to retrieve it correctly
-    redirect_to @burials.first
+    redirect_to @burials
   end
 
 end

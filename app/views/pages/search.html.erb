@@ -1,20 +1,21 @@
-<!-- tabbed header for different submit forms on the submit page -->
-<div id="search_tab">
-  <ul class="nav nav-tabs">
-    <li class="active">
-      <%= link_to 'Cemetery Search', 'cemeteries/search', :data => {:toggle => 'tab'}, :remote => true %>
-    </li>
-    <li>
-      <%= link_to 'Burial Search', 'burials/search', :data => {:toggle => 'tab'}, :remote => true %>
-    </li>
-  </ul>
-</div>
+<div class="inner-container">
+  <!-- tabbed header for different submit forms on the submit page -->
+  <div id="search_tab">
+    <ul class="nav nav-tabs">
+      <li class="active">
+	<%= link_to 'Cemetery Search', 'cemeteries/search', :data => {:toggle => 'tab'}, :remote => true %>
+      </li>
+      <li>
+	<%= link_to 'Burial Search', 'burials/search', :data => {:toggle => 'tab'}, :remote => true %>
+      </li>
+    </ul>
+  </div>
 
-<!--placeholder div where partial view for certain submit page will render -->
-<!-- NOTE: need id so js.erb files can correclty render inside container -->
-<div class="row">
-  <div id="search_container" class="span6 offset3">
-    <!-- load default individual form on load -->
-    <%= render 'cemeteries/search', :remote => true %>
+  <!-- NOTE: need id so js.erb files can correclty render inside container -->
+  <div class="row">
+    <div id="search_container" class="span10">
+      <!-- load default individual form on load -->
+      <%= render 'cemeteries/search', :remote => true %>
+    </div>
   </div>
 </div>
