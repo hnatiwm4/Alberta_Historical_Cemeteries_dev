@@ -23,8 +23,6 @@ HistoricalCemeteriesDev::Application.routes.draw do
   match '/signin', to: 'sessions#new', via: 'get'
   # delete "sessions/signout"
   match '/signout', to: 'sessions#destroy', via: 'delete'
-  # get "users/index"
-  match '/users_path', to: 'users#index', via: 'get'
 
   # rendered partials using AJAX for submit tabs on submit page (must have corresponding .js.erb files)
   match "cemeteries/submit", to: 'cemeteries#submit', via: 'get'
