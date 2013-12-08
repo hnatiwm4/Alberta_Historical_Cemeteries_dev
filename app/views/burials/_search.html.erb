@@ -1,69 +1,89 @@
-<h1>Burial Search</h1>
-<%= form_for :burial, url: search_results_burials_path do |b|%>
-<p>
-  <%= b.label "Given Name:" %>
-  <%= b.text_field(:first_name) %>
-</p>
-<p>
-  <%= b.label "SurName:" %>
-  <%= b.text_field(:last_name) %>
-</p>
-<p>
-  <%= b.label "Gender:" %>
-  <%= b.radio_button(:sex,"M") %>
-  <%= b.label "Male", :class => "radio inline" %>
-  <%= b.radio_button(:sex,"F") %>
-  <%= b.label "Female", :class => "radio inline" %>
-</p>
-<p>
-  <%= b.label "Birth Year:" %>  
-</p>
-<p>
-  <%= b.label "Death Year:" %>  
-</p>
-<!-- Advanced Searcher -->
-<div class="accordion-group">
-  <div class="accordion-heading">
-    <a href="#adv_collapse" data-toggle="collapse" class="accordion-toggle">
-      <h5>Advanced Search</h5>
-    </a>
-  </div>
-  <!-- accordion style for more information -->
-  <div class="accordion-body collapse" id="adv_collapse">
-    <div class="accordion-inner">
+<div class="container-fluid">
+  <div class="row-fluid">
+    <h1>Burial Search</h1>
+    <%= form_for :burial, url: search_results_burials_path do |b|%>
+    <!-- main search form (has overriden class values) -->
+    <div class="span7">
       <p>
-	<%= b.label "Place of Birth:" %>
-	<%= b.text_field(:birth_place) %>
+	<%= b.label "Given Name:" %>
+	<%= b.text_field(:first_name) %>
       </p>
       <p>
-	<%= b.label "Occupation" %>
-	<%= b.text_field(:occupation) %>
+	<%= b.label "SurName:" %>
+	<%= b.text_field(:last_name) %>
       </p>
-    </div>
-  </div>
-</div>
-<!-- Filters -->
-<div class="accordion-group">
-  <div class="accordion-heading">
-    <a href="#collapse3" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle">
-      <h5>Burial Filter Options</h5>
-    </a>
-  </div>
-  <div class="accordion-body collapse" id="collapse3">
-    <div class="accordion-inner">
-      <!-- use max INT size in ruby for default ALL -->
-      <%= label_tag "# of Results" %>
-      <%= select_tag 'limit',options_for_select([['All',2147483647],['1',1],['<=10',10]],2147483647) %>
-	  <%= label_tag "Order Results" %>
-	  <%= select_tag 'order',options_for_select([['Surname',:last_name],['FirstName',:first_name]],:last_name) %>
-    </div>
-  </div>
-</div>
-<!-- submit button for burial search -->
-</br>
-<p                     >
-  <%= b.submit "Search Burials", class: "btn btn-large btn-primary" %>
-  <%= b.submit "Reset Form", :type => "reset" %>
-</p>
+      <p>
+	<%= b.label "Gender:" %>
+	<%= b.radio_button(:sex,"") %>
+	<%= b.label "Both", :class => "radio inline" %>
+	<%= b.radio_button(:sex,"M") %>
+	<%= b.label "Male", :class => "radio inline" %>
+	<%= b.radio_button(:sex,"F") %>
+	<%= b.label "Female", :class => "radio inline" %>
+      </p>
+      <p>
+	<!-- use hack to create input field for year -->
+	<%= b.label "Birth Date:" %>
+	<%= date_select(:b_date,:birth_date,
+	    :discard_year => true,
+	:prompt => {:month => "Month",:day => "Day"}
+	) %>
+	<%= text_field_tag("b_date[birth_date(1i)]",nil,:placeholder => "Year") %>
+      </p>
+      <p>
+	<!-- use hack to create input field for year -->
+	<%= b.label "Death Date:" %>
+	<%= date_select(:d_date,:death_date,
+	    :discard_year => true,
+	:prompt => {:month => "Month",:day => "Day"}
+	) %>
+	<%= text_field_tag("d_date[death_date(1i)]",nil,:placeholder => "Year") %>
+      </p>
+      <br/>
+      <!-- Advanced Searcher -->
+      <div class="accordion-group">
+	<div class="accordion-heading">
+	  <a href="#adv_collapse" data-toggle="collapse" class="accordion-toggle">
+	    <h5>Advanced Search</h5>
+	  </a>
+	</div>
+	<!-- accordion style for more information -->
+	<div class="accordion-body collapse" id="adv_collapse">
+	  <div class="accordion-inner">
+	    <p>
+	      <%= b.label "Place of Birth:" %>
+	      <%= b.text_field(:birth_place) %>
+	    </p>
+	    <p>
+	      <%= b.label "Occupation" %>
+	      <%= b.text_field(:occupation) %>
+	    </p>
+	  </div>
+	</div>
+      </div>
+      <!-- submit button for burial search -->
+      </br>
+      <p>
+	<%= b.submit "Search Burials", class: "btn btn-large btn-primary" %>
+	<%= b.submit "Reset Form", :type => "reset" %>
+      </p>
 
-<% end %> <!-- burial form -->
+    </div>
+
+    <!-- filter sidebar -->
+    <div class="span3">
+      <h5>Burial Filter Options</h5>
+      <p>
+	<!-- use max INT size in ruby for default ALL -->
+	<%= label_tag "# of Results" %>
+	<%= select_tag 'limit',options_for_select([['All',2147483647],['1',1],['<=10',10]],2147483647) %>
+	    <%= label_tag "Order Results" %>
+	    <%= select_tag 'order',options_for_select([['Surname',:last_name],['FirstName',:first_name]],:last_name) %>
+      </p>
+
+    </div>
+
+    <% end %> <!-- burial form -->
+
+  </div> <!-- fluid-row -->
+</div> <!-- container-fluid -->

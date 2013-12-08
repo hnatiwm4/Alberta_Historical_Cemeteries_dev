@@ -7,17 +7,10 @@ class Cemetery < ActiveRecord::Base
   # IMPORTANT: expicitly set table name
   self.table_name = "cem_lev"
 
-  # connect to predefined database
-  self.establish_connection(
-                            :adapter  => "mysql2",
-                            :host     => "localhost",
-                            :username => "root",
-                            :password => "c3m3t3ry",
-                            :database => "mydb"
-                            )
-
-  # fix association to use proper foreign key (ie cemetery foreign key in each gravestone row)
+  belongs_to :county
   has_many :burials, :foreign_key => "cem_lev_id"
+  
+
 
   # designate which attributes are visible to the model (for inserting using 'create' method)
   #attr_accessor :cemetery

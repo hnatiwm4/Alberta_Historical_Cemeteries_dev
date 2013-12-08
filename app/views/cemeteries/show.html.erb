@@ -51,16 +51,18 @@
      <h4>Cemetery Information: </h4>
     </ul>
     <p>
-      <strong>Address</strong>
+      <strong>Address:</strong>
       <%= @cemeteries.address %>
     </p>
     <p>
-      <strong>Postal Code</strong>
+      <strong>Postal Code:</strong>
       <%= @cemeteries.post_code %>
     </p>
     <p>
-      <strong>County</strong>
-      <%= @cemeteries.county %>
+      <% if @cemeteries.county %>
+          <strong>County:</strong>
+          <%= @cemeteries.county.name %>
+      <% end %>
     </p>
     <!-- accordion style for more information -->
     <div class="accordion">

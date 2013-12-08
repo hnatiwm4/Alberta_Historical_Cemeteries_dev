@@ -10,3 +10,16 @@
 .navbar{
     margin: 0 auto;
 }
+
+/* reset left padding for radio buttons */
+.radio{
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+/* set margins for search page */
+.span7{
+    margin-left: 0;
+    margin-right: 6.38298%;
+    /* normal x 3 */
+}

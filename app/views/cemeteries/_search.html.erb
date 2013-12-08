@@ -1,12 +1,16 @@
 <h1>Cemetery Search</h1>
 <%= form_for :cemetery, url: search_results_cemeteries_path do |c| %>
 <p>
-  <%= c.label "Cemetery Name" %>
+  <%= c.label "Cemetery Name:" %>
   <%= c.text_field :cem_name %>
 </p>
 <p>
-  <%= c.label "Full Address" %>
+  <%= c.label "Full Address:" %>
   <%= c.text_field :address %>
+</p>
+<p>
+  <%= c.label "County:" %>
+  <%= c.collection_select(:county_id, County.all, :id_county, :name, :prompt => "Select a County") %>
 </p>
 <p>
   <%= submit_tag("Search Cemeteries") %>

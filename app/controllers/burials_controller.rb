@@ -1,4 +1,6 @@
 class BurialsController < ApplicationController
+# include appropreiate helper
+include BurialsHelper
 
 def index
 end
@@ -6,6 +8,16 @@ end
 def search_results
   # call helper function to remove blanks from param
   ApplicationHelper.params_rm_blanks(params[:burial]);
+  # convert birth_date and death_date hash values to strings to use in WHERE clause if values not empty
+  # NOTE: hash key b_date and d_date hardcoded in controller and view
+  if params[:b_date].to_a 
+    params[:burial][:birth_date] = date_string(params[:b_date],"birth_date")
+    params.delete :b_date
+  end
+  if params[:d_date].to_a
+    params[:burial][:death_date] = date_string(params[:d_date],"death_date")
+    params.delete :d_date
+  end
   # call helper to create query string for basic keyword search
   query = ApplicationHelper.basic_keyword_search(params[:burial])
   # find results (use limit and define order from form)

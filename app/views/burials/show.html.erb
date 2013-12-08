@@ -3,7 +3,11 @@
   <div class="indiv_imgs two-col-common">
       <!-- placeholder for main gravestone image -->
       <div class="img-main">
-	<img src="http://placehold.it/280x392">
+	<% if @burials.photo_URL.empty? %>
+	   <%= image_tag("http://placehold.it/280x392") %> 
+	<% else %>
+	   <%= link_to image_tag(@burials.photo_URL), @burials.photo_URL, :target => "_blank" %> 
+	<% end %>
       </div>
       <!-- placeholder for thumbnail gallery -->
       <div class="img-thumbs">
@@ -50,12 +54,20 @@
   </div> <!-- indiv_info -->
  
   <!-- inscription container for each burial -->
+  <!-- NOTE: inscription text stored in mon_level table -->
   <div id="inscription" class="rounded-div">
     <ul class="nav nav-tabs">
      <h4>Inscription</h4>
     </ul>
-    
-
+    <span>
+      <p>
+	<% if @burials.monument %>
+	     <%= @burials.monument.insc_transc %>
+	<% else %>
+	    No Inscription Available at this Time
+	<% end %>
+      </p>
+    </span>
   </div>
 
   <!-- monument info container -->

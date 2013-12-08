@@ -191,35 +191,6 @@ span{
     margin-bottom: 10px;
 }
 
-.nav-bar{
-    /*position: fixed; /* stays static, even when scrolling */
-    height: 60px;
-    width: 100%;
-    text-align: center;
-    background: rgba(38, 36, 36, 0.834);
-    color: #FFFFF; }
-
-.nav-bar ul{
-    margin-right: 5em;  }
-
-.nav-bar li{
-    display: inline;
-    float: right; }
-
-.nav-bar li a{
-    display: block;
-    padding: 10px 20px;
-    text-decoration: none;
-    /*border-right: 1px solid #ccc;
-    border-left: 1px solid #cc;*/
-    font-weight: bold; 
-    color: #fff; }
-
-.nav-bar li a:hover{
-    text-decoration: underline;
-    background-color: #ffff;
-    color: yellow; }
-
 /* class used with div to create counded cornered containers */
 .rounded-div{
     -moz-box-border-radius: 10px;
@@ -230,9 +201,6 @@ span{
     /*float: left; /* causes widht to be that of its contents */
     background: rgba(241,241,241,1);
     position: relative; /* to make it clickable */
-}
-.rounded-div:hover{
-    background: rgba(200,200,200,1);
 }
 
 .div-clickable{
