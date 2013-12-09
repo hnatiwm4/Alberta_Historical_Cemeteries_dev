@@ -8,16 +8,16 @@
 	<%= link_to 'Link',burial_path(:id => b.id_indiv_lev), :class => 'row-link' %>
       </td>
       <td>
-	<strong>First Name</strong>
-	<%= b.first_name %>
-      </td>
-      <td>
 	<strong>Last Name:</strong>
 	<%= b.last_name %>
       </td>
       <td>
-	<strong>Cemetery ID</strong>
-	<%= b.cem_lev_id %>
+	<strong>First Name</strong>
+	<%= b.first_name %>
+      </td>
+      <td>
+	<strong>Cemetery:</strong>
+	<%= Cemetery.find(b.cem_lev_id).cem_name %>
       </td>
     </tr>
     <% end %>

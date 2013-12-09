@@ -19,10 +19,14 @@ module ApplicationHelper
   # @return:query string that will be used in controller
 
   # NOTE: inefficient for large databases (linear search)
-  def self.basic_keyword_search(search)
+  def self.basic_search(search,option)
     str = ""
     if search
-      str = (search.map { |k,v| "#{k} LIKE '%#{v}%'" }).join(" AND ")
+      if option == "keyword"
+        str = (search.map { |k,v| "#{k} LIKE '%#{v}%'" }).join(" AND ")
+      elsif option == "exact"
+        str = (search.map { |k,v| "#{k}=\"#{v}\"" }).join(" AND ")
+      end
     end
     return str
   end

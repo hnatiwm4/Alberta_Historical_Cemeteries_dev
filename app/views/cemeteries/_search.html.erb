@@ -1,6 +1,14 @@
 <h1>Cemetery Search</h1>
 <%= form_for :cemetery, url: search_results_cemeteries_path do |c| %>
 <p>
+  <%= label_tag("Search Term Options:") %>
+  <%= radio_button_tag(:search_opt,"keyword",true) %>
+  <%= label_tag("Keyword",nil,:class => "radio inline") %>
+  <%= radio_button_tag(:search_opt,"exact") %>
+  <%= label_tag("Exact Match",nil,:class => "radio inline") %>
+</p>
+<br/>
+<p>
   <%= c.label "Cemetery Name:" %>
   <%= c.text_field :cem_name %>
 </p>

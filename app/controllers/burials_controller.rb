@@ -13,13 +13,15 @@ def search_results
   if params[:b_date].to_a 
     params[:burial][:birth_date] = date_string(params[:b_date],"birth_date")
     params.delete :b_date
+    params[:burial].delete(:birth_date)
   end
   if params[:d_date].to_a
     params[:burial][:death_date] = date_string(params[:d_date],"death_date")
     params.delete :d_date
+    params[:burial].delete(:death_date)
   end
-  # call helper to create query string for basic keyword search
-  query = ApplicationHelper.basic_keyword_search(params[:burial])
+  # call helper to create query string for basic search
+  query = ApplicationHelper.basic_search(params[:burial],params[:search_opt])
   # find results (use limit and define order from form)
   @burials = Burial.find(:all, :conditions => query, :limit => params[:limit], :order => params[:order])
   # ensure result returned, otherwise reload page

@@ -27,8 +27,8 @@ end
 def search_results
   # call helper to remove blank fields from param
   ApplicationHelper.params_rm_blanks(params[:cemetery]);
-  # call helper to create query string for basic keyword search
-  query = ApplicationHelper.basic_keyword_search(params[:cemetery])
+  # call helper to create query string for basic search
+  query = ApplicationHelper.basic_search(params[:cemetery],params[:search_opt])
   # invokve cemetery instance, retrieve one cemetery name
   @cemeteries = Cemetery.find(:all, :conditions => query)
   # ensure result returned, otherwise reload page
