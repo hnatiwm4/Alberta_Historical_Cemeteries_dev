@@ -1,20 +1,22 @@
 module BurialsHelper
 
-  # define how to link photo_URLs related to burials based 
-  # the inputted contributor id
-  # @param: burials contributor id
-  # @return: page string
-  def link_photo_page(burial)
-    page = ""
-    if burial.contr_rec_id = 9
-      url = "http://www.canadianheadstones.com/ab/"
-      # use regex to parse out ending from url used as
-      # if to link to page
-      photo = burial.photo_URL
-      photo.gsub(/_[^_]*$/)
-      page = url + "view.php?id=" + photo
+  def photo_link(burial)
+    link = ""
+    # get external record id from contributor association with
+    # burial to create a link to the external url for the photo
+    @extern_rec = Contributor.where(:id_contr_rec => burial.contr_rec_id).take
+    unless @extern_rec.blank?
+      if @extern_rec.contr_id == 9
+        link = "http://www.canadianheadstones.com/ab/view.php?id=" + @extern_rec.ex_rec_id.to_s
+      else 
+        link = burial.photo_URL
+      end
+    else
+      # else return the actual picture link as the photo link
+      link = burial.photo_URL
     end
-    return photo
+
+    return link
   end
 
   # generates a string for date fields withing a table to match
@@ -33,6 +35,8 @@ module BurialsHelper
     # add new key/value pair to params
     params[key_str] = values.map {|val| "#{val}"}.join("-")
   end
+
+  
 
 
 end

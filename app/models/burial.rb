@@ -7,5 +7,7 @@ class Burial < ActiveRecord::Base
   belongs_to :county  
   # each burial will belong to a monument
   belongs_to :monument
+  
+  has_one :contributor
 
 end

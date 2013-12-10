@@ -4,21 +4,31 @@
     <%= form_for :burial, url: search_results_burials_path do |b|%>
     <!-- main search form (has overriden class values) -->
     <div class="span7">
-      <p>
-	<%= label_tag("Search Term Options:") %>
-	<%= radio_button_tag(:search_opt,"keyword",true) %>
-	<%= label_tag("Keyword",nil,:class => "radio inline") %>
-	<%= radio_button_tag(:search_opt,"exact") %>
-	<%= label_tag("Exact Match",nil,:class => "radio inline") %>
+      <!--<p>
+	<%# label_tag("Search Term Options:") %>
+	<%# radio_button_tag(:search_opt,"keyword",true) %>
+	<%# label_tag("Keyword",nil,:class => "radio inline") %>
+	<%# radio_button_tag(:search_opt,"exact") %>
+	<%# label_tag("Exact Match",nil,:class => "radio inline") %>
       </p>
-      <br/>
+      <br/>-->
       <p>
 	<%= b.label "Given Name:" %>
 	<%= b.text_field(:first_name) %>
+	<%= select_tag 'first_name_opt',
+	                options_for_select([['Keyword',:keyword],
+	                ['Starts With',:starts],
+	                ['Ends With',:ends],
+	                ['Exact',:exact]],:keyword) %>
       </p>
       <p>
 	<%= b.label "SurName:" %>
 	<%= b.text_field(:last_name) %>
+	<%= select_tag 'last_name_opt',
+	               options_for_select([['Keyword',:keyword],
+	               ['Starts With',:starts],
+	               ['Ends With',:ends],
+	               ['Exact',:exact]],:keyword) %>
       </p>
       <p>
         <%= b.label "Cemetery:" %>
@@ -62,10 +72,20 @@
 	    <p>
 	      <%= b.label "Place of Birth:" %>
 	      <%= b.text_field(:birth_place) %>
+	      <%= select_tag 'birth_place_opt',
+	          options_for_select([['Keyword',:keyword],
+	          ['Starts With',:starts],
+	          ['Ends With',:ends],
+	          ['Exact',:exact]],:keyword) %>
 	    </p>
 	    <p>
 	      <%= b.label "Occupation" %>
 	      <%= b.text_field(:occupation) %>
+	      <%= select_tag 'occupation_opt',
+	                      options_for_select([['Keyword',:keyword],
+	                      ['Starts With',:starts],
+	                      ['Ends With',:ends],
+	                      ['Exact',:exact]],:keyword) %>
 	    </p>
 	    <p>
               <%= b.label "County:" %>

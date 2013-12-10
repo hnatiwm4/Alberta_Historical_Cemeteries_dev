@@ -3,10 +3,12 @@
   <div class="indiv_imgs two-col-common">
       <!-- placeholder for main gravestone image -->
       <div class="img-main">
-	<% if @burials.photo_URL.empty? %>
+	<!-- only way to evalute null varcahr field in db, compare to "''" -->
+	<% if @burials.photo_URL == "''" %>
 	   <%= image_tag("http://placehold.it/280x392") %> 
 	<% else %>
-	   <%= link_to image_tag(@burials.photo_URL), @burials.photo_URL, :target => "_blank" %> 
+	   <% page_link = photo_link(@burials)  %>
+	   <%= link_to image_tag(@burials.photo_URL), photo_link(@burials), :target => "_blank" %>
 	<% end %>
       </div>
       <!-- placeholder for thumbnail gallery -->

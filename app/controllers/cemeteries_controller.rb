@@ -28,22 +28,19 @@ def search_results
   # call helper to remove blank fields from param
   ApplicationHelper.params_rm_blanks(params[:cemetery]);
   # call helper to create query string for basic search
-  query = ApplicationHelper.basic_search(params[:cemetery],params[:search_opt])
+  query = ApplicationHelper.basic_search(params,params[:cemetery])
   # invokve cemetery instance, retrieve one cemetery name
-  @cemeteries = Cemetery.find(:all, :conditions => query)
+  @cemeteries = Cemetery.find(:all, :conditions => query, :limit => params[:limit], :order => params[:order])
   # ensure result returned, otherwise reload page
   if @cemeteries.blank?
     render 'pages/_no_results'
-  elsif @cemeteries.count > 1
-    # if multiple results matched, return results page
+  else @cemeteries.count > 1
+    # else return results page
     render 'pages/search_results',
     :locals => {:title => "Cemetery Search Results",
                 :table => 'cemeteries/results_table',
                 :params => params[:cemetery],
                 :object => @cemeteries}
-  else
-    # redirect to show action (single result)
-    redirect_to @cemeteries
   end
 
 end

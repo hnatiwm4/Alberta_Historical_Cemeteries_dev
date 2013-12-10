@@ -161,15 +161,6 @@ span{
 
 /* =========== CLASSES ============ */
 
-/* defines results and form pages */
-.inner-container{
-    width: 90%;
-    padding: 1em;
-    margin-right: auto;
-    margin-left: auto;
-    border: 1px solid #E5E5E5;
-}
-
 /* common attributes among the different map containers*/
 .map{
     position: relative;

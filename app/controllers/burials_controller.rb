@@ -20,24 +20,22 @@ def search_results
     params.delete :d_date
     params[:burial].delete(:death_date)
   end
-  # call helper to create query string for basic search
-  query = ApplicationHelper.basic_search(params[:burial],params[:search_opt])
+  #*** call helper to create query string for basic search
+  query = ApplicationHelper.basic_search(params,params[:burial])
   # find results (use limit and define order from form)
   @burials = Burial.find(:all, :conditions => query, :limit => params[:limit], :order => params[:order])
   # ensure result returned, otherwise reload page
   if @burials.blank?
     render 'pages/_no_results'
-  elsif params[:limit].to_i > 1
+  else
     # render results list page if limit anything other than 1
     render 'pages/search_results',
     :locals => {:title => "Burial Search Results",
                 :table => 'burials/results_table',
                 :params => params[:burial],
                 :object => @burials}
-  else
-    # redirect to show action (single result)
-    redirect_to @burials
   end
+
 
 end
 

@@ -4,6 +4,14 @@
     width: 100%;
 }
 
+.inner-container{
+    width: 80%;
+    padding: 1em;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid #E5E5E5;
+}
+
 .row{
     margin: 0 auto;
 }

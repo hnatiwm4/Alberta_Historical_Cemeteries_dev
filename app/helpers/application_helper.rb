@@ -19,16 +19,34 @@ module ApplicationHelper
   # @return:query string that will be used in controller
 
   # NOTE: inefficient for large databases (linear search)
-  def self.basic_search(search,option)
-    str = ""
+  def self.basic_search(params,search)
+    str_arr = []
+
     if search
-      if option == "keyword"
-        str = (search.map { |k,v| "#{k} LIKE '%#{v}%'" }).join(" AND ")
-      elsif option == "exact"
-        str = (search.map { |k,v| "#{k}=\"#{v}\"" }).join(" AND ")
+      search.each do |key,val|
+        idx = key + "_opt"
+        if params[idx]
+          if params[idx] == "keyword"
+            str_arr.push("#{key} LIKE '%#{val}%'") unless val.blank?
+          elsif params[idx] == "starts"
+            str_arr.push("#{key} LIKE '#{val}%'") unless val.blank?
+          elsif params[idx] == "ends"
+            str_arr.push("#{key} LIKE '%#{val}'") unless val.blank?
+          elsif params[idx] == "exact"
+            str_arr.push("#{key}=\"#{val}\"") unless val.blank?
+          end
+        else
+          # else, for field search by keyword
+          str_arr.push("#{key} LIKE '%#{val}%'") unless val.blank?
+        end
       end
+    # else if search doesnt exist, return nothing
+    else  
+      return
     end
-    return str
+    # return array to string, joined by AND's
+    return str_arr.map {|str| "#{str}"}.join(" AND ")
+
   end
 
 end

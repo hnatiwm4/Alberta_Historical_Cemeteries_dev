@@ -3,10 +3,10 @@
   <div id="search_tab">
     <ul class="nav nav-tabs">
       <li class="active">
-	<%= link_to 'Cemetery Search', 'cemeteries/search', :data => {:toggle => 'tab'}, :remote => true %>
+	<%= link_to 'Cemetery Search', 'cemeteries/search', :remote => true %>
       </li>
       <li>
-	<%= link_to 'Burial Search', 'burials/search', :data => {:toggle => 'tab'}, :remote => true %>
+	<%= link_to 'Burial Search', 'burials/search', :remote => true %>
       </li>
     </ul>
   </div>
@@ -15,7 +15,7 @@
   <div class="row">
     <div id="search_container">
       <!-- load default individual form on load -->
-      <%= render 'cemeteries/search', :remote => true %>
+      <%# render 'cemeteries/search', :remote => true %>
     </div>
   </div>
 </div>

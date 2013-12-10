@@ -1,26 +1,55 @@
-<h1>Cemetery Search</h1>
-<%= form_for :cemetery, url: search_results_cemeteries_path do |c| %>
-<p>
-  <%= label_tag("Search Term Options:") %>
-  <%= radio_button_tag(:search_opt,"keyword",true) %>
-  <%= label_tag("Keyword",nil,:class => "radio inline") %>
-  <%= radio_button_tag(:search_opt,"exact") %>
-  <%= label_tag("Exact Match",nil,:class => "radio inline") %>
-</p>
-<br/>
-<p>
-  <%= c.label "Cemetery Name:" %>
-  <%= c.text_field :cem_name %>
-</p>
-<p>
-  <%= c.label "Full Address:" %>
-  <%= c.text_field :address %>
-</p>
-<p>
-  <%= c.label "County:" %>
-  <%= c.collection_select(:county_id, County.all, :id_county, :name, :prompt => "Select a County") %>
-</p>
-<p>
-  <%= submit_tag("Search Cemeteries") %>
-</p>
-<% end %> <!-- cemtery form -->
+<div class="container-fluid">
+  <div class="row-fluid">
+    <h1>Cemetery Search</h1>
+    <%= form_for :cemetery, url: search_results_cemeteries_path do |c| %>
+    <!-- main search form (has overriden class values) -->
+    <div class="span7">
+      <p>
+        <%= c.label "Cemetery Name:" %>
+	<%= c.text_field :cem_name %>
+	<%= select_tag 'cem_name_opt',
+	    options_for_select([['Keyword',:keyword],
+	    ['Starts With',:starts],
+	    ['Ends With',:ends],
+	    ['Exact',:exact]],:keyword) %>
+      </p>
+      <p>
+	<%= c.label "Full Address:" %>
+	<%= c.text_field :address %>
+	<%= select_tag 'address_opt',
+	    options_for_select([['Keyword',:keyword],
+	    ['Starts With',:starts],
+	    ['Ends With',:ends],
+	    ['Exact',:exact]],:keyword) %>
+      </p>
+      <p>
+	<%= c.label "County:" %>
+	<%= c.collection_select(:county_id, County.all, :id_county, :name, :prompt => "Select a County") %>
+      </p>
+
+      <p>
+       	<%= c.submit "Search Cemeteries", class: "btn btn-large btn-primary" %>
+	<%= c.submit "Reset Form", :type => "reset" %>
+      </p>
+
+    </div> <!-- main form -->
+
+    <!-- filter sidebar -->
+    <div class="span3">
+      <h5>Cemetery Filter Options</h5>
+      <p>
+	<!-- use max INT size in ruby for default ALL -->
+	<%= label_tag "# of Results" %>
+	<%= select_tag 'limit',options_for_select([['All',2147483647],['1',1],['<=10',10]],2147483647) %>
+	<%= label_tag "Order Results" %>
+	<%= select_tag 'order',options_for_select([['Cemetery Name',:cem_name]],:cem_name) %>
+      </p>
+
+    </div>
+
+
+    <% end %> <!-- cemtery form -->
+
+  </div> <!-- fluid-row -->
+
+</div> <!-- container-fluid -->
