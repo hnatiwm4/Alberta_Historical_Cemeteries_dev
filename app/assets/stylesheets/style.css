@@ -31,21 +31,29 @@ span{
 }
 
 #page_main{
-    /*container set to 98% of page width (create gap on sides) */
-    width: 98%; 
+    width: 100%; 
     overflow: hidden;
-    margin: 10px;
     text-align: left;
     position: relative;
     padding-bottom: 200px;
    /*** must be same size as footer bottom footer ***/
 }
 
+/*** NOTE: boostrap distorts some Google Maps Overlays, to fix added this css ***/
+/* Source: http://github.com/twbs/boostrap/issues/1552 */
+#map label{ 
+    width: auto;
+    display: inline;
+}
+#map img{
+    max-width: none;
+}
 
 /*** 16:9   888px x 500px ***/
 #overview_map{
-    /* 100 - width of side bar - gap from page_main */
+    /* 100 - width of side bar */
     width: 74%;
+    margin: 0;
 }
 
 /*** 16:9   770px x 447px ***/
@@ -130,6 +138,17 @@ span{
     margin: 10px 0 10px 10px;
 }
 
+
+/* container used for search page */
+#search_container{
+    border: 1px solid #E5E5E5;
+    padding: 10px;
+}
+
+
+
+
+
 /* sticky footer */
 #footer{
     bottom: 0; /*** Ensures footer at bottom of container ***/
@@ -163,35 +182,6 @@ span{
     margin-bottom: 10px;
 }
 
-.nav-bar{
-    /*position: fixed; /* stays static, even when scrolling */
-    height: 60px;
-    width: 100%;
-    text-align: center;
-    background: rgba(38, 36, 36, 0.834);
-    color: #FFFFF; }
-
-.nav-bar ul{
-    margin-right: 5em;  }
-
-.nav-bar li{
-    display: inline;
-    float: right; }
-
-.nav-bar li a{
-    display: block;
-    padding: 10px 20px;
-    text-decoration: none;
-    /*border-right: 1px solid #ccc;
-    border-left: 1px solid #cc;*/
-    font-weight: bold; 
-    color: #fff; }
-
-.nav-bar li a:hover{
-    text-decoration: underline;
-    background-color: #ffff;
-    color: yellow; }
-
 /* class used with div to create counded cornered containers */
 .rounded-div{
     -moz-box-border-radius: 10px;
@@ -203,9 +193,6 @@ span{
     background: rgba(241,241,241,1);
     position: relative; /* to make it clickable */
 }
-.rounded-div:hover{
-    background: rgba(200,200,200,1);
-}
 
 .div-clickable{
     position: absolute;
@@ -216,6 +203,13 @@ span{
     height: 100%;
     width: 100%;
     text-decoration: none;
+}
+
+/* class for clickable link for a table row */
+.row-link{
+    display: block;
+    height: 100%;
+    width: 100%;
 }
 
 

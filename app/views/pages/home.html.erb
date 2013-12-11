@@ -19,21 +19,11 @@
        center: new google.maps.LatLng(54.400,-115.000),
        // zoom 6 for just Alberta
        zoom: 5
-    };
+    };    
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
-    // markers = handler.addMarkers([
-    //{
-    //  "lat": 0,
-    //  "lng": 0,
-    //  "picture": {
-    //    "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-    //    "width":  36,
-    //    "height": 36
-    //  },
-    //  "infowindow": "hello!"
-    // }
-    //]);
+    // use add_markers helper to retrieve all valid markers for all valid cemeteries
+    markers = handler.addMarkers(<%=raw add_markers.to_json %>);
     //handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
     });

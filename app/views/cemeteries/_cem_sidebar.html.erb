@@ -9,7 +9,7 @@
       </div>
       <div class="accordion-body collapse" id="collapse1">
 	 <div class="accordion-inner">
-	   <%= form_for :burial, url: search_burials_path do |b|%>
+	   <%= form_for :burial, url: search_results_burials_path do |b|%>
 	   <!-- add hidden field to add cemetery tag if present -->
 	   <%= b.hidden_field :cem_lev_id, :value => params[:id] %>
 	   <p>

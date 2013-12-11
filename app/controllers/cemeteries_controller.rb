@@ -24,15 +24,23 @@ def create
 end
 
 # action queries the database for results
-def search
+def search_results
+  # call helper to remove blank fields from param
+  ApplicationHelper.params_rm_blanks(params[:cemetery]);
+  # call helper to create query string for basic search
+  query = ApplicationHelper.basic_search(params,params[:cemetery])
   # invokve cemetery instance, retrieve one cemetery name
-  @cemeteries = Cemetery.where(params[:cemetery]).take 
+  @cemeteries = Cemetery.find(:all, :conditions => query, :limit => params[:limit], :order => params[:order])
   # ensure result returned, otherwise reload page
   if @cemeteries.blank?
     render 'pages/_no_results'
-  else
-    # redirect to show action
-    redirect_to @cemeteries
+  else @cemeteries.count > 1
+    # else return results page
+    render 'pages/search_results',
+    :locals => {:title => "Cemetery Search Results",
+                :table => 'cemeteries/results_table',
+                :params => params[:cemetery],
+                :object => @cemeteries}
   end
 
 end
@@ -41,6 +49,11 @@ end
 def show
   # NOTE: calls params[:id] to retrieve query result by id, always do this
   @cemeteries = Cemetery.find(params[:id])
+  # create flash message with appropreiate message if cemetery
+  # record does not contain lat or longitudinal information
+  if @cemeteries.lat == 0.0 && @cemeteries.long == 0.0
+    flash.now[:notice] = 'Information for Map Unavailable'
+  end
   # @cid = Database.connection.select(
   #      "SELECT CT_PhotoPath FROM countylist 
   #      WHERE CountyID=#{@cemeteries.cemCID}").first
@@ -49,6 +62,12 @@ def show
    #      :locals => {:view => 'show'}
 end
 
+# use of AJAX to render partial _search view
+def search
+  respond_to do |format|
+    format.js
+  end
+end
 
 # use of AJAX to redner partial _submit view
 def submit

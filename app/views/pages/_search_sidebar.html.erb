@@ -10,8 +10,7 @@
       </div>
       <div class="accordion-body collapse in" id="collapse1">
 	  <div class="accordion-inner">
-	    <!-- use ruby hash to accumulate inputted fields, pass to custom submit -->
-	    <%= form_for :cemetery, url: search_cemeteries_path do |c| %>
+	    <%= form_for :cemetery, url: search_results_cemeteries_path do |c| %>
 	    <p>
 	      <%= c.label "Cemetery Name" %>
 	      <%= c.text_field :cem_name %>
@@ -36,7 +35,7 @@
       </div>
       <div class="accordion-body collapse" id="collapse2">
 	  <div class="accordion-inner">
-	    <%= form_for :burial, url: search_burials_path do |b|%>
+	    <%= form_for :burial, url: search_results_burials_path do |b|%>
 	    <p>
 	      <%= b.label "Individual's First Name" %>
 	      <%= b.text_field :first_name %>

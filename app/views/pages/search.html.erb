@@ -1,0 +1,21 @@
+<div class="inner-container">
+  <!-- tabbed header for different submit forms on the submit page -->
+  <div id="search_tab">
+    <ul class="nav nav-tabs">
+      <li class="active">
+	<%= link_to 'Cemetery Search', 'cemeteries/search', :remote => true %>
+      </li>
+      <li>
+	<%= link_to 'Burial Search', 'burials/search', :remote => true %>
+      </li>
+    </ul>
+  </div>
+
+  <!-- NOTE: need id so js.erb files can correclty render inside container -->
+  <div class="row">
+    <div id="search_container">
+      <!-- load default individual form on load -->
+      <%# render 'cemeteries/search', :remote => true %>
+    </div>
+  </div>
+</div>

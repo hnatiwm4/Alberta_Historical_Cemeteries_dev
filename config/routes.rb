@@ -16,6 +16,8 @@ HistoricalCemeteriesDev::Application.routes.draw do
   match '/about', to: 'pages#about', via: 'get'
   # get "pages/contact"
   match '/contact', to: 'pages#contact', via: 'get'
+  # get "pages/search"
+  match '/search', to: 'pages#search', via: 'get'
   # get "pages/submit"
   match '/submit', to: 'pages#submit', via: 'get'
   # get "users/signup"
@@ -25,26 +27,29 @@ HistoricalCemeteriesDev::Application.routes.draw do
   # delete "sessions/signout"
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
-  # rendered partials using AJAX for submit tabs on submit page (must have corresponding .js.erb files)
+  # rendered partials using AJAX for tabs (must have corresponding .js.erb files)
   match "cemeteries/submit", to: 'cemeteries#submit', via: 'get'
   match "burials/submit", to: 'burials#submit', via: 'get'
+  match "cemeteries/search", to: 'cemeteries#search', via: 'get'
+  match "burials/search", to: 'burials#search', via: 'get'
 
   # resource for cemetery records
   resources :cemeteries do
     collection do
-      get :search
-      post :search
+      get :search_results
+      post :search_results
     end
 
   end
 
   resources :burials do
     collection do
-      get :search
-      post :search
+      get :search_results
+      post :search_results
     end
 
   end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
