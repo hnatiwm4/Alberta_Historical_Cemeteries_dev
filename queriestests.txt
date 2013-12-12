@@ -1,0 +1,4 @@
+SELECT * FROM `indiv_lev` 
+INNER JOIN `cem_lev` 
+ON `cem_lev`.`id_cem_lev` = `indiv_lev`.`cem_lev_id`
+ORDER BY `cem_lev`.cem_name

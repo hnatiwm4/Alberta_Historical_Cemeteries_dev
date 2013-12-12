@@ -29,7 +29,7 @@
 
       <p>
        	<%= c.submit "Search Cemeteries", class: "btn btn-large btn-primary" %>
-	<%= c.submit "Reset Form", :type => "reset" %>
+	<%= c.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>
       </p>
 
     </div> <!-- main form -->
@@ -42,7 +42,8 @@
 	<%= label_tag "# of Results" %>
 	<%= select_tag 'limit',options_for_select([['All',2147483647],['1',1],['<=10',10]],2147483647) %>
 	<%= label_tag "Order Results" %>
-	<%= select_tag 'order',options_for_select([['Cemetery Name',:cem_name]],:cem_name) %>
+	<%= select_tag 'order',options_for_select([['Cemetery Name',:cem_name],
+	                                          ['County Name',"name"]],:cem_name) %>
       </p>
 
     </div>

@@ -4,7 +4,7 @@
       <!-- placeholder for main gravestone image -->
       <div class="img-main">
 	<!-- only way to evalute null varcahr field in db, compare to "''" -->
-	<% if @burials.photo_URL == "''" %>
+	<% if @burials.photo_URL.nil? %>
 	   <%= image_tag("http://placehold.it/280x392") %> 
 	<% else %>
 	   <% page_link = photo_link(@burials)  %>

@@ -1,15 +1,51 @@
 module ApplicationHelper
 
   # ========== COMMON HELPERS ==========
-
+  
+  # simple helper to test if params value is simply numeric
+  # (as all params values return within quotes)
+  def is_num?(s)
+    Float(s) != nil rescue false
+  end
+    
   # remove blank values from burial searchs before
   # those values are saved and sent to the Database
-  def self.params_rm_blanks(search)
+  def params_rm_blanks(search)
     search.each do |k,v|
       if v.blank?
         search.delete(k)
       end
     end
+  end
+
+    # generates a string for date fields withing a table to match
+  # (done as date_select returns a hash of values that wont match correctly
+  # in where clause)
+  # @params: params hash, key string
+  # @return: params hash with new key/value for a date 
+  def date_string(params,key_str)
+    # iterate hash, adding values to array
+    values = []
+    params.each do |key,value|
+      if key.include? key_str
+        values.push(value) unless value.blank?
+      end
+    end
+    # add new key/value pair to params
+    params[key_str] = values.map {|val| "#{val}"}.join("-")
+  end
+
+
+  # function evaluate the params hash, determining if any enumerated
+  # values exist, if so create special query string for value
+  def eval_int(params)
+   if params 
+     params.each do |key,val|
+        if is_num?(val)
+          params[key] = val.to_i
+        end
+     end
+   end
   end
 
   # implements a basic keyword (full text) search using LIKE
@@ -19,13 +55,17 @@ module ApplicationHelper
   # @return:query string that will be used in controller
 
   # NOTE: inefficient for large databases (linear search)
-  def self.basic_search(params,search)
+  def basic_search(params,search)
     str_arr = []
 
     if search
       search.each do |key,val|
         idx = key + "_opt"
-        if params[idx]
+        # if value is an integer, add basic query string without quotes
+        if val.is_a? Integer
+          str_arr.push("#{key}=#{val}") unless val.blank?
+        elsif params[idx]
+          # if option given, evaluate and create query string
           if params[idx] == "keyword"
             str_arr.push("#{key} LIKE '%#{val}%'") unless val.blank?
           elsif params[idx] == "starts"
@@ -34,6 +74,7 @@ module ApplicationHelper
             str_arr.push("#{key} LIKE '%#{val}'") unless val.blank?
           elsif params[idx] == "exact"
             str_arr.push("#{key}=\"#{val}\"") unless val.blank?
+
           end
         else
           # else, for field search by keyword

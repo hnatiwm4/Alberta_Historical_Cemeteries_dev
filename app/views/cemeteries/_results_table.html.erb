@@ -1,16 +1,20 @@
 <!-- table encompassing search results -->
-<!-- NOTE: @cemeteries passed in as object variable to partial -->
 <table class="table table-bordered table-hover">
   <tbody>
+    <td>
+      <strong>Cemetery</strong>
+    </td>
+    <td>
+      <strong>County</strong>
+    </td>
     <!-- NEED OT FIND A WAY TO MAKE ROW CLICKABLE -->
-    <% object.each do |c| %>
+    <% @cemeteries.each do |c| %>
     <tr>
       <td>
-	<%= link_to 'Link',cemetery_path(:id => c.id_cem_lev), :class => 'row-link' %>
+	<%= link_to c.cem_name,cemetery_path(:id => c.id_cem_lev) %>
       </td>
       <td>
-	<strong>Cemetery Name</strong>
-	<%= c.cem_name %>
+	<%= link_to c.county.name,cemetery_path(:id => c.id_cem_lev) %>
       </td>
     </tr>
     <% end %>

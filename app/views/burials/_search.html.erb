@@ -98,7 +98,7 @@
       </br>
       <p>
 	<%= b.submit "Search Burials", class: "btn btn-large btn-primary" %>
-	<%= b.submit "Reset Form", :type => "reset" %>
+	<%= b.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>
       </p>
 
     </div>
@@ -111,9 +111,11 @@
 	<%= label_tag "# of Results" %>
 	<%= select_tag 'limit',options_for_select([['All',2147483647],['1',1],['<=10',10]],2147483647) %>
 	<%= label_tag "Order Results" %>
-	<%= select_tag 'order',options_for_select([['Surname',:last_name],['FirstName',:first_name],['Cemetery',:cem_lev_id]],:last_name) %>
+	<%= select_tag 'order',options_for_select([['Surname',:last_name],
+	                                          ['FirstName',:first_name],
+	                                          ['Cemetery Name',"cem_name"],
+	                                          ['County Name',"name"]],:last_name) %>
       </p>
-
     </div>
 
     <% end %> <!-- burial form -->
