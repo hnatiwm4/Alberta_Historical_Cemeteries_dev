@@ -11,7 +11,7 @@ gem 'bootstrap-sass'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
-gem 'protected_attributes'
+# gem 'protected_attributes'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
