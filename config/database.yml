@@ -11,11 +11,11 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: mydb
+  database: hist_cem_db
   pool: 5
   username: root
   password: c3m3t3ry
-  socket: /private/tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
   #/private/tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -28,7 +28,8 @@ test:
   pool: 5
   username: root
   password: c3m3t3ry
-  socket: /private/tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
+  #/private/tmp/mysql.sock
 
 production:
   adapter: mysql2
@@ -37,4 +38,4 @@ production:
   pool: 5
   username: root
   password: c3m3t3ry
-  socket: /private/tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock

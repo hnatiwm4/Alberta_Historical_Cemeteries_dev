@@ -1,11 +1,4 @@
 HistoricalCemeteriesDev::Application.routes.draw do
-  resources :users
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :password_resets
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-  
   # specify root or default home page
   root to: 'pages#home'
 
@@ -32,6 +25,12 @@ HistoricalCemeteriesDev::Application.routes.draw do
   match "burials/submit", to: 'burials#submit', via: 'get'
   match "cemeteries/search", to: 'cemeteries#search', via: 'get'
   match "burials/search", to: 'burials#search', via: 'get'
+  match "monuments/search", to: 'monuments#search', via: 'get'
+
+  # resources for users, sessions, and passwords
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :password_resets
 
   # resource for cemetery records
   resources :cemeteries do
@@ -39,15 +38,22 @@ HistoricalCemeteriesDev::Application.routes.draw do
       get :search_results
       post :search_results
     end
-
   end
 
+  # resource for burial records
   resources :burials do
     collection do
       get :search_results
       post :search_results
     end
+  end
 
+  # resoucre for monument records
+  resources :monuments do
+    collection do
+      get :search_results
+      post :search_results
+    end
   end
 
 

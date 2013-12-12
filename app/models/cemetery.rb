@@ -1,19 +1,19 @@
 class Cemetery < ActiveRecord::Base
-# NOTE: attributes/fields within database table
-# can be referenced like instance.cemName,
-# in the same way attributes added to a migration
-# can be referenced 
-
-  # IMPORTANT: expicitly set table name
+  # explicitly set table name for cemeteries
   self.table_name = "cem_lev"
 
-  belongs_to :county
+  # (correspond foreign key in cem_lev table to primary specified in code below in all has_one methods to relate correctly)
+
+  # each cemetery belongs to one cemetery
+  belongs_to :county, :foreign_key => "county_id"
+  # each cemetery encompasses many monuments
+  has_many :monuments, :foreign_key => "cem_lev_id"
+  # each cemetery encompasses many burial sites
   has_many :burials, :foreign_key => "cem_lev_id"
-  
 
-
-  # designate which attributes are visible to the model (for inserting using 'create' method)
-  #attr_accessor :cemetery
+  # specify default ordering when called by relations
+  # during search filtering
+  default_scope :order => "cem_name ASC"
 
   # method validates data input
   # validates :cemName, presence: true,

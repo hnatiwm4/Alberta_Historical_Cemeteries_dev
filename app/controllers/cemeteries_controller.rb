@@ -1,7 +1,9 @@
 class CemeteriesController < ApplicationController
+# include appropreiate helpers
+include ApplicationHelper
+include CemeteriesHelper
 
 # action to create new Cemetery object
-# NOTE: sent here if cem_params not met in create method
 #def new
 #  @cemeteries = Cemetery.new
 #end
@@ -26,21 +28,24 @@ end
 # action queries the database for results
 def search_results
   # call helper to remove blank fields from param
-  ApplicationHelper.params_rm_blanks(params[:cemetery]);
+  params_rm_blanks(params[:cemetery]);
   # call helper to create query string for basic search
-  query = ApplicationHelper.basic_search(params,params[:cemetery])
+  query = basic_search(params,params[:cemetery])
   # invokve cemetery instance, retrieve one cemetery name
-  @cemeteries = Cemetery.find(:all, :conditions => query, :limit => params[:limit], :order => params[:order])
+  # @cemeteries = Cemetery.find(:all, conditions: query, limit: params[:limit] \
+  #                           , order: params[:order], joins: [:county])
+  @cemeteries = Cemetery.joins(:county).where(query).limit(params[:limit]).order(params[:order])
+
   # ensure result returned, otherwise reload page
   if @cemeteries.blank?
     render 'pages/_no_results'
-  else @cemeteries.count > 1
+  else
     # else return results page
     render 'pages/search_results',
     :locals => {:title => "Cemetery Search Results",
                 :table => 'cemeteries/results_table',
                 :params => params[:cemetery],
-                :object => @cemeteries}
+                :object => @cemeteries }
   end
 
 end

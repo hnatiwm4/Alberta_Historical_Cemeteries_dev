@@ -5,11 +5,11 @@
     <div class="row-fluid">
       <!-- sidebar with query information and search options -->
       <div class="span3">
-	<h4>Searched For:</h4>
+	<h4>Searched Terms:</h4>
 	<hr/>
 	<p>
           <% params.each do |key,val| %>
-	      <%= key %>: <%= val %>
+	      <strong><%= val %></strong>
 	      <br/>
 	  <% end %>
 	</p>

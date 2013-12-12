@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <h1>Monument Search</h1>
+    <%= form_for :monument, url: search_results_monuments_path do |m|%>
+    <!-- main search form (has overriden class values) -->
+    <div class="span7">
+      <p>
+	<%= m.label "Inscription (searched by keyword):" %>
+	<%= m.text_field(:insc_transc) %>
+	<!-- explicitly set to keyword search for inscription-->
+	<% params[:insc_transc_opt] = :keyword %>
+      </p>
+      <br/>
+      <p>
+	<!-- use hack to create input field for year -->
+	<%= m.label "Memorial Date:" %>
+	<%= date_select(:m_date,:mem_date, :discard_year => true,
+	:prompt => {:month => "Month",:day => "Day"}) %>
+	<%= text_field_tag("m_date[mem_date(1i)]",nil,:placeholder => "Year") %>
+      </p>
+      <p>
+	<%= m.label "Exposure Type:" %>
+	<%= m.select(:exposure,
+	    options_for_select([['Not Enclosed',1],
+	    ['Enclosed by a Structure',2],
+	    ['Built Into a Wall',3]]),
+	    {:prompt => "Select a type"} )%>
+      </p>
+      <p>
+	<%= m.label "Material Type:" %>
+	<%= m.select(:material,
+	    options_for_select([['Stone',1],
+	    ['Stone / Other',2],
+	    ['Other',3]]),
+	    {:prompt => "Select a type"} )%>
+      </p>
+      <!-- submit button for monument search -->
+      </br>
+      <p>
+	<%= m.submit "Search Monuments", class: "btn btn-large btn-primary" %>
+	<%= m.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>
+      </p>
+
+    </div>
+
+    <!-- filter sidebar -->
+    <div class="span3">
+      <h5>Monument Filter Options</h5>
+      <p>
+	<!-- use max INT size in ruby for default ALL -->
+	<%= label_tag "# of Results" %>
+	<%= select_tag 'limit',options_for_select([['All',2147483647],['1',1],['<=10',10]],2147483647) %>
+	<%= label_tag "Order Results" %>
+	<%= select_tag 'order',options_for_select([['# of individuals',:num_indiv],
+	    ['Cemetery Name',"cem_name"],
+	    ['County Name',"name"]],:num_indiv) %>
+      </p>
+    </div>
+
+
+    <% end %> <!-- monument form -->
+
+  </div> <!-- fluid-row -->
+
+</div> <!-- container-fluid -->

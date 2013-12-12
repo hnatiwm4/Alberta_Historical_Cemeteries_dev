@@ -1,25 +1,38 @@
-<!-- table encompassing serach results -->
+<%# will_paginate %>
+
+<!-- table encompassing search results -->
 <table class="table table-bordered table-hover">
   <tbody>
+    <td>
+      <strong>Last Name</strong>
+    </td>
+    <td>
+      <strong>First Name</strong>
+    </td>
+    <td>
+      <strong>Cemetery</strong>
+    </td>
+    <td>
+      <strong>County</strong>
+    </td>
     <!-- NEED OT FIND A WAY TO MAKE ROW CLIACKABLE -->
     <% @burials.each do |b| %>
     <tr>
       <td>
-	<%= link_to 'Link',burial_path(:id => b.id_indiv_lev), :class => 'row-link' %>
+	<%= link_to b.last_name, burial_path(:id => b.id_indiv_lev) %>
       </td>
       <td>
-	<strong>Last Name:</strong>
-	<%= b.last_name %>
+	<%= link_to b.first_name, burial_path(:id => b.id_indiv_lev) %>
       </td>
       <td>
-	<strong>First Name</strong>
-	<%= b.first_name %>
+	<%= link_to b.cemetery.cem_name, burial_path(:id => b.id_indiv_lev) %>
       </td>
       <td>
-	<strong>Cemetery:</strong>
-	<%= Cemetery.find(b.cem_lev_id).cem_name %>
+	<%= link_to b.county.name, burial_path(:id => b.id_indiv_lev) %>
       </td>
     </tr>
     <% end %>
   </tbody>
 </table>
+
+<%# will_paginate %>

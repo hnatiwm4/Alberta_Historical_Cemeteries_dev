@@ -6,6 +6,9 @@
 	<%= link_to 'Cemetery Search', 'cemeteries/search', :remote => true %>
       </li>
       <li>
+	<%= link_to 'Monument Search', 'monuments/search', :remote => true %>
+      </li>
+      <li>
 	<%= link_to 'Burial Search', 'burials/search', :remote => true %>
       </li>
     </ul>
@@ -14,8 +17,7 @@
   <!-- NOTE: need id so js.erb files can correclty render inside container -->
   <div class="row">
     <div id="search_container">
-      <!-- load default individual form on load -->
-      <%# render 'cemeteries/search', :remote => true %>
+      <!-- default tab preloaded by JS and AJAX -->
     </div>
   </div>
 </div>
