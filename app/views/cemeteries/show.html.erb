@@ -4,87 +4,90 @@
 <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' type='text/javascript'>
 </script>
 
-<!-- Cemetery Heaader containing Cemetery name and descriptio/history-->
-<div id="cem_header">
-  <%= render 'cem_header' %>
-</div>
-
-<!-- LAYOUT MAP FOR EACH INDIVIDUAL CEMETERY -->
-<div id="cem_container" class="two-col-common">
-
-  <div id="layout_map" class="map">
-    <div>
-    <!-- placeholder for layout -->
-    <div id="map" style='height: 447px;'>
-      <!--<if @cemeteries.lat == 0.0 && @cemeteries.long == 0.0 >
-         <img src="http://placehold.it/768x447">
-      < end >-->
-    <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>"><%= value %></div>
-    <% end %>
-    </div>
-    </div>
+<div class="inner-container">
+  <!-- Cemetery Heaader containing Cemetery name and descriptio/history-->
+  <div id="cem_header">
+    <%= render 'cem_header' %>
   </div>
 
-<% if @cemeteries.lat? && @cemeteries.long? %>
-<!-- Generate Google Map for each individual cemetery -->
-<script type="text/javascript">
-    var mapOptions = {
-       // Long and Lat for specified cemetery
-       center: new google.maps.LatLng(<%= @cemeteries.lat%>,<%=@cemeteries.long %>),
-       mapTypeId: google.maps.MapTypeId.SATELLITE,
-       zoom: 14
-    };    
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
-    // add single marker for given cemetery based on the id
-    
-    //handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    });
-</script>
-<% end %>
+  <!-- LAYOUT MAP FOR EACH INDIVIDUAL CEMETERY -->
+  <div id="cem_container" class="two-col-common">
 
-  <!-- Cemetery information container -->
-  <div id="cem_info" class="rounded-div">
-    <ul class="nav nav-tabs">
-     <h4>Cemetery Information: </h4>
-    </ul>
-    <p>
-      <strong>Address:</strong>
-      <%= @cemeteries.address %>
-    </p>
-    <p>
-      <strong>Postal Code:</strong>
-      <%= @cemeteries.post_code %>
-    </p>
-    <p>
-      <% if @cemeteries.county %>
-          <strong>County:</strong>
-          <%= @cemeteries.county.name %>
-      <% end %>
-    </p>
-    <!-- accordion style for more information -->
-    <div class="accordion">
-      <div class="accordion-group">
-	<div class="accordion-heading">
-	  <a href="#cem_collapse" data-toggle="collapse" class="accordion-toggle">
-	    <h5>>>Load More Fields</h5>
-	  </a>
+    <div id="layout_map" class="map">
+      <div>
+	<!-- placeholder for layout -->
+	<div id="map" style='height: 447px;'>
+	  <!--<if @cemeteries.lat == 0.0 && @cemeteries.long == 0.0 >
+              <img src="http://placehold.it/768x447">
+	      < end >-->
+	  <% flash.each do |key, value| %>
+	  <div class="alert alert-<%= key %>"><%= value %></div>
+	  <% end %>
 	</div>
-	<!-- accordion style for more information -->
-	<div class="accordion-body collapse" id="cem_collapse">
-	  <div class="accordion-inner">
-	    <%= render 'cem_more_fields' %>
+      </div>
+    </div>
+
+    <% if @cemeteries.lat? && @cemeteries.long? %>
+    <!-- Generate Google Map for each individual cemetery -->
+    <script type="text/javascript">
+      var mapOptions = {
+      // Long and Lat for specified cemetery
+      center: new google.maps.LatLng(<%= @cemeteries.lat%>,<%=@cemeteries.long %>),
+      mapTypeId: google.maps.MapTypeId.SATELLITE,
+      zoom: 14
+      };    
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
+      // add single marker for given cemetery based on the id
+      
+      //handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      });
+    </script>
+    <% end %>
+
+    <!-- Cemetery information container -->
+    <div id="cem_info" class="rounded-div">
+      <ul class="nav nav-tabs">
+	<h4>Cemetery Information: </h4>
+      </ul>
+      <p>
+	<strong>Address:</strong>
+	<%= @cemeteries.address %>
+      </p>
+      <p>
+	<strong>Postal Code:</strong>
+	<%= @cemeteries.post_code %>
+      </p>
+      <p>
+	<% if @cemeteries.county %>
+        <strong>County:</strong>
+        <%= @cemeteries.county.name %>
+	<% end %>
+      </p>
+      <!-- accordion style for more information -->
+      <div class="accordion">
+	<div class="accordion-group">
+	  <div class="accordion-heading">
+	    <a href="#cem_collapse" data-toggle="collapse" class="accordion-toggle">
+	      <h5>>>Load More Fields</h5>
+	    </a>
+	  </div>
+	  <!-- accordion style for more information -->
+	  <div class="accordion-body collapse" id="cem_collapse">
+	    <div class="accordion-inner">
+	      <%= render 'cem_more_fields' %>
+	    </div>
 	  </div>
 	</div>
       </div>
     </div>
+
   </div>
 
-</div>
+  <!-- layout side bar for each cemetery page-->
+  <div id="layout_sidebar" class="two-col-common sidebar">
+    <%= render 'cem_sidebar' %>
+  </div>
 
-<!-- layout side bar for each cemetery page-->
-<div id="layout_sidebar" class="two-col-common sidebar">
-  <%= render 'cem_sidebar' %>
 </div>

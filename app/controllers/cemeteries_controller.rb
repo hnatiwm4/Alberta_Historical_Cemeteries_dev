@@ -27,18 +27,20 @@ end
 
 # action queries the database for results
 def search_results
+  # produce no results message on form page if all fields are blank
+  if params[:cemetery].all? {|k,v| v.blank?} 
+    redirect_to :back
+  end
   # call helper to remove blank fields from param
   params_rm_blanks(params[:cemetery]);
   # call helper to create query string for basic search
   query = basic_search(params,params[:cemetery])
   # invokve cemetery instance, retrieve one cemetery name
-  # @cemeteries = Cemetery.find(:all, conditions: query, limit: params[:limit] \
-  #                           , order: params[:order], joins: [:county])
   @cemeteries = Cemetery.joins(:county).where(query).limit(params[:limit]).order(params[:order])
 
   # ensure result returned, otherwise reload page
   if @cemeteries.blank?
-    render 'pages/_no_results'
+    redirect_to :back
   else
     # else return results page
     render 'pages/search_results',

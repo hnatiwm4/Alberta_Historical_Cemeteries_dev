@@ -18,7 +18,7 @@ module ApplicationHelper
     end
   end
 
-    # generates a string for date fields withing a table to match
+  # generates a string for date fields withing a table to match
   # (done as date_select returns a hash of values that wont match correctly
   # in where clause)
   # @params: params hash, key string
@@ -35,6 +35,23 @@ module ApplicationHelper
     params[key_str] = values.map {|val| "#{val}"}.join("-")
   end
 
+  # function evalute the imputted array of date fields within params
+  # to generate dat_string from the input from the forms
+  # (ie creates UNIX datetime formatted field to use for querying)
+  # @param: params hash
+  # @param: params hash for given object
+  # @param: hash of field key/value pairs
+  # @return: modified params hash
+  def eval_date(params,object,fields)
+    fields.each do |key,val|
+      if params[key]
+        if params[key].to_a
+          params[object][val] = date_string(params[key],val)
+          params.delete key
+        end
+      end
+    end
+  end
 
   # function evaluate the params hash, determining if any enumerated
   # values exist, if so create special query string for value

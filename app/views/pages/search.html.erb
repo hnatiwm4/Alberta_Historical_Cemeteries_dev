@@ -3,13 +3,13 @@
   <div id="search_tab">
     <ul class="nav nav-tabs">
       <li class="active">
-	<%= link_to 'Cemetery Search', 'cemeteries/search', :remote => true %>
+	<%= link_to 'Cemetery Search', 'cemeteries/search', :data => {:toggle => "tab"}, :remote => true %>
       </li>
       <li>
-	<%= link_to 'Monument Search', 'monuments/search', :remote => true %>
+	<%= link_to 'Monument Search', 'monuments/search', :data => {:toggle => "tab"}, :remote => true %>
       </li>
       <li>
-	<%= link_to 'Burial Search', 'burials/search', :remote => true %>
+	<%= link_to 'Burial Search', 'burials/search', :data => {:toggle => "tab"}, :remote => true %>
       </li>
     </ul>
   </div>

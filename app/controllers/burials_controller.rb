@@ -5,21 +5,15 @@ include BurialsHelper
 
 # index action displays all burial records
 def index
-  # @burials = Burial.order("id_ ASC").all
+  @burials = Burial.order("id_indiv_lev ASC").all
 end
 
 def search_results
+  
   # call helper function to remove blanks from param
   params_rm_blanks(params[:burial]);
   # convert date hash values to strings to use in WHERE clause
-  if params[:b_date].to_a 
-    params[:burial][:birth_date] = date_string(params[:b_date],"birth_date")
-    params.delete :b_date
-  end
-  if params[:d_date].to_a
-    params[:burial][:death_date] = date_string(params[:d_date],"death_date")
-    params.delete :d_date
-  end
+  eval_date(params,:burial,{b_date: "birth_date",d_date: "death_date"})
 
   #*** call helper to create query string for basic search
   query = basic_search(params,params[:burial])

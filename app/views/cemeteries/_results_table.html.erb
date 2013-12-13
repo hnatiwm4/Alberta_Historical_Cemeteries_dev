@@ -7,14 +7,13 @@
     <td>
       <strong>County</strong>
     </td>
-    <!-- NEED OT FIND A WAY TO MAKE ROW CLICKABLE -->
     <% @cemeteries.each do |c| %>
-    <tr>
+    <tr class="row-clickable" href=<%= cemetery_path(:id => c.id_cem_lev) %>>
       <td>
-	<%= link_to c.cem_name,cemetery_path(:id => c.id_cem_lev) %>
+	<%= c.cem_name %>
       </td>
       <td>
-	<%= link_to c.county.name,cemetery_path(:id => c.id_cem_lev) %>
+	<%= c.county.name %>
       </td>
     </tr>
     <% end %>

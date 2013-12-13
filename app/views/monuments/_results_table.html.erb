@@ -1,5 +1,8 @@
 <table class="table table-bordered table-hover">
   <tbody>
+    <!--<td>
+      <strong>Specified Burial</strong>
+    </td>-->
     <td>
       <strong>Cemetery</strong>
     </td>
@@ -7,19 +10,18 @@
       <strong>County</strong>
     </td>
     <td>
-      <strong>Number of Burials</strong>
+      <strong>Number of Related Burials</strong>
     </td>
-    <!-- NEED OT FIND A WAY TO MAKE ROW CLIACKABLE -->
     <% @monuments.each do |m| %>
-    <tr>
+    <tr class="row-clickable" href=<%= monument_path(:id => m.id_mon_level) %>>
       <td>
-	<%= link_to m.cemetery.cem_name, monument_path(:id => m.id_mon_level) %>
+	<%= m.cemetery.cem_name %>
       </td>
       <td>
-	<%= link_to m.county.name, monument_path(:id => m.id_mon_level) %>
+	<%= m.county.name %>
       </td>
       <td>
-	<%= link_to m.num_indiv, monument_path(:id => m.id_mon_level) %>
+	<%= m.num_indiv %>
       </td>
     </tr>
     <% end %>

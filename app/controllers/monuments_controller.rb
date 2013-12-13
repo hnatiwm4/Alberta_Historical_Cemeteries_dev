@@ -10,10 +10,7 @@ def search_results
   # call helper to check for any numeric or enum values, convert to integer
   eval_int(params[:monument])
   # convert date hash values to strings to use in WHERE clause
-  if params[:m_date].to_a 
-    params[:monument][:mem_date] = date_string(params[:m_date],"mem_date")
-    params.delete :m_date
-  end
+  eval_date(params,:monument,{m_date: "mem_datet"})
 
   #*** call helper to create query string for basic search
   # NOTE: no options for text fields, all searched by keyword

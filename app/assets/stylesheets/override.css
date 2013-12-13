@@ -1,5 +1,10 @@
 /* definitions that override some properties of bootstraps css*/
 
+.container, .inner-container{
+    min-height: 100%;
+    overflow: hidden;
+}
+
 .container{
     width: 100%;
 }
@@ -7,14 +12,15 @@
 .inner-container{
     width: 80%;
     padding: 1em;
-    margin-right: auto;
-    margin-left: auto;
+    margin: 10px auto;
     border: 1px solid #E5E5E5;
 }
+
 
 .row{
     margin: 0 auto;
 }
+
 .navbar{
     margin: 0 auto;
 }
@@ -30,4 +36,9 @@
     margin-left: 0;
     margin-right: 6.38298%;
     /* normal x 3 */
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th{
+    background-color: rgba(65,140,200,1);
+    color: white;
 }
