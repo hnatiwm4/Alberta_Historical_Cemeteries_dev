@@ -1,32 +1,26 @@
-<!-- inner container div 
-<div class="inner-container">
--->
+<%= render 'shared/flash_messages' %>
+<!-- MAIN OVERVIEW MAP OF ALBERTA -->
+<div id="overview_map" class="map">
+  <!-- implement simple google map api example -->
+  <div id="map" class="fill"></div>
+</div>
 
-  <!-- MAIN OVERVIEW MAP OF ALBERTA -->
-  <div id="overview_map" class="map">
-    <!-- implement simple google map api example -->
-    <div id="map" class="fill"></div>
-  </div>
-
-  <!-- SEARCH SIDEBAR -->
-  <%= render 'search_sidebar' %>
-  <!-- Generate Overview Map -->
-  <script type="text/javascript">
-    var mapOptions = {
-    // disable scroll wheel due to map size
-    scrollwheel: false,
-    // Long and Lat for Alberta in general
-    center: new google.maps.LatLng(54.800,-109.000),
-    // zoom 6 for just Alberta
-    zoom: 6
-    };    
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
-    // use add_markers helper to retrieve all valid markers for all valid cemeteries
-    markers = handler.addMarkers(<%=raw add_markers(Cemetery.all).to_json %>);
-    handler.fitMapToBounds();
-    });
-  </script>
-
-<!--</div>
--->
+<!-- SEARCH SIDEBAR -->
+<%= render 'search_sidebar' %>
+<!-- Generate Overview Map -->
+<script type="text/javascript">
+  var mapOptions = {
+  // disable scroll wheel due to map size
+  scrollwheel: false,
+  // Long and Lat for Alberta in general
+  center: new google.maps.LatLng(54.800,-109.000),
+  // zoom 6 for just Alberta
+  zoom: 6
+  };    
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
+  // use add_markers helper to retrieve all valid markers for all valid cemeteries
+  markers = handler.addMarkers(<%=raw add_markers(Cemetery.all).to_json %>);
+  handler.fitMapToBounds();
+  });
+</script>

@@ -13,11 +13,12 @@ def index
 end
 
 def create
-  @cemeteries = Cemetery.new(cem_params)
-  if @cemeteries.save
-    redirect_to @cemeteries
+  @cemetery = Cemetery.new(cem_params)
+  if @cemetery.save
+    redirect_to @cemetery
   else
-    render 'cemeteries/submit'
+    flash[:notice] = 'Incorrect Cemetery Records or fields left blank'
+    redirect_to :back
   end
 end
 
@@ -30,7 +31,6 @@ def search_results
       redirect_to :back and return
     end
   end
-  # (conditional for pagination, params[:burial] nil on subsequent calls to method
   if params[:cemetery]
     params_rm_blanks(params[:cemetery])
   end

@@ -5,14 +5,19 @@ include MonumentsHelper
 
 
 def search_results
-  # NOTE: extra conditional for pagination, nil on subsequent calls
+  # NOTE: extra conditionals for pagination, nil on subsequent calls
+  if params[:monument]
+    if params[:monument].all? {|k,v| v.blank?}
+      flash.keep
+      flash[:notice] = 'No results Returned for Cemetery Search'
+      redirect_to :back and return
+      # request.referer + "#monuments/search" and return
+    end
+  end
   if params[:monument]
     params_rm_blanks(params[:monument])
-    # check for any numeric or enum values, convert to integer
-    eval_int(params[:monument])
   end
-  # convert date hash values to strings to use in WHERE clause
-  eval_date(params,:monument,{m_date: "mem_datet"})
+  eval_date(params,:monument,{m_date: "mem_date"})
   #*** call helper to create query string for basic search
   # NOTE: no options for text fields, all searched by keyword
   query = basic_search(params,params[:monument])

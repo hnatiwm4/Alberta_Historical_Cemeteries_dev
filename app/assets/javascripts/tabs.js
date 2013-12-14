@@ -1,8 +1,4 @@
 
-/*if(window.location.hash){
-    $(this).find('a[ref="'+window.location.hash+'"]').tab('show');
-}*/
-
 /*loads default tabs*/
 $.ajax({
     url: "cemeteries/search",

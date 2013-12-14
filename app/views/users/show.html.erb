@@ -1,5 +1,6 @@
 <% provide(:title, @user.first_name + @user.last_name) %>
 <div class="inner-container">
+  <%= render 'shared/flash_messages' %>
   <!-- dashboard navigation tab -->
   <div id="dash_tabs">
     <ul class="nav nav-tabs">
