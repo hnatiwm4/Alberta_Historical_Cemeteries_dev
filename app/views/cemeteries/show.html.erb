@@ -39,7 +39,7 @@
       handler = Gmaps.build('Google');
       handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
       // add single marker for given cemetery based on the id
-      
+      markers = handler.addMarkers(<%=raw add_markers(@cemeteries).to_json %>); 
       //handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
       });

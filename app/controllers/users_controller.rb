@@ -9,6 +9,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @cemeteries = Cemetery.joins(:county).where(Cemetery.table_name+".`user_id`="+params[:id]).all
+    @burials = Burial.where(Burial.table_name+".`user_id`="+params[:id]).all
+    
   end
 
   def new
@@ -44,6 +47,7 @@ class UsersController < ApplicationController
     flash[:success] = "User deleted."
     redirect_to users_url
   end
+
 
 
   private

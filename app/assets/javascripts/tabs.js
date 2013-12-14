@@ -3,9 +3,16 @@
     $(this).find('a[ref="'+window.location.hash+'"]').tab('show');
 }*/
 
-/*loads default tab for search*/
+/*loads default tabs*/
 $.ajax({
     url: "cemeteries/search",
+    cache: false,
+    success: function(html){ 
+    }
+});
+
+$.ajax({
+    url: "burials/submit",
     cache: false,
     success: function(html){ 
     }

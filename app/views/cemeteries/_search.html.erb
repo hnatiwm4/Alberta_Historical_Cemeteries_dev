@@ -28,7 +28,7 @@
 	<%= c.label "County:" %>
 	<%= c.collection_select(:county_id, County.all, :id_county, :name, :prompt => "Select a County") %>
       </p>
-
+      <br/>
       <p>
        	<%= c.submit "Search Cemeteries", class: "btn btn-large btn-primary" %>
 	<%= c.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>

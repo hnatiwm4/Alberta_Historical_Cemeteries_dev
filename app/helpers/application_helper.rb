@@ -72,38 +72,58 @@ module ApplicationHelper
   # @param: params hash 
   # @return:query string that will be used in controller
 
-  # NOTE: inefficient for large databases (linear search)
+  # NOTE: prvents simple MYSQL Injection by use bind variables
+  # and wildcards within an array (not a hardcoded string) 
   def basic_search(params,search)
-    str_arr = []
-
+    arr = []
+    temp = []
     if search
+      # first iteration, add keys and wildcards
       search.each do |key,val|
         idx = key + "_opt"
-        # if value is an integer, add basic query string without quotes
         if val.is_a? Integer
-          str_arr.push("#{key}=#{val}") unless val.blank?
+           temp.push("#{key}=?") unless val.blank?
         elsif params[idx]
-          # if option given, evaluate and create query string
           if params[idx] == "keyword"
-            str_arr.push("#{key} LIKE '%#{val}%'") unless val.blank?
+            temp.push("#{key} LIKE (?)") unless val.blank?
           elsif params[idx] == "starts"
-            str_arr.push("#{key} LIKE '#{val}%'") unless val.blank?
+            temp.push("#{key} LIKE (?)") unless val.blank?
           elsif params[idx] == "ends"
-            str_arr.push("#{key} LIKE '%#{val}'") unless val.blank?
+            temp.push("#{key} LIKE (?)") unless val.blank?
           elsif params[idx] == "exact"
-            str_arr.push("#{key}=\"#{val}\"") unless val.blank?
+            temp.push("#{key}=?") unless val.blank?
           end
         else
-          # else, for field search by keyword
-          str_arr.push("#{key} LIKE '%#{val}%'") unless val.blank?
+          temp.push("#{key} LIKE (?)") unless val.blank?
+        end
+      end
+      # convert temp array to string, join with ANDs, add to arr
+      arr.push(temp.map {|t| "#{t}"}.join(" AND "))
+      # second iteration, add values for corresponding wildcards
+      search.each do |key,val|
+        idx = key + "_opt"
+        if val.is_a? Integer
+           arr.push(search[key]) unless val.blank?
+        elsif params[idx]
+          if params[idx] == "keyword"
+            arr.push("%#{val}%") unless val.blank?
+          elsif params[idx] == "starts"
+            arr.push("#{val}%") unless val.blank?
+          elsif params[idx] == "ends"
+            arr.push("%#{val}") unless val.blank?
+          elsif params[idx] == "exact"
+            arr.push("\"#{val}\"") unless val.blank?
+          end
+        else
+          arr.push("%#{val}%") unless val.blank?
         end
       end
     # else if search doesnt exist, return nothing
     else  
       return
     end
-    # return array to string, joined by AND's
-    return str_arr.map {|str| "#{str}"}.join(" AND ")
+    # return bind variable array for use in where clause
+    return arr
   end
 
 end

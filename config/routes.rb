@@ -19,15 +19,13 @@ HistoricalCemeteriesDev::Application.routes.draw do
   match '/signin', to: 'sessions#new', via: 'get'
   # delete "sessions/signout"
   match '/signout', to: 'sessions#destroy', via: 'delete'
-
-
+ 
   # rendered partials using AJAX for tabs (must have corresponding .js.erb files)
   match "cemeteries/submit", to: 'cemeteries#submit', via: 'get'
   match "burials/submit", to: 'burials#submit', via: 'get'
   match "cemeteries/search", to: 'cemeteries#search', via: 'get'
   match "burials/search", to: 'burials#search', via: 'get'
   match "monuments/search", to: 'monuments#search', via: 'get'
-
 
   # resources for users, sessions, and passwords
   resources :users

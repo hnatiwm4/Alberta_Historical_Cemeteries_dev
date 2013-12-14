@@ -288,7 +288,7 @@ span{
     cursor: pointer;
 }
 
-/* used for custom flash messages */
-.in-form{
-    width: 50%;
+/* adds thin border around divs */
+.main-border{
+    border: 1px solid #E5E5E5;
 }

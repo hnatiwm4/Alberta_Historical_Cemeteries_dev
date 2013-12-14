@@ -13,6 +13,12 @@ class User < ActiveRecord::Base
 
   # attr_accessible :password, :password_confirmation
 
+
+  # relations
+  has_many :cemeteries, :foreign_key => "user_id"
+
+  # methods
+
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now

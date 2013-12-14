@@ -12,28 +12,32 @@ def index
   @cemeteries = Cemetery.order("id_cem_lev ASC").all
 end
 
-# acquire param values from submit action, insert into outside sql database
 def create
-  @cemeteries = Cemetery.create(cem_params)
+  @cemeteries = Cemetery.new(cem_params)
   if @cemeteries.save
     redirect_to @cemeteries
   else
-    render 'submit'
+    render 'cemeteries/submit'
   end
-
 end
 
 # action queries the database for results
 def search_results
-  if params[:cemetery].all? {|k,v| v.blank?}
-    flash[:notice] = 'No results Returned for Cemetery Search'
-    redirect_to :back and return
+  # NOTE: extra conditional for pagination, nil on subsequent calls
+  if params[:cemetery]
+    if params[:cemetery].all? {|k,v| v.blank?}
+      flash[:notice] = 'No results Returned for Cemetery Search'
+      redirect_to :back and return
+    end
   end
-  params_rm_blanks(params[:cemetery]);
-  # call helper to create query string for basic search
+  # (conditional for pagination, params[:burial] nil on subsequent calls to method
+  if params[:cemetery]
+    params_rm_blanks(params[:cemetery])
+  end
+  #*** call helper to create query string for basic search
   query = basic_search(params,params[:cemetery])
   # invokve cemetery instance, retrieve one cemetery name
-  @cemeteries = Cemetery.joins(:county).where(query).limit(params[:limit]).order(params[:order])
+  @cemeteries = Cemetery.joins(:county).where(query).limit(params[:limit]).order(params[:order]).paginate(page: params[:page])
   # ensure result returned, otherwise reload page
   if @cemeteries.blank?
     redirect_to :back
@@ -49,7 +53,6 @@ end
 
 # action displays query results on show page
 def show
-  # NOTE: calls params[:id] to retrieve query result by id, always do this
   @cemeteries = Cemetery.find(params[:id])
   # create flash message with appropreiate message if cemetery
   # record does not contain lat or longitudinal information
@@ -76,7 +79,7 @@ end
 private
 
   def cem_params
-    allow = [:cem_name,:user_id]
+    allow = [:cem_name,:user_id,:county_id]
     params.require(:cemetery).permit(allow)
   end
 

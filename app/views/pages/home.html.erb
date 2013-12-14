@@ -28,7 +28,7 @@
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
     // use add_markers helper to retrieve all valid markers for all valid cemeteries
-    markers = handler.addMarkers(<%=raw add_markers.to_json %>);
+    markers = handler.addMarkers(<%=raw add_markers(Cemetery.all).to_json %>);
     handler.fitMapToBounds();
     });
   </script>
