@@ -8,6 +8,7 @@ module ApplicationHelper
     Float(s) != nil rescue false
   end
     
+
   # remove blank values from burial searchs before
   # those values are saved and sent to the Database
   def params_rm_blanks(search)
@@ -91,7 +92,6 @@ module ApplicationHelper
             str_arr.push("#{key} LIKE '%#{val}'") unless val.blank?
           elsif params[idx] == "exact"
             str_arr.push("#{key}=\"#{val}\"") unless val.blank?
-
           end
         else
           # else, for field search by keyword
@@ -104,7 +104,6 @@ module ApplicationHelper
     end
     # return array to string, joined by AND's
     return str_arr.map {|str| "#{str}"}.join(" AND ")
-
   end
 
 end

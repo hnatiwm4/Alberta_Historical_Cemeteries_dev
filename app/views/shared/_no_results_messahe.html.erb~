@@ -1,5 +1,0 @@
-<% if object.nil %>
-   <div class="alert alert-danger">
-     Your Search returned no Results
-   </div>
-<% end %>

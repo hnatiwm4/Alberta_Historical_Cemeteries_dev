@@ -3,10 +3,9 @@ class CemeteriesController < ApplicationController
 include ApplicationHelper
 include CemeteriesHelper
 
-# action to create new Cemetery object
-#def new
-#  @cemeteries = Cemetery.new
-#end
+def new
+  @cemeteries = Cemetery.new
+end
 
 # index action displays all cemetery records
 def index
@@ -19,7 +18,6 @@ def create
   if @cemeteries.save
     redirect_to @cemeteries
   else
-    # redirect back to submit page
     render 'submit'
   end
 
@@ -27,17 +25,15 @@ end
 
 # action queries the database for results
 def search_results
-  # produce no results message on form page if all fields are blank
-  if params[:cemetery].all? {|k,v| v.blank?} 
-    redirect_to :back
+  if params[:cemetery].all? {|k,v| v.blank?}
+    flash[:notice] = 'No results Returned for Cemetery Search'
+    redirect_to :back and return
   end
-  # call helper to remove blank fields from param
   params_rm_blanks(params[:cemetery]);
   # call helper to create query string for basic search
   query = basic_search(params,params[:cemetery])
   # invokve cemetery instance, retrieve one cemetery name
   @cemeteries = Cemetery.joins(:county).where(query).limit(params[:limit]).order(params[:order])
-
   # ensure result returned, otherwise reload page
   if @cemeteries.blank?
     redirect_to :back
@@ -49,7 +45,6 @@ def search_results
                 :params => params[:cemetery],
                 :object => @cemeteries }
   end
-
 end
 
 # action displays query results on show page
@@ -61,12 +56,6 @@ def show
   if @cemeteries.lat == 0.0 && @cemeteries.long == 0.0
     flash.now[:notice] = 'Information for Map Unavailable'
   end
-  # @cid = Database.connection.select(
-  #      "SELECT CT_PhotoPath FROM countylist 
-  #      WHERE CountyID=#{@cemeteries.cemCID}").first
-  # render template layout (view is show)
-  #render template: 'cemeteries/template',
-   #      :locals => {:view => 'show'}
 end
 
 # use of AJAX to render partial _search view
@@ -85,8 +74,9 @@ end
 
 
 private
+
   def cem_params
-    allow = [:cem_name]
+    allow = [:cem_name,:user_id]
     params.require(:cemetery).permit(allow)
   end
 

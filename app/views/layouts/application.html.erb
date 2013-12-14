@@ -18,7 +18,7 @@
 
   <div class="container">
     <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
+      <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
 
     <!-- render specified view given from loaded action -->
@@ -29,7 +29,7 @@
   <!-- === FOOTER === -->
   <%= render 'layouts/footer' %>
   <!-- some debug info for page generation -->
-  <%# debug(params) if Rails.env.development? %>
+  <%= debug(params) if Rails.env.development? %>
 </div>
 
 <!-- included personal JS files to perform different tasks -->

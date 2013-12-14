@@ -1,0 +1,5 @@
+<% unless msgs.nil? %>
+  <div class="alert alert-error">
+    Your Search returned NO for Results
+  </div>
+<% end %>

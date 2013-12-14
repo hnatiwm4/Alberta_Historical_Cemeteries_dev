@@ -1,11 +1,12 @@
 
 <h2>Submit Cemetery Data</h2>
 <%= form_for :cemetery, url: cemeteries_path do |c| %>
+  <%= c.hidden_field :user_id, :value => current_user.id %>
   <p>
     <%= c.label "Cemetery Name" %><br>
     <%= c.text_field :cem_name %>
   </p>
-
+  
   <p>
     <%= c.submit %>
   </p>

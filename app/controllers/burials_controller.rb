@@ -3,13 +3,10 @@ class BurialsController < ApplicationController
 include ApplicationHelper
 include BurialsHelper
 
-# index action displays all burial records
 def index
-  @burials = Burial.order("id_indiv_lev ASC").all
 end
 
-def search_results
-  
+def search_results  
   # call helper function to remove blanks from param
   params_rm_blanks(params[:burial]);
   # convert date hash values to strings to use in WHERE clause
@@ -19,9 +16,7 @@ def search_results
   query = basic_search(params,params[:burial])
 
   # find results (use limit and define order from form)
-  # @burials = Burial.find(:all, conditions: query, limit: params[:limit] \
-  #                       , order: params[:order], joins: [:cemetery,:county])
-  @burials = Burial.joins([:cemetery,:county]).where(query).limit(params[:limit]).order(params[:order])
+  @burials = Burial.joins([:cemetery,:county]).where(query).limit(params[:limit]).order(params[:order]).paginate(page: params[:page])
 
   # ensure result returned, otherwise reload page
   if @burials.blank?
