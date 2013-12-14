@@ -5,17 +5,13 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true, length: { maximum: 20 }
   validates :last_name, presence: true, length: { maximum: 40 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  # password must have one char, one num, and length between 6 and 12
+  VALID_PASSWORD_REGEX = /\A.*(?=.{6,12})(?=.*\d)(?=.*[a-zA-Z]).*\z/
   validates :email, presence: true, 
 		format: { with: VALID_EMAIL_REGEX },
 		uniqueness: { case_sensitive: false }
   has_secure_password
-  # validates :password, length: { minimum: 6 }
-
-#  def approve
-#    @user = User.find_by_account_confirmation_token!(params[:id])
-#    @user.update_attribute(email_confirmed, 1)
-#  end
-
+  validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX }
 
   # relations
   has_many :cemeteries, :foreign_key => "user_id"

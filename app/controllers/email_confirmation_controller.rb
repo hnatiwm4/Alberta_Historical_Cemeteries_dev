@@ -12,7 +12,7 @@ end
 
 def update
   @user = User.find_by_account_confirmation_token!(params[:id])
-  if @user.update_attributes(user_params)
+  if @user.update_attribute(:email_confirmed, true)
     redirect_to root_url, :notice => "Your account has been confirmed."
   else
     render :edit

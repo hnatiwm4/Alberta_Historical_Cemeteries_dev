@@ -5,7 +5,7 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
-      <%= f.label :password %>
+      <%= f.label :password (length: 6-12) %>
       <%= f.password_field :password %>
 
       <%= f.label :password_confirmation %>
