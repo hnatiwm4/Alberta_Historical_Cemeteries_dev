@@ -1,11 +1,40 @@
 <% provide(:title, @user.first_name + @user.last_name) %>
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.first_name + " " + @user.last_name %>
-      </h1>
-    </section>
-  </aside>
+<div class="inner-container">
+  <!-- dashboard navigation tab -->
+  <div id="dash_tabs">
+    <ul class="nav nav-tabs">
+      <li class="active">
+	<%= link_to 'Profile', '#profile-tab', :data => {:toggle => "tab"}, :remote => true %>
+      </li>
+      <li>
+	<%= link_to 'Submitted Records', 'submitted_data', :data => {:toggle => "tab"}, :remote => true %>
+      </li>
+    </ul>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+
+	<div id="profile-tab">
+	  <div class="row">
+	    <aside class="span4">
+	      <section>
+		<h1>
+		  <%= gravatar_for @user %>
+		  <%= @user.first_name + " " + @user.last_name %>
+		</h1>
+	      </section>
+	    </aside>
+	  </div>
+	</div>
+	<%= render 'submitted_data' %>
+
+      </div>
+    </div>
+  </div>
 </div>
+
+<!--<script>
+  $(function(){
+     $("#dash_tabs").tabs();
+  });
+</script>-->

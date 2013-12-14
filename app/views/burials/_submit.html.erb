@@ -1,18 +1,21 @@
-
-<h2>Submit Burial Data</h2>
-<%= form_for :burial, url: burials_path do |b| %>
-  <p>
-    <%= b.label "First Name" %><br>
-    <%= b.text_field :first_name %>
-  </p>
-
-  <p>
-    <%= b.label "Last Name" %><br>
-    <%= b.text_field :last_name %>
-  </p>
-
-  <p>
-    <%= b.submit %>
-  </p>
-
-<% end %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <h1>Submit Burial Data</h1>
+    <%= form_for :burial, url: burials_path do |b| %>
+    <%= b.hidden_field :user_id, :value => current_user.id %>
+    <p>
+      <%= b.label "First Name" %><br>
+      <%= b.text_field :first_name %>
+    </p>
+    <p>
+      <%= b.label "Last Name" %><br>
+      <%= b.text_field :last_name %>
+    </p>
+    <br/>
+    <p>
+      <%= b.submit "Submit Burial Record", class: "btn btn-large btn-primary" %>
+      <%= b.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>
+    </p>
+    <% end %>
+  </div>
+</div>

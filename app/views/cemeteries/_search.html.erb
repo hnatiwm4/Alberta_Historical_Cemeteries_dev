@@ -4,6 +4,8 @@
     <%= form_for :cemetery, url: search_results_cemeteries_path do |c| %>
     <!-- main search form (has overriden class values) -->
     <div class="span7">
+      <!-- no results rendered if appropreiate -->
+      <%= render 'shared/results_errors' %>
       <p>
         <%= c.label "Cemetery Name:" %>
 	<%= c.text_field :cem_name %>
@@ -26,7 +28,7 @@
 	<%= c.label "County:" %>
 	<%= c.collection_select(:county_id, County.all, :id_county, :name, :prompt => "Select a County") %>
       </p>
-
+      <br/>
       <p>
        	<%= c.submit "Search Cemeteries", class: "btn btn-large btn-primary" %>
 	<%= c.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>

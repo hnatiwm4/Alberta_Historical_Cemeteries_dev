@@ -15,7 +15,7 @@ class Cemetery < ActiveRecord::Base
   # during search filtering
   default_scope :order => "cem_name ASC"
 
-  # method validates data input
-  # validates :cemName, presence: true,
-  # length: { minimum: 3 }
+  # method validates data input when submitting a cemetery
+  validates :county_id, presence: true
+  validates :cem_name, presence: true
 end

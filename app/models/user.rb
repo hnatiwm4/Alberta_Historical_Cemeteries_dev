@@ -16,6 +16,12 @@ class User < ActiveRecord::Base
 #    @user.update_attribute(email_confirmed, 1)
 #  end
 
+
+  # relations
+  has_many :cemeteries, :foreign_key => "user_id"
+
+  # methods
+
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now

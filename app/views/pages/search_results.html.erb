@@ -8,9 +8,11 @@
 	<h4>Searched Terms:</h4>
 	<hr/>
 	<p>
-          <% params.each do |key,val| %>
+	  <% if params %>
+            <% params.each do |key,val| %>
 	      <strong><%= val %></strong>
 	      <br/>
+	    <% end %>
 	  <% end %>
 	</p>
       </div>

@@ -1,13 +1,22 @@
-
-<h2>Submit Cemetery Data</h2>
-<%= form_for :cemetery, url: cemeteries_path do |c| %>
-  <p>
-    <%= c.label "Cemetery Name" %><br>
-    <%= c.text_field :cem_name %>
-  </p>
-
-  <p>
-    <%= c.submit %>
-  </p>
-
-<% end %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <h1>Submit Cemetery Data</h1>
+    <%= form_for :cemetery, url: cemeteries_path do |c| %>
+    <%# render 'shared/cem_submit_errors' %>
+    <%= c.hidden_field :user_id, :value => current_user.id %>
+    <p>
+      <%= c.label "Cemetery Name:" %><br>
+      <%= c.text_field :cem_name %>
+    </p>
+    <p>
+      <%= c.label "County:" %>
+      <%= c.collection_select(:county_id, County.all, :id_county, :name, :prompt => "Select a County") %>
+    </p>
+    <br/>
+    <p>
+      <%= c.submit "Submit Cemetery Record", class: "btn btn-large btn-primary" %>
+      <%= c.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>
+    </p>
+    <% end %>
+  </div>
+</div>

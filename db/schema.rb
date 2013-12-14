@@ -77,11 +77,13 @@ ActiveRecord::Schema.define(version: 20131213204619) do
     t.integer   "surveyor_id"
     t.timestamp "date_updated",                                      null: false
     t.timestamp "date_created",                                      null: false
+    t.integer   "user_id"
   end
 
   add_index "cem_lev", ["contr_rec_id"], name: "fk_cem_lev_contributer_idx", using: :btree
   add_index "cem_lev", ["county_id"], name: "fk_cem_lev_county1_idx", using: :btree
   add_index "cem_lev", ["surveyor_id"], name: "fk_cem_lev_surveyor1_idx", using: :btree
+  add_index "cem_lev", ["user_id"], name: "fk_cem_lev_users1_idx", using: :btree
 
   create_table "class", primary_key: "id_class", force: true do |t|
     t.string  "select",       limit: 10
@@ -222,6 +224,7 @@ ActiveRecord::Schema.define(version: 20131213204619) do
     t.timestamp "date_updated",                                      null: false
     t.timestamp "date_created",                                      null: false
     t.integer   "mon_level_id"
+    t.integer   "user_id"
   end
 
   add_index "indiv_lev", ["cem_lev_id"], name: "fk_indiv_lev_cem_lev1_idx", using: :btree
@@ -229,6 +232,7 @@ ActiveRecord::Schema.define(version: 20131213204619) do
   add_index "indiv_lev", ["county_id"], name: "fk_indiv_lev_county1_idx", using: :btree
   add_index "indiv_lev", ["mon_level_id"], name: "fk_indiv_lev_mon_level1_idx", using: :btree
   add_index "indiv_lev", ["surveyor_id"], name: "fk_indiv_lev_surveyor1_idx", using: :btree
+  add_index "indiv_lev", ["user_id"], name: "fk_indiv_lev_users1_idx", using: :btree
 
   create_table "insc_tech", primary_key: "id_insc_tech", force: true do |t|
     t.string  "technique",    limit: 9
@@ -303,7 +307,7 @@ ActiveRecord::Schema.define(version: 20131213204619) do
     t.integer   "dim_height"
     t.integer   "dim_width"
     t.integer   "dim_depth"
-    t.string    "insc_transc"
+    t.text      "insc_transc"
     t.integer   "num_indiv"
     t.integer   "decay"
     t.string    "mem_date",      limit: 45
@@ -319,12 +323,14 @@ ActiveRecord::Schema.define(version: 20131213204619) do
     t.timestamp "date_updated",                                       null: false
     t.timestamp "date_created",                                       null: false
     t.integer   "cem_lev_id"
+    t.integer   "user_id"
   end
 
   add_index "mon_level", ["cem_lev_id"], name: "fk_mon_level_cem_lev1_idx", using: :btree
   add_index "mon_level", ["contr_rec_id"], name: "fk_mon_level_contributer1_idx", using: :btree
   add_index "mon_level", ["county_id"], name: "fk_mon_level_county1_idx", using: :btree
   add_index "mon_level", ["surveyor_id"], name: "fk_mon_level_surveyor1_idx", using: :btree
+  add_index "mon_level", ["user_id"], name: "fk_mon_level_users1_idx", using: :btree
 
   create_table "mortality", primary_key: "id_mortality", force: true do |t|
     t.integer "select"

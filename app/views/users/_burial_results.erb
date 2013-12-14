@@ -1,4 +1,3 @@
-<%= will_paginate %>
 <!-- table encompassing search results -->
 <table class="table table-bordered table-hover">
   <tbody>
@@ -8,12 +7,6 @@
     <td>
       <strong>First Name</strong>
     </td>
-    <td>
-      <strong>Cemetery</strong>
-    </td>
-    <td>
-      <strong>County</strong>
-    </td>
     <% @burials.each do |b| %>
     <tr class="row-clickable" href=<%= burial_path(:id => b.id_indiv_lev) %>>
       <td>
@@ -22,14 +15,7 @@
       <td>
 	<%= b.first_name %>
       </td>
-      <td>
-	<%= b.cemetery.cem_name %>
-      </td>
-      <td>
-	<%= b.county.name %>
-      </td>
     </tr>
     <% end %>
   </tbody>
 </table>
-<%= will_paginate %>

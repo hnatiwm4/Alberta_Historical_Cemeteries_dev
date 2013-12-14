@@ -1,10 +1,9 @@
 module CemeteriesHelper
 
-def add_markers
+def add_markers(object)
   # use ActionController to create object instance to use render_to_string method
   info = ActionController::Base.new()
-  @cemeteries = Cemetery.all
-  @markers_hash = Gmaps4rails.build_markers(@cemeteries) do |cem, marker|
+  @markers_hash = Gmaps4rails.build_markers(object) do |cem, marker|
     if cem.lat != 0 && cem.long != 0
       # set long and lat from cem object
       marker.lat cem.lat
@@ -14,16 +13,6 @@ def add_markers
     end
   end
   return @markers_hash
-
-end
-
-def add_cem_marker(cem_id)
-   # use ActionController to create object instance to use render_to_string method
-  info = ActionController::Base.new()
-  # get cemeteries object passed to 
-
-
-
 end
 
 
