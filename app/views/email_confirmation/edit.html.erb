@@ -1,0 +1,16 @@
+<%= form_for @user, :url => email_confirmation_path(params[:id]) do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.hidden_field :email_confirmed, :value=>true%>
+    <%= f.submit "Confirm Email" %>
+  </div>
+<% end %>

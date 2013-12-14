@@ -1,4 +1,5 @@
 HistoricalCemeteriesDev::Application.routes.draw do
+  get "email_confirmation/new"
   # specify root or default home page
   root to: 'pages#home'
 
@@ -27,10 +28,16 @@ HistoricalCemeteriesDev::Application.routes.draw do
   match "burials/search", to: 'burials#search', via: 'get'
   match "monuments/search", to: 'monuments#search', via: 'get'
 
+#  resources :users do
+#    get :approve
+#    put :approve
+#  end
+
   # resources for users, sessions, and passwords
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
+  resources :email_confirmation
 
   # resource for cemetery records
   resources :cemeteries do
@@ -55,7 +62,6 @@ HistoricalCemeteriesDev::Application.routes.draw do
       post :search_results
     end
   end
-
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

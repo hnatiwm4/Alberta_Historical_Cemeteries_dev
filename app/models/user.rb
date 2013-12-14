@@ -11,13 +11,22 @@ class User < ActiveRecord::Base
   has_secure_password
   # validates :password, length: { minimum: 6 }
 
-  # attr_accessible :password, :password_confirmation
+#  def approve
+#    @user = User.find_by_account_confirmation_token!(params[:id])
+#    @user.update_attribute(email_confirmed, 1)
+#  end
 
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     save!
     UserMailer.password_reset(self).deliver    
+  end
+
+  def send_account_confirmation
+    generate_token(:account_confirmation_token)
+    save!
+    UserMailer.account_confirmation(self).deliver
   end
 
   def User.new_remember_token
