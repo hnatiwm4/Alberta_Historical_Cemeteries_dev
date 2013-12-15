@@ -6,9 +6,9 @@
 	  <h4>Burial Search</h4>
 	</a>
       </div>
-      <div class="accordion-body collapse" id="collapse2">
+      <div class="accordion-body collapse in" id="collapse2">
 	  <div class="accordion-inner">
-	    <%= form_for :burial, url: search_results_burials_path do |b|%>
+	    <%= form_for :burials, url: search_results_burials_path do |b|%>
 	    <p>
 	      <%= b.label "Individual's First Name" %><br>
 	      <%= b.text_field :first_name %>
@@ -38,7 +38,8 @@
 	    <!-- submit button for burial search -->
 	    </br>
 	    <p>
-	      <%= b.submit "Search Burials" %>
+	      <%= b.submit "Search Burials", class: "btn btn-large btn-primary" %>
+	      <%= b.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>
 	    </p>
 	    <% end %> <!-- burial form -->
 	  </div>

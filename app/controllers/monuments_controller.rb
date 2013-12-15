@@ -8,19 +8,19 @@ def show
 end
 
 def search_results
-  if params[:monument].all? {|k,v| v.blank?}
+  if params[:monuments].all? {|k,v| v.blank?}
     flash[:notice] = 'No results Returned for Monument Search'
     redirect_to :back and return
     # request.referer + "#monuments/search" and return
   end
   # call helpers to evalute date and int/enum type returns
-  eval_date(params,:monument,{m_date: "mem_date"})
-  eval_int(params[:monument])
+  eval_date(params,:monuments,{m_date: "mem_date"})
+  eval_int(params[:monuments])
   # remove blanks
-  params_rm_blanks(params[:monument])
+  params_rm_blanks(params[:monuments])
   # call helper to create query string for basic search
   # NOTE: removed burials join, not needed in query
-  query = basic_search(params,params[:monument])
+  query = basic_search(params,params[:monuments])
   # find results (use limit and define order from form)
   @monuments = Monument.joins([:cemetery,:county]).where(query).limit(params[:limit]).order(params[:order]).paginate(page: params[:page])
   # ensure result returned, otherwise reload page
@@ -32,7 +32,7 @@ def search_results
     render 'pages/search_results',
     :locals => {:title => "Monument Search Results",
                 :table => 'monuments/results_table',
-                :params => params[:monument],
+                :params => params[:monuments],
                 :object => @monuments }
   end
 end

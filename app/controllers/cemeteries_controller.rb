@@ -9,7 +9,7 @@ end
 
 # index action displays all cemetery records
 def index
-  @cemeteries = Cemetery.paginate(page: params[:page])
+  @cemeteries = Cemetery.joins(:county).paginate(page: params[:page])
 end
 
 def create

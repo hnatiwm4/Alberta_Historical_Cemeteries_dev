@@ -288,3 +288,24 @@ span{
 .main-border{
     border: 1px solid #E5E5E5;
 }
+
+
+/* ========== SPAN ID CONTAINERS ========== */
+
+#burial-list{
+    height: 250px;
+    padding-bottom: 5px;
+}
+.burial-list-contents{
+    height: 75%;
+    overflow-y: scroll;
+}
+#right-info-container{
+    width: 53.9362%;
+}
+
+#advanced-container{
+    width: 96.4894%;
+    margin-top: 20px;
+    margin-left: 0;
+}

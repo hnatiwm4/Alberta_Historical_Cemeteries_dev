@@ -14,36 +14,9 @@
 
   <div class="container-fluid">
     <div id="dash_container" class="row-fluid">
-
       <h1>Cemetery Listing</h1>
-      <%= will_paginate %>
-      <% @cemeteries.each do |cem| %>
-      <div class="rounded-div">
-	<span>
-	  <p>
-	    <strong>Cemetery ID:</strong>
-	    <%= cem.id_cem_lev %>
-	  </p>
-
-	  <p>
-	    <strong>Cemetery Name:</strong>
-	    <%= cem.cem_name %>
-	  </p>
-	  <p>
-	    <strong>Last Updated:</strong>
-	    <%= cem.date_updated %>
-	  </p>
-	  <p>
-	    <strong>User id</strong>
-	    <%= cem.user_id %>
-	  </p>
-	</span>
-	<!-- to make div clickable, use CSS, pass key :id to query for clicked data-->
-	<%= link_to '', cemetery_path(:id => cem.id_cem_lev), :class => 'div-clickable' %>
-      </div>
-      <br>
-      <% end %>
-      <%= will_paginate %>
+      <%= render :partial => 'shared/results_range', :locals => {:object => @cemeteries} %>
+      <%= render 'cemeteries/results_table' %>
     </div>
   </div>
 
@@ -51,3 +24,4 @@
 
 <!-- included personal JS files to perform different tasks -->
 <%# javascript_include_tag "custom/tabs_dashboard" %>
+<%= javascript_include_tag "custom/table_rows" %>
