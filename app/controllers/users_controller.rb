@@ -21,14 +21,24 @@ class UsersController < ApplicationController
   def edit
   end
 
+  #def update
+  #  @user = User.find_by_id(params[:id])
+  #  if @user.update_attributes(user_edit_params)
+  #    flash[:success] = "Profile updated"
+  #    redirect_to @user
+  #  else
+  #    render 'edit'
+  #  end
+  #end
+  
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to @user
-    else
-      render 'edit'
-    end
+    @user = User.find_by_id(params[:id])
+    #@user.update_attributes(user_edit_params)
+    @user.update_attribute(:first_name, user_params[:first_name])
+    @user.update_attribute(:last_name, user_params[:last_name])
+    @user.update_attribute(:email, user_params[:email])
+    flash[:success] = "Profile updated"
+    redirect_to @user
   end
 
   def create
@@ -54,13 +64,16 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def user_edit_params
+    params.require(:user).permit(:first_name, :last_name, :email)
+  end
 
 
   private
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, 
-			:email, :password, :password_confirmation)
+      params.require(:user).permit(:first_name, :last_name, :email,
+				:password, :password_confirmation)
     end
 
     # Before filters
