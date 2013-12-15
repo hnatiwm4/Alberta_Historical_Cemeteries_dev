@@ -1,9 +1,9 @@
-<%= will_paginate %>
+<%= will_paginate(@monuments, :params => params.except(:page)) %>
 <table class="table table-bordered table-hover">
   <tbody>
-    <!--<td>
-      <strong>Specified Burial</strong>
-    </td>-->
+    <td>
+      <strong>Related Burials</strong>
+    </td>
     <td>
       <strong>Cemetery</strong>
     </td>
@@ -15,6 +15,11 @@
     </td>
     <% @monuments.each do |m| %>
     <tr class="row-clickable" href=<%= monument_path(:id => m.id_mon_level) %>>
+      <td>
+	<% m.burials.each do |b| %>
+	  <%= b.last_name %>,<%= b.first_name %><br/>
+	<% end %>
+      </td>
       <td>
 	<%= m.cemetery.cem_name %>
       </td>
@@ -28,4 +33,5 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate %>
+<%= will_paginate(@monuments, :params => params.except(:page)) %>
+

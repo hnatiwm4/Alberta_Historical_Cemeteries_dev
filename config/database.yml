@@ -40,3 +40,4 @@ production:
   username: root
   password: c3m3t3ry
   socket: /var/run/mysqld/mysqld.sock
+  #/private/tmp/mysql.sock

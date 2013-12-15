@@ -9,9 +9,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @cemeteries = Cemetery.joins(:county).where(Cemetery.table_name+".`user_id`="+params[:id]).all
-    @burials = Burial.where(Burial.table_name+".`user_id`="+params[:id]).all
-    
   end
 
   def new
@@ -21,19 +18,8 @@ class UsersController < ApplicationController
   def edit
   end
 
-  #def update
-  #  @user = User.find_by_id(params[:id])
-  #  if @user.update_attributes(user_edit_params)
-  #    flash[:success] = "Profile updated"
-  #    redirect_to @user
-  #  else
-  #    render 'edit'
-  #  end
-  #end
-  
   def update
     @user = User.find_by_id(params[:id])
-    #@user.update_attributes(user_edit_params)
     @user.update_attribute(:first_name, user_params[:first_name])
     @user.update_attribute(:last_name, user_params[:last_name])
     @user.update_attribute(:email, user_params[:email])
@@ -64,10 +50,23 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
-  def user_edit_params
-    params.require(:user).permit(:first_name, :last_name, :email)
-  end
+  #def profile
+  #  @user = User.find(params[:id])
+  #  respond_to do |format|
+  #    format.js
+  #  end
+  #end
 
+  #def submitted_data
+  #  respond_to do |format|
+  #    format.js
+  #  end
+  #end
+
+  def submitted_data
+    @cemeteries = Cemetery.joins(:county).where(Cemetery.table_name+".`user_id`="+params[:id]).all
+    @burials = Burial.where(Burial.table_name+".`user_id`="+params[:id]).all
+  end
 
   private
 

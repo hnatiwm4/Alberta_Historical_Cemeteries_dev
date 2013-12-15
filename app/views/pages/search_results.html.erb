@@ -10,15 +10,25 @@
 	<p>
 	  <% if params %>
             <% params.each do |key,val| %>
-	      <strong><%= val %></strong>
-	      <br/>
+	      <% unless val.blank? %>
+	          <strong><%= val %></strong><br/>
+	      <% end %>
 	    <% end %>
 	  <% end %>
 	</p>
       </div>
       <!-- main content, table of search results -->
+      <!-- NOTE: printed values rely on will_paginate -->
       <div class="span9">
-	<h4 style='text-align: right;'>Results Returned: <%= object.count %></h4>
+	<h4 style='text-align: right;'>Results 
+	  <%= object.offset + 1 %> - 
+	  <% if object.current_page == object.total_pages %>
+	  <%= object.total_entries %> of 
+	  <% else %>
+	  <%= object.per_page * object.current_page %> of 
+	  <% end %>
+	  <%= object.total_entries %>
+	</h4>
 	<hr/>
 	<!-- render partial and pass object to generate table -->
 	<%= render :partial => table, :locals=> {:object => object} %>
@@ -27,3 +37,6 @@
     </div>
   </div>
 </div>
+
+<!-- included personal JS files to perform different tasks -->
+<%= javascript_include_tag "custom/table_rows" %>

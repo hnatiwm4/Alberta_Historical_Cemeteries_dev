@@ -13,4 +13,6 @@ class Burial < ActiveRecord::Base
   # define a one-to-one relationship with a contributor record
   has_one :contributor, :foreign_key => "contr_rec_id"
 
+  # method validates data input when submitting a burial record
+  validates :last_name, presence: true
 end

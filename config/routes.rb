@@ -27,6 +27,12 @@ HistoricalCemeteriesDev::Application.routes.draw do
   match "cemeteries/search", to: 'cemeteries#search', via: 'get'
   match "burials/search", to: 'burials#search', via: 'get'
   match "monuments/search", to: 'monuments#search', via: 'get'
+  
+  #match "users/profile", to: 'users#profile', via: 'get'
+  #match "users/submitted_data", to: 'users#submitted_data', via: 'get'
+  
+  match "users/submitted_data/:id", to: 'users#submitted_data', as: :users_submitted_data, via: 'get'
+  
 
 #  resources :users do
 #    get :approve

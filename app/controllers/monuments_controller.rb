@@ -3,23 +3,29 @@ class MonumentsController < ApplicationController
 include ApplicationHelper
 include MonumentsHelper
 
+def show
+  @monument = Monument.find(params[:id])
+end
 
 def search_results
-  # NOTE: extra conditional for pagination, nil on subsequent calls
-  if params[:monument]
-    params_rm_blanks(params[:monument])
-    # check for any numeric or enum values, convert to integer
-    eval_int(params[:monument])
+  if params[:monument].all? {|k,v| v.blank?}
+    flash[:notice] = 'No results Returned for Monument Search'
+    redirect_to :back and return
+    # request.referer + "#monuments/search" and return
   end
-  # convert date hash values to strings to use in WHERE clause
-  eval_date(params,:monument,{m_date: "mem_datet"})
-  #*** call helper to create query string for basic search
-  # NOTE: no options for text fields, all searched by keyword
+  # call helpers to evalute date and int/enum type returns
+  eval_date(params,:monument,{m_date: "mem_date"})
+  eval_int(params[:monument])
+  # remove blanks
+  params_rm_blanks(params[:monument])
+  # call helper to create query string for basic search
+  # NOTE: removed burials join, not needed in query
   query = basic_search(params,params[:monument])
   # find results (use limit and define order from form)
-  @monuments = Monument.joins([:burials,:cemetery,:county]).where(query).limit(params[:limit]).order(params[:order]).paginate(page: params[:page])
+  @monuments = Monument.joins([:cemetery,:county]).where(query).limit(params[:limit]).order(params[:order]).paginate(page: params[:page])
   # ensure result returned, otherwise reload page
   if @monuments.blank?
+    flash[:notice] = 'No results Returned for Monument Search'
     redirect_to :back
   else
     # render results list page if limit anything other than 1

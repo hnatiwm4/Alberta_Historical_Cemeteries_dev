@@ -2,8 +2,9 @@
   <div class="row-fluid">
     <h1>Submit Cemetery Data</h1>
     <%= form_for :cemetery, url: cemeteries_path do |c| %>
-    <%# render 'shared/cem_submit_errors' %>
-    <%= c.hidden_field :user_id, :value => current_user.id %>
+    <% if signed_in? %>
+        <%= c.hidden_field :user_id, :value => current_user.id %>
+    <% end %>
     <p>
       <%= c.label "Cemetery Name:" %><br>
       <%= c.text_field :cem_name %>

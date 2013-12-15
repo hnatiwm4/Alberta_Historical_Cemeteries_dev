@@ -1,5 +1,0 @@
-class Monument < ActiveRecord::Base
-  # each monument may have multiple individual burials associated with it
-  has_many :burials, :foreign_key => "mon_level_id"
-
-end
