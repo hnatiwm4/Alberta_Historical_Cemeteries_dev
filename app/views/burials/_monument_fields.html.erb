@@ -1,6 +1,16 @@
 <span>
-  
-
+  <p>
+    <strong>Number of Related Burials:</strong>
+    <%= @burial.monument.num_indiv %><br/>
+    <strong>Memorial Date:</strong>
+    <%= @burial.monument.mem_date %><br/>
+    <strong>related Burials</strong>
+    <% @burial.monument.burials.each do |b| %>
+      <%= link_to burial_path(:id => b.id_indiv_lev) do %>
+          <%= b.last_name %>, <%= b.first_name %><br/>
+      <% end %>
+    <% end %>
+  </p>
 </span>
 <!-- accordion style for more monument information -->
 <div class="accordion">
@@ -13,7 +23,26 @@
     <!-- accordion style for more information -->
     <div class="accordion-body collapse" id="mon_collapse">
       <div class="accordion-inner">
-
+	<p>
+	  <strong>Exposure:</strong>
+	  <%= @burial.monument.exposure %><br/>
+	  <strong>Exposed Faces:</strong>
+	  <%= @burial.monument.exp_faces %><br/>
+	  <strong>Orientation:</strong>
+	  <%= @burial.monument.face_orient %><br/>
+	  <strong>Material Type:</strong>
+	  <%= @burial.monument.material %><br/>
+	  <strong>Number of Blocks:</strong>
+	  <%= @burial.monument.num_block %><br/>
+	  <strong>Height:</strong>
+	  <%= @burial.monument.dim_height %><br/>
+	  <strong>Width:</strong>
+	  <%= @burial.monument.dim_width %><br/>
+	  <strong>Depth:</strong>
+	  <%= @burial.monument.dim_depth %><br/>
+	  <strong>Decay Factor:</strong>
+	  <%= @burial.monument.decay_factors %><br/>
+	</p>
       </div>
     </div>
   </div>

@@ -48,10 +48,10 @@ end
 
 # action displays query results on show page
 def show
-  @cemeteries = Cemetery.find(params[:id])
+  @cemetery = Cemetery.find(params[:id])
   # create flash message with appropreiate message if cemetery
   # record does not contain lat or longitudinal information
-  if @cemeteries.lat == 0.0 && @cemeteries.long == 0.0
+  if @cemetery.lat == 0.0 && @cemetery.long == 0.0
     flash.now[:notice] = 'Information for Map Unavailable'
   end
 end

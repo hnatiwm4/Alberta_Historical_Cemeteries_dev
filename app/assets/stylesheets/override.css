@@ -34,6 +34,12 @@
     /* normal x 3 */
 }
 
+/* clear for use on cemetery show page */
+.span8{
+    clear: both;
+    margin: 0;
+}
+
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th{
     background-color: rgba(65,140,200,1);
     color: white;

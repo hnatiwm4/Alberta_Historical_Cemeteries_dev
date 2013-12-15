@@ -1,0 +1,13 @@
+<p>
+  <strong>Birth Date</strong>
+  <%= @burial.birth_date %><br/>
+  <strong>Death Date</strong>
+  <%= @burial.death_date %>
+  <strong>Sex</strong>
+  <%= @burial.sex %><br/>
+  <strong>Birth Place</strong>
+  <%= @burial.birth_place %><br/>
+  <strong>Occupation</strong>
+  <%= @burial.occupation %><br/>
+
+</p>

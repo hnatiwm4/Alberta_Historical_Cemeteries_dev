@@ -54,13 +54,6 @@ span{
     z-index: 1;
 }
 
-/*** 16:9   770px x 447px ***/
-#layout_map{
-    /*** NOTE: relies on cem_container for adjusting width */
-    width: 100%;
-    margin-bottom: 10px;
-}
-
 #search_sidebar{
     /* 100 - width of map container - gap from page main */
     width: 24%;
@@ -69,22 +62,6 @@ span{
     left: 73%;
     top: 7%;
     background: rgba(120,120,120,0.834);
-}
-
-#layout_sidebar{
-    /* 100 - width of map container - gap from page main */
-    width: 32%;
-    min-height: 447px;
-    margin-left: 10px;
-    overflow: auto; 
-    /* makes it scrollable when content > than height */
-}
-
-#burial_sidebar{
-    /* 100 - width of map container - gap from page main */
-    width: 22%;
-    min-height: 574px;
-    min-width: 100px;
 }
 
 /* container that contains description of Cemetery */
@@ -124,14 +101,6 @@ span{
     margin-left: 10px;
 }
 
-/* container containing the inscription for a given burial */
-#inscription{
-    float: left;
-    /* width of indiv_container - 12 (account for margins) */
-    width: 62%;
-    min-height: 200;
-    margin-left: 10px;
-}
 
 /* container containing information for a specific monument */
 #mon_info{
@@ -211,13 +180,6 @@ span{
     text-decoration: none;
 }
 
-/* class for clickable link for a table row */
-.row-link{
-    display: block;
-    height: 100%;
-    width: 100%;
-}
-
 
 /* ========== IMAGE CLASSES ========== */
 
@@ -228,11 +190,11 @@ span{
     margin-left: 10px;
 }
 /* main image used for individual burial pages */
-/* ----------- 5x7 ---------- */
+/* ---------- aspect ratio 5x7 ----------- */
 .img-main{
     /* same width as indiv_imgs container */
-    width: 280px;
-    height: 392px;
+    width: 380px;
+    height: 532px;
     margin-bottom: 10px;
     opacity: 1;
     filter:alpha(opacity)=100; /* for IE 6 and earlier */
@@ -291,21 +253,36 @@ span{
 
 
 /* ========== SPAN ID CONTAINERS ========== */
-
-#burial-list{
+#burial-list, #monument-list, #inscription{
     height: 250px;
     padding-bottom: 5px;
 }
-.burial-list-contents{
+#monument-list{
+    margin-left: 20px;
+}
+.burial-list-contents, .mon-list-contents{
     height: 75%;
     overflow-y: scroll;
 }
 #right-info-container{
     width: 53.9362%;
 }
-
-#advanced-container{
-    width: 96.4894%;
+#list-container{
+    width: 100%;
+    margin: 0;
+    margin-top: 20px;
+}
+.list-contents{
+    width: 46.5%;
+    float: left;
+}
+#advanced-container, #cem-container{
     margin-top: 20px;
     margin-left: 0;
+}
+#advanced-container{
+    width: 96.4894%;
+}
+#cem-container{
+    width: 100%;
 }
