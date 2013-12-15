@@ -1,0 +1,32 @@
+<div class="inner-container">
+  <!-- dashboard navigation tab -->
+  <ul id="dash_tabs" class="nav nav-tabs">
+    <li>
+      <%= link_to 'Profile', current_user %>
+    </li>
+    <li class="active">
+      <%= link_to 'Submitted Records', '#' %>
+    </li>
+    <% if current_user.admin? %>
+    <li>
+      <%= link_to 'All Cemeteries', cemeteries_path %>
+    </li>
+    <% end %>
+  </ul>
+
+  <div class="container-fluid">
+    <div id="dash_container" class="row-fluid">
+
+      <h1>Submitted Data</h1>
+      <%= render 'users/cem_results' %>
+      <%= render 'users/burial_results' %>
+      <!-- included personal JS files to perform different tasks -->
+      <%= javascript_include_tag "custom/table_rows" %>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- included personal JS files to perform different tasks -->
+<%# javascript_include_tag "custom/tabs_dashboard" %>

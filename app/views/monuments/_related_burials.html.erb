@@ -1,0 +1,13 @@
+<table class="table table-bordered table-hover">
+  <tbody>
+    <% @monument.burials.each do |b| %>
+    <tr>
+      <td>
+	<%= link_to burial_path(:id => b.id_indiv_lev) do %>
+	   <strong><%= b.last_name %>, <%= b.first_name %></strong>
+	<% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

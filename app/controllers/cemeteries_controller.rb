@@ -9,7 +9,7 @@ end
 
 # index action displays all cemetery records
 def index
-  @cemeteries = Cemetery.order("id_cem_lev ASC").all
+  @cemeteries = Cemetery.paginate(page: params[:page])
 end
 
 def create
@@ -24,16 +24,11 @@ end
 
 # action queries the database for results
 def search_results
-  # NOTE: extra conditional for pagination, nil on subsequent calls
-  if params[:cemetery]
-    if params[:cemetery].all? {|k,v| v.blank?}
-      flash[:notice] = 'No results Returned for Cemetery Search'
-      redirect_to :back and return
-    end
+  if params[:cemetery].all? {|k,v| v.blank?}
+    flash[:notice] = 'No results Returned for Cemetery Search'
+    redirect_to :back and return
   end
-  if params[:cemetery]
-    params_rm_blanks(params[:cemetery])
-  end
+  params_rm_blanks(params[:cemetery])
   #*** call helper to create query string for basic search
   query = basic_search(params,params[:cemetery])
   # invokve cemetery instance, retrieve one cemetery name

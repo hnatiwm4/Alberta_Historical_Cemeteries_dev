@@ -4,8 +4,6 @@
     <%= form_for :cemetery, url: search_results_cemeteries_path do |c| %>
     <!-- main search form (has overriden class values) -->
     <div class="span7">
-      <!-- no results rendered if appropreiate -->
-      <%= render 'shared/results_errors' %>
       <p>
         <%= c.label "Cemetery Name:" %>
 	<%= c.text_field :cem_name %>

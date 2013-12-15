@@ -1,41 +1,40 @@
 <% provide(:title, @user.first_name + @user.last_name) %>
 <div class="inner-container">
-  <%= render 'shared/flash_messages' %>
   <!-- dashboard navigation tab -->
-  <div id="dash_tabs">
-    <ul class="nav nav-tabs">
-      <li class="active">
-	<%= link_to 'Profile', '#profile-tab', :data => {:toggle => "tab"}, :remote => true %>
-      </li>
-      <li>
-	<%= link_to 'Submitted Records', 'submitted_data', :data => {:toggle => "tab"}, :remote => true %>
-      </li>
-    </ul>
+  <ul id="dash_tabs" class="nav nav-tabs">
+    <li class="active">
+      <%= link_to 'Profile', '#' %>
+    </li>
+    <li>
+      <%= link_to 'Submitted Records', users_submitted_data_path(current_user) %>
+    </li>
+    <% if current_user.admin? %>
+    <li>
+      <%= link_to 'All Cemeteries', cemeteries_path %>
+    </li>
+    <% end %>
+  </ul>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
+  <div class="container-fluid">
+    <div id="dash_container" class="row-fluid">
 
-	<div id="profile-tab">
-	  <div class="row">
-	    <aside class="span4">
-	      <section>
-		<h1>
-		  <%= gravatar_for @user %>
-		  <%= @user.first_name + " " + @user.last_name %>
-		</h1>
-	      </section>
-	    </aside>
-	  </div>
-	</div>
-	<%= render 'submitted_data' %>
-
+      <div id="profile-tab">
+        <div class="row">
+          <aside class="span4">
+            <section>
+              <h1>
+                <%= gravatar_for @user %>
+                <%= @user.first_name + " " + @user.last_name %>
+              </h1>
+            </section>
+          </aside>
+        </div>
       </div>
+
     </div>
   </div>
+
 </div>
 
-<!--<script>
-  $(function(){
-     $("#dash_tabs").tabs();
-  });
-</script>-->
+<!-- included personal JS files to perform different tasks -->
+<%# javascript_include_tag "custom/tabs_dashboard" %>

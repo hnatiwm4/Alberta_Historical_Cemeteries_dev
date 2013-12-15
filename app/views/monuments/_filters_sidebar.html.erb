@@ -1,0 +1,43 @@
+<div id="search_accordion" class="accordion">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a href="#collapse2" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle">
+	<h4>Monument Search</h4>
+      </a>
+    </div>
+    <div class="accordion-body collapse in" id="collapse2">
+      <div class="accordion-inner">
+	<%= form_for :monument, url: search_results_monuments_path do |m| %>
+	<p>
+	  <%= m.label "Inscription Keywords:" %>
+	  <%= m.text_field(:insc_transc) %>
+	  <!-- explicitly set to keyword search for inscription-->
+	  <% params[:insc_transc_opt] = :keyword %>
+	</p>
+	<p>
+	  <!-- use hack to create input field for year -->
+	  <%= m.label "Memorial Date:" %>
+	  <%= date_select(:m_date,:mem_date, :discard_year => true,
+	  :prompt => {:month => "Month",:day => "Day"}) %>
+	  <%= text_field_tag("m_date[mem_date(1i)]",nil,:placeholder => "Year") %>
+	</p>
+	<p>
+          <%= m.label "Cemetery:" %>
+	  <%= m.collection_select(:cem_lev_id, Cemetery.all, :id_cem_lev, :cem_name, :prompt => "Select a Cemetery") %>
+	</p>
+	<p>
+	  <%= m.label "By County:" %>
+	  <%= m.collection_select(:county_id, County.all, :id_county, :name, :prompt => "Select a County") %>
+	</p>
+
+	</br>
+	<p>
+	  <%= m.submit "Search Monuments", class: "btn btn-primary" %>
+	  <%= m.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>
+	</p>
+	<% end %>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- search_accordion -->

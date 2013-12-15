@@ -2,8 +2,9 @@
   <div class="row-fluid">
     <h1>Submit Burial Data</h1>
     <%= form_for :burial, url: burials_path do |b| %>
-    <%= render 'shared/burial_submit_errors' %>
-    <%= b.hidden_field :user_id, :value => current_user.id %>
+    <% if signed_in? %>
+       <%= b.hidden_field :user_id, :value => current_user.id %>
+    <% end %>
     <p>
       <%= b.label "First Name" %><br>
       <%= b.text_field :first_name %>

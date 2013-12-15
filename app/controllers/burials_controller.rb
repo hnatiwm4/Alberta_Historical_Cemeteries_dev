@@ -18,19 +18,14 @@ def create
 end
 
 
-def search_results  
-  # NOTE: extra conditionals for pagination, nil on subsequent calls
-  if params[:burial]
-    if params[:burial].all? {|k,v| v.blank?}
-      flash[:notice] = 'No results Returned for Cemetery Search'
-      redirect_to :back and return 
-      # request.referer + "#burials/search" and return
-    end
-  end
-  if params[:cemetery]
-    params_rm_blanks(params[:cemetery])
+def search_results
+  if params[:burial].all? {|k,v| v.blank?}
+    flash[:notice] = 'No results Returned for Buial Search'
+    redirect_to :back and return 
+    # request.referer + "#burials/search" and return
   end
   eval_date(params,:burial,{b_date: "birth_date",d_date: "death_date"})
+  params_rm_blanks(params[:cemetery])
   #*** call helper to create query string for basic search
   query = basic_search(params,params[:burial])
   # find results (use limit and define order from form)
@@ -50,7 +45,7 @@ end
 
 # action displays query result on show page for a single burial
 def show
-  @burials = Burial.find(params[:id])
+  @burial = Burial.find(params[:id])
 end
 
 

@@ -192,11 +192,11 @@ span{
 .rounded-div{
     -moz-box-border-radius: 10px;
     -webkit-box-border-radius: 10px;
-    border: 2px solid rgba(220,220,220,1);
+    border: 1px solid rgba(220,220,220,1);
     border-radius: 10px;
     padding: 0 10px;
     /*float: left; /* causes widht to be that of its contents */
-    background: rgba(241,241,241,1);
+    background: rgba(247,247,247,1);
     position: relative; /* to make it clickable */
 }
 

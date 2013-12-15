@@ -9,9 +9,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @cemeteries = Cemetery.joins(:county).where(Cemetery.table_name+".`user_id`="+params[:id]).all
-    @burials = Burial.where(Burial.table_name+".`user_id`="+params[:id]).all
-    
   end
 
   def new
@@ -54,6 +51,23 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  #def profile
+  #  @user = User.find(params[:id])
+  #  respond_to do |format|
+  #    format.js
+  #  end
+  #end
+
+  #def submitted_data
+  #  respond_to do |format|
+  #    format.js
+  #  end
+  #end
+
+  def submitted_data
+    @cemeteries = Cemetery.joins(:county).where(Cemetery.table_name+".`user_id`="+params[:id]).all
+    @burials = Burial.where(Burial.table_name+".`user_id`="+params[:id]).all
+  end
 
 
   private
