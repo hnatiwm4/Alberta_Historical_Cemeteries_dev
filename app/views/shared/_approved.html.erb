@@ -1,0 +1,9 @@
+<h4 style='text-align: right; float: right;'>
+  <% if object.approved.nil? %>
+  <div class="alert alert-danger">Not Approved</div>
+  <% else %>
+  <div class="alert alert-success">
+    Approved: <%= object.approved %>
+  </div>
+  <% end %>
+</h4>

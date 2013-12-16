@@ -4,7 +4,7 @@
     <%= @burial.monument.num_indiv %><br/>
     <strong>Memorial Date:</strong>
     <%= @burial.monument.mem_date %><br/>
-    <strong>related Burials</strong>
+    <strong>Related Burials:</strong><br/>
     <% @burial.monument.burials.each do |b| %>
       <%= link_to burial_path(:id => b.id_indiv_lev) do %>
           <%= b.last_name %>, <%= b.first_name %><br/>

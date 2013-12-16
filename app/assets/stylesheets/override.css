@@ -1,3 +1,10 @@
+/*******************************************************************************
+ * Author: Michael Hnatiw & Patrick Sawyer-Bennett
+ * CMPT 498, Fall 2013 term
+ * Alberta Historical Cemeteries Project
+ * Override page to override properties of some bootstrap element properties
+ ******************************************************************************/
+
 /* definitions that override some properties of bootstraps css*/
 
 .container, .inner-container{
@@ -10,6 +17,12 @@
     width: 100%;
 }
 
+.container-fluid{
+    padding-right: 10px;
+    padding-left: 10px;    
+}
+
+/*** encompasses every page, shrinks down content to center ***/
 .inner-container{
     width: 80%;
     padding: 1em;
@@ -17,6 +30,9 @@
     border: 1px solid #E5E5E5;
 }
 
+.accordion{
+    margin-bottom: 0;
+}
 
 .row, .row-fluid, .navbar{
     margin: auto;
@@ -39,7 +55,7 @@
     clear: both;
     margin: 0;
 }
-
+/* override table row layout for link usage */
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th{
     background-color: rgba(65,140,200,1);
     color: white;
@@ -47,9 +63,4 @@
 
 .dropdown{
     z-index: 1000;
-}
-
-.container-fluid{
-    padding-right: 10px;
-    padding-left: 10px;    
 }

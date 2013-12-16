@@ -1,9 +1,0 @@
-/* definitions that override some properties of bootstraps css*/
-
-.container{
-    width: 100%;
-}
-
-.navbar{
-    margin: 0;
-}

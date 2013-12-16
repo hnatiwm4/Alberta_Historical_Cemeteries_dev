@@ -9,13 +9,14 @@
 	<div class="span8">
 	  <div id="layout_map" class="map">
 	    <div>
-	      <!-- placeholder for layout -->
-	      <div id="map" style='height: 447px;'>
-		<!--<if @cemeteries.lat == 0.0 && @cemeteries.long == 0.0 >
-		    <img src="http://placehold.it/768x447">
-		    < end >-->
-		<% flash.each do |key, value| %>
-		<div class="alert alert-<%= key %>"><%= value %></div>
+	      <!-- NOTE: min-height required for map -->
+	      <div id="map" style='min-height: 540px;'>
+		<% if @cemetery.lat == nil && @cemetery.long == nil %>
+		   <div class="alert alert-notice cem-alert">
+		     No Map Available for 
+		     <strong><%= @cemetery.cem_name %></strong>
+		     Cemetery, but we are working on it!
+		   </div>
 		<% end %>
 	      </div>
 	    </div>
@@ -25,22 +26,12 @@
 	  <div id="cem-container" class="span11">
 	    <div class="rounded-div">
 	      <ul class="nav nav-tabs">
-		<h4>Cemetery Information: </h4>
+		<%= render :partial => 'shared/approved', :locals => {:object => @cemetery} %>
+		<h4>Cemetery Information</h4>
 	      </ul>
-	      <p>
-		<strong>Address:</strong>
-		<%= @cemetery.address %>
-	      </p>
-	      <p>
-		<strong>Postal Code:</strong>
-		<%= @cemetery.post_code %>
-	      </p>
-	      <p>
-		<% if @cemetery.county %>
-		<strong>County:</strong>
-		<%= @cemetery.county.name %>
-		<% end %>
-	      </p>
+	      <span>
+		<%= render 'cemeteries/basic_fields' %>
+	      </span>
 	      <!-- accordion style for more information -->
 	      <% if signed_in? %>
 	      <div class="accordion">
@@ -53,7 +44,7 @@
 		  <!-- accordion style for more information -->
 		  <div class="accordion-body collapse" id="cem_collapse">
 		    <div class="accordion-inner">
-		      <%= render 'cem_more_fields' %>
+		      <%= render 'cemeteries/cem_more_fields' %>
 		    </div>
 		  </div>
 		</div>
@@ -82,7 +73,7 @@
 	    </div>
 	    <div id="monument-list" class="rounded-div list-contents">
 	      <ul class="nav nav-tabs">
-		<h4>Burial List</h4>
+		<h4>Monument List</h4>
 	      </ul>
 	      <div class="mon-list-contents">
 		<%= render 'cemeteries/related_monuments' %>

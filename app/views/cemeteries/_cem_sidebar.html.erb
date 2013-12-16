@@ -1,51 +1,62 @@
-  <div id="search_accordion" class="accordion">
-    <!-- burial search -->
-    <div class="accordion-group">
-      <div class="accordion-heading">
-	<a href="#collapse2" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle">
-	  <h4>Burial Search</h4>
-	</a>
-      </div>
-      <div class="accordion-body collapse in" id="collapse2">
-	  <div class="accordion-inner">
-	    <%= form_for :burials, url: search_results_burials_path do |b|%>
-	    <!-- add hidden field to add cemetery tag if present -->
-            <%= b.hidden_field :cem_lev_id, :value => params[:id] %>
-	    <p>
-	      <%= b.label "Individual's First Name" %><br>
-	      <%= b.text_field :first_name %>
-	    </p>
-	    <p>
-	      <%= b.label "Individual's Last Name" %><br>
-	      <%= b.text_field :last_name %>
-	    </p>
-	     <!-- Filters -->
-	     <div class="accordion-group">
-	       <div class="accordion-heading">
-		<a href="#collapse3" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle">
-		  <h4>Burial Filter Options</h4>
-		</a>
-	      </div>
-	      <div class="accordion-body collapse" id="collapse3">
-		<div class="accordion-inner">
-		  <!-- use max INT size in ruby for default ALL -->
-		  <%= label_tag "# of Results" %>
-		  <%= select_tag 'limit',options_for_select([['All',2147483647],['1',1],['<=10',10]],2147483647) %>
+<div id="search_accordion" class="accordion">
+  <!-- burial search -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a href="#collapse2" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle">
+	<h4>Burial Search</h4>
+      </a>
+    </div>
+    <div class="accordion-body collapse in" id="collapse2">
+      <div class="accordion-inner">
+	<%= form_for :burials, url: search_results_burials_path do |b|%>
+	<!-- add hidden field to add cemetery tag if present -->
+        <%= b.hidden_field :cem_lev_id, :value => params[:id] %>
+	<p>
+	  <%= b.label "Individual's First Name" %>
+	  <%= b.text_field :first_name %>
+	  <%= select_tag 'first_name_opt',
+	      options_for_select([['Keyword',:keyword],
+	      ['Starts With',:starts],
+	      ['Ends With',:ends],
+	      ['Exact',:exact]],:keyword) %>
+	</p>
+	<p>
+	  <%= b.label "Individual's Last Name" %>
+	  <%= b.text_field :last_name %>
+	  <%= select_tag 'last_name_opt',
+	      options_for_select([['Keyword',:keyword],
+	      ['Starts With',:starts],
+	      ['Ends With',:ends],
+	      ['Exact',:exact]],:keyword) %>
+	</p>
+	<!-- Filters -->
+	<div class="accordion-group">
+	  <div class="accordion-heading">
+	    <a href="#collapse3" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle">
+	      <h4>Burial Filter Options</h4>
+	    </a>
+	  </div>
+	  <div class="accordion-body collapse" id="collapse3">
+	    <div class="accordion-inner">
+	      <!-- use max INT size in ruby for default ALL -->
+	      <%= label_tag "# of Results" %>
+	      <%= select_tag 'limit',options_for_select([['All',2147483647],['1',1],['<=10',10]],2147483647) %>
 		  <%= label_tag "Order Results" %>
 		  <%= select_tag 'order',options_for_select([['Surname',:last_name],['FirstName',:first_name]],:last_name) %>
-		</div>
-	      </div>
 	    </div>
-
-	    <!-- submit button for burial search -->
-	    </br>
-	    <p>
-	      <%= b.submit "Search Burials", class: "btn btn-large btn-primary" %>
-	      <%= b.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>
-	    </p>
-	    <% end %> <!-- burial form -->
 	  </div>
+	</div>
+
+	<!-- submit button for burial search -->
+	<br/>
+	<p>
+	  <%= b.submit "Search Burials", class: "btn btn-primary" %>
+	  <%= b.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>
+        </p>
+        <% end %> <!-- burial form -->
       </div>
     </div>
+  </div>
 
-  </div> <!-- search_accordion -->
+
+</div> <!-- search_accordion -->

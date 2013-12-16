@@ -1,17 +1,27 @@
+# ##############################################################################
+# Author: Michael Hnatiw & Patrick Sawyer-Bennett
+# CMPT 498, Fall 2013 term
+# Alberta Historical Cemeteries Project
+# Cemetery controller that handles the creation and retrieving of inidividual 
+# cemetery records and their associations to burials and counties
+# ##############################################################################
+
 class CemeteriesController < ApplicationController
-# include appropreiate helpers
+# include appropriate helpers
 include ApplicationHelper
 include CemeteriesHelper
 
+# method instantiates a new instance object for a cemetery record
 def new
   @cemeteries = Cemetery.new
 end
 
-# index action displays all cemetery records
+# method displays all cemetery records
 def index
   @cemeteries = Cemetery.joins(:county).paginate(page: params[:page])
 end
 
+# method creates a new record from the inputted fields on the submit form
 def create
   @cemetery = Cemetery.new(cem_params)
   if @cemetery.save
@@ -22,19 +32,23 @@ def create
   end
 end
 
-# action queries the database for results
+# method handles the retreiving of cemetery records and their subsequent
+# relations when requested
 def search_results
+  # produce error and return to referer page if all fields left blank
   if params[:cemetery].all? {|k,v| v.blank?}
     flash[:notice] = 'No results Returned for Cemetery Search'
     redirect_to :back and return
   end
+  # call hellper function to remove blanks fields
   params_rm_blanks(params[:cemetery])
-  #*** call helper to create query string for basic search
+  # call helper to create query string for basic search
   query = basic_search(params,params[:cemetery])
-  # invokve cemetery instance, retrieve one cemetery name
+  # invoke cemetery instance, retrieve one cemetery name
   @cemeteries = Cemetery.joins(:county).where(query).limit(params[:limit]).order(params[:order]).paginate(page: params[:page])
   # ensure result returned, otherwise reload page
   if @cemeteries.blank?
+    flash[:notice] = 'No results Returned for Cemetery Search'
     redirect_to :back
   else
     # else return results page
@@ -46,14 +60,9 @@ def search_results
   end
 end
 
-# action displays query results on show page
+#  method displays query results 
 def show
   @cemetery = Cemetery.find(params[:id])
-  # create flash message with appropreiate message if cemetery
-  # record does not contain lat or longitudinal information
-  if @cemetery.lat == 0.0 && @cemetery.long == 0.0
-    flash.now[:notice] = 'Information for Map Unavailable'
-  end
 end
 
 # use of AJAX to render partial _search view
@@ -70,7 +79,7 @@ def submit
   end
 end
 
-
+# private parameters defined for creating new cemetery records (ie what is required)
 private
 
   def cem_params
