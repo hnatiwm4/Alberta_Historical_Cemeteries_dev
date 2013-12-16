@@ -34,6 +34,10 @@
 	    ['Other',3]]),
 	    {:prompt => "Select a type"} )%>
       </p>
+      <p>
+	<%= m.label "County:" %>
+	<%= m.collection_select(Monument.table_name+".county_id", County.all, :id_county, :name, :prompt => "Select a County") %>
+      </p>
       <!-- submit button for monument search -->
       <br/>
       <p>

@@ -45,6 +45,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    # if user has associated records (FK constraints), dont delete and return error message (quick fix)
+    @cemeteries = Cemetery.joins(:county).where(Cemetery.table_name+".`user_id`="+params[:id]).all
+    @burials = Burial.where(Burial.table_name+".`user_id`="+params[:id]).all
+    unless @burials.nil? || @cemeteries.nil?
+      flash[:notice] = "Cannot Delete User, Foreign Key Constraint for records submitted"
+      redirect_to :back and return
+    end
     User.find(params[:id]).destroy
     flash[:success] = "User deleted."
     redirect_to users_url

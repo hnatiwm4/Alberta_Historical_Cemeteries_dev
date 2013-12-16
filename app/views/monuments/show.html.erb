@@ -7,8 +7,16 @@
 	  <!-- images container -->
 	  <div class="span5">
 	    <div class="img-main">
-	      <% if @monument.photo_URL.nil? %>
-	      <%= image_tag("http://placehold.it/280x392") %> 
+	      <% if @monument.photo_URL.blank? %>
+	      <div class="alert alert-notice bur-alert">
+		Picture for Monument Encompassing
+		<% @monument.burials.each do |b| %>
+		   <strong><%= b.last_name %>, <%= b.first_name %></strong><br/>
+		<% end %>
+		is not available a the moment
+	      </div>
+	      <% else %>
+	        <%= link_to image_tag(@monument.photo_URL), photo_link(@monument), :target => "_blank" %>
 	      <% end %>
 	    </div>
 	  </div>

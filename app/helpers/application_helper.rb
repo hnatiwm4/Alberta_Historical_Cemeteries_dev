@@ -126,4 +126,34 @@ module ApplicationHelper
     return arr
   end
 
+
+
+
+  def get_contr_from_id(object)
+    return Contributor.where(:id_contr_rec => object.contr_rec_id).take
+  end
+
+
+
+
+  def photo_link(object)
+    # get external record id from contributor association with
+    # to create a link to the external url for the photo
+    @extern_rec = get_contr_from_id(object)
+    unless @extern_rec.blank?
+      if @extern_rec.contr_id == 9
+        return "http://www.canadianheadstones.com/ab/view.php?id=" + @extern_rec.ex_rec_id.to_s
+      else 
+        return object.photo_URL
+      end
+    else
+      # else return nil
+      return nil
+    end
+    return nil
+  end
+
+
+
+
 end

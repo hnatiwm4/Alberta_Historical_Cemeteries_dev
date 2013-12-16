@@ -315,7 +315,7 @@ ActiveRecord::Schema.define(version: 20131213204619) do
     t.decimal   "lat",                      precision: 18, scale: 12
     t.decimal   "long",                     precision: 18, scale: 12
     t.string    "approved",      limit: 1
-    t.string    "photo_URL",     limit: 45
+    t.string    "photo_URL"
     t.string    "notes"
     t.integer   "contr_rec_id"
     t.integer   "surveyor_id"

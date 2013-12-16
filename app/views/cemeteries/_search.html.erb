@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <h1>Cemetery Search</h1>
-    <%= form_for :cemetery, url: search_results_cemeteries_path do |c| %>
+    <%= form_for :cemeteries, url: search_results_cemeteries_path do |c| %>
     <!-- main search form (has overriden class values) -->
     <div class="span7">
       <p>
@@ -24,7 +24,7 @@
       </p>
       <p>
 	<%= c.label "County:" %>
-	<%= c.collection_select(:county_id, County.all, :id_county, :name, :prompt => "Select a County") %>
+	<%= c.collection_select(Cemetery.table_name+".county_id", County.all, :id_county, :name, :prompt => "Select a County") %>
       </p>
       <br/>
       <p>

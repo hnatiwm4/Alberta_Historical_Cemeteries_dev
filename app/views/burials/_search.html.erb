@@ -24,12 +24,10 @@
       </p>
       <p>
         <%= b.label "Cemetery:" %>
-	<%= b.collection_select(:cem_lev_id, Cemetery.all, :id_cem_lev, :cem_name, :prompt => "Select a Cemetery") %>
+	<%= b.collection_select(Burial.table_name+".cem_lev_id", Cemetery.all, :id_cem_lev, :cem_name, :prompt => "Select a Cemetery") %>
       </p>
       <p>
 	<%= b.label "Gender:" %>
-	<%= b.radio_button(:sex,"") %>
-	<%= b.label "Both", :class => "radio inline" %>
 	<%= b.radio_button(:sex,"M") %>
 	<%= b.label "Male", :class => "radio inline" %>
 	<%= b.radio_button(:sex,"F") %>
@@ -81,7 +79,7 @@
 	    </p>
 	    <p>
               <%= b.label "County:" %>
-	      <%= b.collection_select(:county_id, County.all, :id_county , :name, :prompt => "Select a County") %>
+	      <%= b.collection_select(Burial.table_name+".county_id", County.all, :id_county, :name, :prompt => "Select a County") %>
 	    </p>
 	  </div>
 	</div>

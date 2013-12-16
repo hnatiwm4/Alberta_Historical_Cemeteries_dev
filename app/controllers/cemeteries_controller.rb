@@ -36,14 +36,14 @@ end
 # relations when requested
 def search_results
   # produce error and return to referer page if all fields left blank
-  if params[:cemetery].all? {|k,v| v.blank?}
+  if params[:cemeteries].all? {|k,v| v.blank?}
     flash[:notice] = 'No results Returned for Cemetery Search'
     redirect_to :back and return
   end
   # call hellper function to remove blanks fields
-  params_rm_blanks(params[:cemetery])
+  params_rm_blanks(params[:cemeteries])
   # call helper to create query string for basic search
-  query = basic_search(params,params[:cemetery])
+  query = basic_search(params,params[:cemeteries])
   # invoke cemetery instance, retrieve one cemetery name
   @cemeteries = Cemetery.joins(:county).where(query).limit(params[:limit]).order(params[:order]).paginate(page: params[:page])
   # ensure result returned, otherwise reload page
@@ -55,7 +55,7 @@ def search_results
     render 'pages/search_results',
     :locals => {:title => "Cemetery Search Results",
                 :table => 'cemeteries/results_table',
-                :params => params[:cemetery],
+                :params => params[:cemeteries],
                 :object => @cemeteries }
   end
 end
