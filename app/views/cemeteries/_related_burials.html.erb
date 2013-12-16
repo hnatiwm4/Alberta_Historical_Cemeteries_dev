@@ -1,6 +1,6 @@
 <table class="table table-bordered table-hover">
   <tbody>
-    <% @monument.burials.each do |b| %>
+    <% @cemetery.burials.each do |b| %>
     <tr class="row-clickable" href=<%= burial_path(:id => b.id_indiv_lev) %>>
       <td>
 	<%= b.last_name %>, <%= b.first_name %>

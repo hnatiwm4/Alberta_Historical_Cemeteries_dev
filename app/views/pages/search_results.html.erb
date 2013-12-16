@@ -18,18 +18,8 @@
 	</p>
       </div>
       <!-- main content, table of search results -->
-      <!-- NOTE: printed values rely on will_paginate -->
       <div class="span9">
-	<h4 style='text-align: right;'>Results 
-	  <%= object.offset + 1 %> - 
-	  <% if object.current_page == object.total_pages %>
-	  <%= object.total_entries %> of 
-	  <% else %>
-	  <%= object.per_page * object.current_page %> of 
-	  <% end %>
-	  <%= object.total_entries %>
-	</h4>
-	<hr/>
+	<%= render :partial => 'shared/results_range', :locals => {:object => object} %>
 	<!-- render partial and pass object to generate table -->
 	<%= render :partial => table, :locals=> {:object => object} %>
       </div>

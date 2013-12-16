@@ -1,9 +1,9 @@
-<div id="search_sidebar" class="sidebar">
+<div id="search_sidebar">
   <div id="search_accordion" class="accordion">
     <!-- Cemetery Search -->
     <div class="accordion-group">
       <div class="accordion-heading">
-	<a href="#collapse1" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle">
+	<a href="#collapse1" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle map-overlay-header">
 	  <h4>Cemetery Search</h4>
 	</a>
       </div>
@@ -11,7 +11,7 @@
 	  <div class="accordion-inner">
 	    <%= form_for :cemetery, url: search_results_cemeteries_path do |c| %>
 	    <p>
-	      <%= c.label "Cemetery Name" %>
+	      <%= c.label "Cemetery Name:" %>
 	      <%= c.text_field :cem_name %>
 	      <%= select_tag 'cem_name_opt',
 		  options_for_select([['Keyword',:keyword],
@@ -20,16 +20,17 @@
 		  ['Exact',:exact]],:keyword) %>
 	    </p>
 	    <p>
-	      <%= c.label "Full Address" %>
+	      <%= c.label "Full Address:" %>
 	      <%= c.text_field :address %>
 	      <%= select_tag 'address_opt',
 		  options_for_select([['Keyword',:keyword],
 		  ['Starts With',:starts],
 		  ['Ends With',:ends],
-		  ['Exact',:exact]],:keyword) %>
+		  ['Exact',:exact]],:keyword)%>
 	    </p>
 	    <p>
 	      <%= c.submit "Search Cemeteries", class: "btn btn-primary" %>
+	      <%= c.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>
 	    </p>
 	    <% end %> <!-- cemtery form -->
 	  </div>
@@ -38,7 +39,7 @@
     <!-- burial search -->
     <div class="accordion-group">
       <div class="accordion-heading">
-	<a href="#collapse2" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle">
+	<a href="#collapse2" data-present="#search_accordion" data-toggle="collapse" class="accordion-toggle map-overlay-header">
 	  <h4>Burial Search</h4>
 	</a>
       </div>
@@ -46,16 +47,27 @@
 	  <div class="accordion-inner">
 	    <%= form_for :burial, url: search_results_burials_path do |b|%>
 	    <p>
-	      <%= b.label "Individual's First Name" %>
+	      <%= b.label "Individual's First Name:" %>
 	      <%= b.text_field :first_name %>
+	      <%= select_tag 'first_name_opt',
+	          options_for_select([['Keyword',:keyword],
+	          ['Starts With',:starts],
+	          ['Ends With',:ends],
+	          ['Exact',:exact]],:keyword) %>
 	    </p>
 	    <p>
-	      <%= b.label "Individual's Last Name" %>
+	      <%= b.label "Individual's Last Name:" %>
 	      <%= b.text_field :last_name %>
+	      <%= select_tag 'first_name_opt',
+	          options_for_select([['Keyword',:keyword],
+	          ['Starts With',:starts],
+	          ['Ends With',:ends],
+	          ['Exact',:exact]],:keyword) %>
 	    </p>	    
 	    <!-- submit button for burial search -->
 	    <p>
 	      <%= b.submit "Search Burials", class: "btn btn-primary" %>
+	      <%= b.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>
 	    </p>
 	    <% end %> <!-- burial form -->
 

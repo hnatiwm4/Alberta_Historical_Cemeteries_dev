@@ -1,0 +1,14 @@
+<p>
+  <strong>Number of Burials:</strong>
+  <%= @cemetery.burials.count %><br/>
+  <strong>Number of Monuments:</strong>
+  <%= @cemetery.monuments.count %><br/>
+  <strong>Address:</strong>
+  <%= @cemetery.address %><br/>
+  <strong>Postal Code:</strong>
+  <%= @cemetery.post_code %><br/>
+  <% if @cemetery.county %>
+    <strong>County:</strong>
+    <%= @cemetery.county.name %><br/>
+  <% end %>
+</p>

@@ -8,14 +8,15 @@
 	  <div class="span5">
 	    <div class="img-main">
 	      <% if @monument.photo_URL.nil? %>
-	      <%= image_tag("http://placehold.it/260x364") %> 
+	      <%= image_tag("http://placehold.it/280x392") %> 
 	      <% end %>
 	    </div>
 	  </div>
 	  <!-- content container -->
-	  <div class="span6">
+	  <div id="right-info-container" class="span6">
 	    <div class="rounded-div">
 	      <ul class="nav nav-tabs">
+		<%= render :partial => 'shared/approved', :locals => {:object => @monument} %>
 		<h4>Monument Information</h4>
 	      </ul>
 	      <span>
@@ -23,16 +24,18 @@
 	      </span>
 	    </div>
 	    <br/>
-	    <div class="rounded-div">
+	    <div id="burial-list" class="rounded-div">
 	      <ul class="nav nav-tabs">
 		<h4>Burial List</h4>
 	      </ul>
+	      <div class="burial-list-contents">
 	      <%= render 'monuments/related_burials' %>
+	      </div>
 	    </div>
 	  </div>
 	  
 	  <!-- Statistical information -->
-	  <div class="span11">
+	  <div id="advanced-container" class="span11">
 	    <div class="rounded-div">
 	      <ul class="nav nav-tabs">
 		<h4>Statistical Information</h4>

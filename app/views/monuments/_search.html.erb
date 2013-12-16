@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <h1>Monument Search</h1>
-    <%= form_for :monument, url: search_results_monuments_path do |m|%>
+    <%= form_for :monuments, url: search_results_monuments_path do |m|%>
     <!-- main search form (has overriden class values) -->
     <div class="span7">
       <p>
@@ -56,7 +56,6 @@
 	    ['County Name',"name"]],:num_indiv) %>
       </p>
     </div>
-
 
     <% end %> <!-- monument form -->
 

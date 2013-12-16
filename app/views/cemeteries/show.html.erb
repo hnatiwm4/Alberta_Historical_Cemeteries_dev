@@ -1,97 +1,115 @@
 
 <div class="inner-container">
-  <!-- Cemetery Header containing Cemetery name and descriptio/history-->
-  <div id="cem_header">
-    <%= render 'cem_header' %>
-  </div>
-
-  <!-- LAYOUT MAP FOR EACH INDIVIDUAL CEMETERY -->
-  <div id="cem_container" class="two-col-common">
-
-    <div id="layout_map" class="map">
-      <div>
-	<!-- placeholder for layout -->
-	<div id="map" style='height: 447px;'>
-	  <!--<if @cemeteries.lat == 0.0 && @cemeteries.long == 0.0 >
-              <img src="http://placehold.it/768x447">
-	      < end >-->
-	  <% flash.each do |key, value| %>
-	  <div class="alert alert-<%= key %>"><%= value %></div>
-	  <% end %>
-	</div>
-      </div>
-    </div>
-
-    <% if @cemeteries.lat? && @cemeteries.long? %>
-    <!-- Generate Google Map for each individual cemetery -->
-    <script type="text/javascript">
-      var mapOptions = {
-      // Long and Lat for specified cemetery
-      center: new google.maps.LatLng(<%= @cemeteries.lat%>,<%=@cemeteries.long %>),
-      mapTypeId: google.maps.MapTypeId.SATELLITE,
-      zoom: 14
-      };    
-      handler = Gmaps.build('Google');
-      handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
-      // add single marker for given cemetery based on the id
-      markers = handler.addMarkers(<%=raw add_markers(@cemeteries).to_json %>); 
-      //handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-      });
-    </script>
-    <% end %>
-
-    <!-- Cemetery information container -->
-    <div id="cem_info" class="rounded-div">
-      <ul class="nav nav-tabs">
-	<h4>Cemetery Information: </h4>
-      </ul>
-      <p>
-	<strong>Address:</strong>
-	<%= @cemeteries.address %>
-      </p>
-      <p>
-	<strong>Postal Code:</strong>
-	<%= @cemeteries.post_code %>
-      </p>
-      <p>
-	<% if @cemeteries.county %>
-        <strong>County:</strong>
-        <%= @cemeteries.county.name %>
-	<% end %>
-      </p>
-      <!-- accordion style for more information -->
-      <% if signed_in? %>
-      <div class="accordion">
-	<div class="accordion-group">
-	  <div class="accordion-heading">
-	    <a href="#cem_collapse" data-toggle="collapse" class="accordion-toggle">
-	      <h5>>>Load More Fields</h5>
-	    </a>
-	  </div>
-	  <!-- accordion style for more information -->
-	  <div class="accordion-body collapse" id="cem_collapse">
-	    <div class="accordion-inner">
-	      <%= render 'cem_more_fields' %>
+  <div class="row">
+    <div class="container-fluid">
+      <h1><%= @cemetery.cem_name %></h1>
+	
+      <div class="row-fluid">
+	<!-- contains cemetery map and information -->
+	<div class="span8">
+	  <div id="layout_map" class="map">
+	    <div>
+	      <!-- NOTE: min-height required for map -->
+	      <div id="map" style='min-height: 540px;'>
+		<% if @cemetery.lat == nil && @cemetery.long == nil %>
+		   <div class="alert alert-notice cem-alert">
+		     No Map Available for 
+		     <strong><%= @cemetery.cem_name %></strong>
+		     Cemetery, but we are working on it!
+		   </div>
+		<% end %>
+	      </div>
 	    </div>
 	  </div>
+
+	  <!-- Cemetery Infomation -->
+	  <div id="cem-container" class="span11">
+	    <div class="rounded-div">
+	      <ul class="nav nav-tabs">
+		<%= render :partial => 'shared/approved', :locals => {:object => @cemetery} %>
+		<h4>Cemetery Information</h4>
+	      </ul>
+	      <span>
+		<%= render 'cemeteries/basic_fields' %>
+	      </span>
+	      <!-- accordion style for more information -->
+	      <% if signed_in? %>
+	      <div class="accordion">
+		<div class="accordion-group">
+		  <div class="accordion-heading">
+		    <a href="#cem_collapse" data-toggle="collapse" class="accordion-toggle">
+		      <h5>>>Load More Fields</h5>
+		    </a>
+		  </div>
+		  <!-- accordion style for more information -->
+		  <div class="accordion-body collapse" id="cem_collapse">
+		    <div class="accordion-inner">
+		      <%= render 'cemeteries/cem_more_fields' %>
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	      <% else %>
+	      <br/>
+	      <div class="alert alert-info">
+		Hey There,
+		<strong><%= link_to 'SIGN UP', signup_path %></strong>
+		today for an Account to Load More Record Fields!
+	      </div>
+	      <% end %>
+	    </div>
+
+	  </div>
+
+	  <!-- burial and Monument lists container -->
+	  <div id="list-container" class="span11">
+	    <div id="burial-list" class="rounded-div list-contents">
+	      <ul class="nav nav-tabs">
+		<h4>Burial List</h4>
+	      </ul>
+	      <div class="burial-list-contents">
+		<%= render 'cemeteries/related_burials' %>
+	      </div>
+	    </div>
+	    <div id="monument-list" class="rounded-div list-contents">
+	      <ul class="nav nav-tabs">
+		<h4>Monument List</h4>
+	      </ul>
+	      <div class="mon-list-contents">
+		<%= render 'cemeteries/related_monuments' %>
+	      </div>
+	    </div>
+	    
+	  </div>
+
 	</div>
+
+	<!-- Search Feautures -->
+	<div class="span4">
+	  <%= render 'cemeteries/cem_sidebar' %>
+	</div>
+
       </div>
     </div>
-    <% else %>
-    <br/>
-    <div class="alert alert-info">
-      Hey There,
-      <strong><%= link_to 'SIGN UP', signup_path %></strong>
-      today for an Account to Load More Record Fields!
-    </div>
-    <% end %>
-
   </div>
-
-  <!-- layout side bar for each cemetery page-->
-  <div id="layout_sidebar" class="two-col-common sidebar">
-    <%= render 'cem_sidebar' %>
-  </div>
-
 </div>
+
+<!-- JS script to Generate Google Map for each individual cemetery -->
+
+<% if @cemetery.lat? && @cemetery.long? %>
+<script type="text/javascript">
+  var mapOptions = {
+  // Long and Lat for specified cemetery
+  center: new google.maps.LatLng(<%= @cemetery.lat%>,<%=@cemetery.long %>),
+  mapTypeId: google.maps.MapTypeId.SATELLITE,
+  zoom: 14
+  };    
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
+  // add single marker for given cemetery based on the id
+  markers = handler.addMarkers(<%=raw add_markers(@cemetery).to_json %>); 
+  //handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+  });
+</script>
+<% end %>

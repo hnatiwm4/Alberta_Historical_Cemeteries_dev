@@ -1,0 +1,23 @@
+<div class="footer-cell">
+  <h4>Involved Organizations</h4>
+  <hr/>
+  <strong>
+    <%= link_to 'Canadian Headstones Project', "http://www.canadianheadstones.ca", :class => "source-link", :target => "_blank" %>
+  </strong>
+  <br/>
+  <strong>
+    <%= link_to 'Alberta Genealogical Society', "http://www.abgensoc.ca", :class => "source-link", :target => "_blank" %>
+  </strong>
+  <br/>
+  <strong>
+    <%= link_to 'Service Alberta', "http://www.servicealberta.ca", :class => "source-link", :target => "_blank" %>
+  </strong>
+  <br/>
+  <strong>
+    <%= link_to 'Alberta Family Histories Societiesr', "http://www.afhs.ab.ca", :class => "source-link", :target => "_blank" %>
+  </strong>
+  <br/>
+  <strong>
+    <%= link_to 'CanadaGenWeb\'s Cemeteries Project', "http://www.canadagenweb.org", :class => "source-link", :target => "_blank" %>
+  </strong>
+</div>

@@ -1,0 +1,10 @@
+<!-- NOTE: printed values rely on will_paginate -->
+<h4 style='text-align: right; float: right;'>Results 
+  <%= object.offset + 1 %> - 
+  <% if object.current_page == object.total_pages %>
+  <%= object.total_entries %> of 
+  <% else %>
+  <%= object.per_page * object.current_page %> of 
+  <% end %>
+  <%= object.total_entries %>
+</h4>

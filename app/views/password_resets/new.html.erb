@@ -1,12 +1,19 @@
-<h1>Reset Password</h1>
-
-<%= form_tag password_resets_path, :method => :post do %>
-  <div class="field">
-    <div class="span6">
-      <%= label_tag :email %>
-      <%= text_field_tag :email, params[:email] %>
-    <div class="actions"><%= submit_tag "Reset Password", 
-				class: "btn btn-large btn-primary" %></div>
+<% provide(:title, 'Reset Password') %>
+<div class="inner-container">
+  <div class="row">
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<h1>Reset Password</h1>
+	<%= form_tag password_resets_path, :method => :post do %>
+	<div class="field">
+	  <%= label_tag :email %>
+	  <%= text_field_tag :email, params[:email] %>
+	</div>
+	<div class="actions">
+	  <%= submit_tag "Reset Password", :class => "btn btn-large btn-primary" %>
+	</div>
+	<% end %>
+      </div>
     </div>
   </div>
-<% end %>
+</div>

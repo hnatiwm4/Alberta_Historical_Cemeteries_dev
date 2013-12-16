@@ -1,4 +1,4 @@
-  <div id="search_accordion" class="accordion">
+<div id="search_accordion" class="accordion">
     <!-- burial search -->
     <div class="accordion-group">
       <div class="accordion-heading">
@@ -6,16 +6,26 @@
 	  <h4>Burial Search</h4>
 	</a>
       </div>
-      <div class="accordion-body collapse" id="collapse2">
+      <div class="accordion-body collapse in" id="collapse2">
 	  <div class="accordion-inner">
-	    <%= form_for :burial, url: search_results_burials_path do |b|%>
+	    <%= form_for :burials, url: search_results_burials_path do |b|%>
 	    <p>
-	      <%= b.label "Individual's First Name" %><br>
+	      <%= b.label "Individual's First Name" %>
 	      <%= b.text_field :first_name %>
+	      <%= select_tag 'first_name_opt',
+		  options_for_select([['Keyword',:keyword],
+		  ['Starts With',:starts],
+		  ['Ends With',:ends],
+		  ['Exact',:exact]],:keyword) %>
 	    </p>
 	    <p>
-	      <%= b.label "Individual's Last Name" %><br>
+	      <%= b.label "Individual's Last Name" %>
 	      <%= b.text_field :last_name %>
+	      <%= select_tag 'last_name_opt',
+		  options_for_select([['Keyword',:keyword],
+		  ['Starts With',:starts],
+		  ['Ends With',:ends],
+		  ['Exact',:exact]],:keyword) %>
 	    </p>
 	     <!-- Filters -->
 	     <div class="accordion-group">
@@ -38,7 +48,8 @@
 	    <!-- submit button for burial search -->
 	    </br>
 	    <p>
-	      <%= b.submit "Search Burials" %>
+	      <%= b.submit "Search Burials", class: "btn btn-primary" %>
+	      <%= b.submit "Reset Form", :type => "reset", class: "btn btn-danger" %>
 	    </p>
 	    <% end %> <!-- burial form -->
 	  </div>
