@@ -20,9 +20,15 @@ class PasswordResetsController < ApplicationController
       # redirect_to root_url, :notice => "Password has been reset."
     elsif @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
-      redirect_to @user
+      redirect_to root_url #@user
     else
       render :edit
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:password, :password_confirmation)
   end
 end

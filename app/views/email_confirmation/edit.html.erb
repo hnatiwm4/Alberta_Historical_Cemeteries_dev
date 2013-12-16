@@ -6,11 +6,16 @@
         <% for message in @user.errors.full_messages %>
           <li><%= message %></li>
         <% end %>
-      </ul>
+     </ul>
     </div>
   <% end %>
-  <div class="actions">
-    <%= f.hidden_field :email_confirmed, :value=>true%>
-    <%= f.submit "Confirm Email" %>
-  </div>
-<% end %>
+    <div class="inner-container">
+      <div class="span1">
+        <div class="actions">
+          <p>
+            <%= f.submit "Confirm Email", class: "btn btn-large btn-primary" %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>

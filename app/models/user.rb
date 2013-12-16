@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 		format: { with: VALID_EMAIL_REGEX },
 		uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX }
+  validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX }, :on => :create
 
   # relations
   has_many :cemeteries, :foreign_key => "user_id"
@@ -46,6 +46,11 @@ class User < ActiveRecord::Base
   end
   
   private
+
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :email,
+                                :password, :password_confirmation)
+    end
 
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)

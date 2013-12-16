@@ -1,5 +1,6 @@
 class EmailConfirmationController < ApplicationController
 
+# this method sends an email to the user to confirm their address
 def create
   user = User.find_by_email(params[:email])
   user.send_email_confirmation if user
@@ -10,6 +11,8 @@ def edit
   @user = User.find_by_account_confirmation_token!(params[:id])
 end
 
+# this method modifies a boolean in the db when email is confirmed
+# allowing sign in
 def update
   @user = User.find_by_account_confirmation_token!(params[:id])
   if @user.update_attribute(:email_confirmed, true)
