@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
+  # restrict signed in user to edit action on own account
   before_action :signed_in_user, only: [:edit]
+  # restrict correct user to edit action on own account
   before_action :correct_user, only: [:edit]
-  before_action :admin_user, only: [:indes, :destroy]
+  # give admin user access to view all users and remove accounts
+  before_action :admin_user, only: [:index, :destroy]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -18,6 +21,8 @@ class UsersController < ApplicationController
   def edit
   end
 
+  # this method updates the users first name, last name, and email
+  # from the edit profile page
   def update
     @user = User.find_by_id(params[:id])
     @user.update_attribute(:first_name, user_params[:first_name])
@@ -30,7 +35,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      user = @user # .find_by_email(params[:email])
+      user = @user
       user.send_account_confirmation
       flash[:success] = "Welcome to the Alberta Historical Cemeteries Project! Please check your email to verify your account."
       redirect_to root_url
@@ -39,6 +44,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # this method modifies boolean value in db when email is confirmed
   def approve
     @user = User.find_by_id
     @user.attributes = {:email_confirmed => true}

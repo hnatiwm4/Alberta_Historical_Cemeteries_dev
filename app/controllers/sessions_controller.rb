@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   def new
   end
 
+  # this method creates a session for the user while they use the app
   def create
     user = User.find_by(email: params[:sessions][:email].downcase)
     if user && user.authenticate(params[:sessions][:password]) 
@@ -19,6 +20,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  # destroy the session when sign out occurs
   def destroy
     sign_out
     redirect_to root_url
