@@ -81,7 +81,7 @@ end
 private
 
   def bur_params
-    allow = [:last_name,:first_name,:user_id]
+    allow = [:last_name,:first_name,:cem_lev_id,:county_id,:user_id]
     params.require(:burial).permit(allow)
   end
 

@@ -13,6 +13,14 @@
       <%= b.label "Last Name:" %>
       <%= b.text_field :last_name %>
     </p>
+    <p>
+      <%= b.label "Cemetery:" %>
+      <%= b.collection_select(:cem_lev_id, Cemetery.all, :id_cem_lev, :cem_name, :prompt => "Select a Cemetery") %>
+    </p>
+    <p>
+      <%= b.label "County:" %>
+      <%= b.collection_select(:county_id, County.all, :id_county, :name, :prompt => "Select a County") %>
+    </p>
     <br/>
     <p>
       <%= b.submit "Submit Burial Record", class: "btn btn-large btn-primary" %>

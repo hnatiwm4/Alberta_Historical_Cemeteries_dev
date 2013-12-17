@@ -10,7 +10,7 @@
 	<p>
 	  <% if params %>
             <% params.each do |key,val| %>
-	      <% unless val.blank? %>
+	      <% unless val.blank? || is_num?(val) %>
 	          <strong><%= val %></strong><br/>
 	      <% end %>
 	    <% end %>

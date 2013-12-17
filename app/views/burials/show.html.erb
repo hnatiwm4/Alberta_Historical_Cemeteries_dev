@@ -15,9 +15,11 @@
 		  <%= @burial.last_name %>, <%= @burial.first_name %>
 		</strong>
 		is unavailable at the moment
-		<% if get_contr_from_id(@burial).contr_id == 9 %>
+		<% unless get_contr_from_id(@burial).nil? %> 
+		   <% if get_contr_from_id(@burial).contr_id == 9 %>
 		   , but we do have a source link: <br/>
 		   <%= link_to 'Photo Source', photo_link(@burial), :target => "_blank" %>
+		   <% end %>
 		<% end %>
 	      </div>
 	      <% else %>

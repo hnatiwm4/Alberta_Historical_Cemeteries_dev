@@ -1,3 +1,10 @@
+# ##############################################################################
+# Author: Michael Hnatiw & Patrick Sawyer-Bennett
+# CMPT 498, Fall 2013 term
+# Alberta Historical Cemeteries Project
+# Users Helper defines a common helper method used to retrieve gravatar objects
+# ##############################################################################
+
 module UsersHelper
 
   # retrieves the Gravatar (http://gravatar.com/) for the user

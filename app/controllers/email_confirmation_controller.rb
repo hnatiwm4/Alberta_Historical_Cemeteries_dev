@@ -31,6 +31,7 @@ end
 
   private
 
+  # private method to allow edit of boolean email_confirmed variable
   def user_params
     params.require(:user).permit(:email_confirmed)
   end

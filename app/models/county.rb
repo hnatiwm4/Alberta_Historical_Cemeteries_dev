@@ -1,3 +1,11 @@
+# ##############################################################################
+# Author: Michael Hnatiw & Patrick Sawyer-Bennett
+# CMPT 498, Fall 2013 term
+# Alberta Historical Cemeteries Project
+# COunty model defines the implicit associations with other database elements
+#, defines their foreign keys, and corresponding county table
+# ##############################################################################
+
 class County < ActiveRecord::Base
   # explicitly set table name for burial records for individual
   self.table_name = "county"

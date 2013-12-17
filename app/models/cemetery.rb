@@ -1,8 +1,14 @@
+# ##############################################################################
+# Author: Michael Hnatiw & Patrick Sawyer-Bennett
+# CMPT 498, Fall 2013 term
+# Alberta Historical Cemeteries Project
+# Cemetery model defines the implicit associations with other database elements
+#, defines their foreign keys, and corresponding cemetery table
+# ##############################################################################
+
 class Cemetery < ActiveRecord::Base
   # explicitly set table name for cemeteries
   self.table_name = "cem_lev"
-
-  # (correspond foreign key in cem_lev table to primary specified in code below in all has_one methods to relate correctly)
 
   # each cemetery belongs to one cemetery
   belongs_to :county, :foreign_key => "county_id"

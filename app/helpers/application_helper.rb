@@ -1,16 +1,27 @@
+# ##############################################################################
+# Author: Michael Hnatiw & Patrick Sawyer-Bennett
+# CMPT 498, Fall 2013 term
+# Alberta Historical Cemeteries Project
+# Application  Helper defines common helper methods used by various 
+# controllers and views
+# ##############################################################################
+
 module ApplicationHelper
 
   # ========== COMMON HELPERS ==========
   
   # simple helper to test if params value is simply numeric
   # (as all params values return within quotes)
+  # @param: variable or object
+  # @return: boolean value
   def is_num?(s)
     Float(s) != nil rescue false
   end
     
-
-  # remove blank values from burial searchs before
+  # helper removes blank values from burial searchs before
   # those values are saved and sent to the Database
+  # @param: params hash
+  # @return: modified params hash
   def params_rm_blanks(search)
     search.each do |k,v|
       if v.blank?
@@ -19,7 +30,7 @@ module ApplicationHelper
     end
   end
 
-  # generates a string for date fields withing a table to match
+  # method generates a string for date fields withing a table to match
   # (done as date_select returns a hash of values that wont match correctly
   # in where clause)
   # @params: params hash, key string
@@ -36,8 +47,8 @@ module ApplicationHelper
     params[key_str] = values.map {|val| "#{val}"}.join("-")
   end
 
-  # function evalute the imputted array of date fields within params
-  # to generate dat_string from the input from the forms
+  # method evalutes the imputted array of date fields within params
+  # to generate date_string from the input from the forms
   # (ie creates UNIX datetime formatted field to use for querying)
   # @param: params hash
   # @param: params hash for given object
@@ -54,8 +65,10 @@ module ApplicationHelper
     end
   end
 
-  # function evaluate the params hash, determining if any enumerated
+  # method evaluates the params hash, determining if any enumerated
   # values exist, if so create special query string for value
+  # @param: params hash
+  # @return: modified params hash
   def eval_int(params)
    if params 
      params.each do |key,val|
@@ -66,13 +79,14 @@ module ApplicationHelper
    end
   end
 
-  # implements a basic keyword (full text) search using LIKE
-  # statements in MySQL (gives full precision of results
-  # but at the cost of no recall or fewer relevent results are missing)
+  # implements a basic keyword (full text) search using LIKE and '=' operators 
+  # statements in MySQL 
+  # (gives full precision of results but at the cost of no recall or fewer 
+  # relevent results are missing)
   # @param: params hash 
   # @return:query string that will be used in controller
 
-  # NOTE: prvents simple MYSQL Injection by use bind variables
+  # NOTE: prvents simple MYSQL Injection by using binded variables
   # and wildcards within an array (not a hardcoded string) 
   def basic_search(params,search)
     arr = []
@@ -118,24 +132,26 @@ module ApplicationHelper
           arr.push("%#{val}%") unless val.blank?
         end
       end
-    # else if search doesnt exist, return nothing
-    else  
-      return
+    # else if search doesnt exist, return nil
+    else
+      return nil
     end
     # return bind variable array for use in where clause
     return arr
   end
 
 
-
-
+  # method simply returns the corresponding contributor values
+  # related to a given object (ie burial for now)
+  # @param: object/instance
+  # @return: contributor object/instance
   def get_contr_from_id(object)
     return Contributor.where(:id_contr_rec => object.contr_rec_id).take
   end
 
 
-
-
+  # method returns an absolute link reference a sources image for a given
+  # instance of a object (ie only works with Canadian Headstones for now)
   def photo_link(object)
     # get external record id from contributor association with
     # to create a link to the external url for the photo
@@ -152,8 +168,6 @@ module ApplicationHelper
     end
     return nil
   end
-
-
 
 
 end
