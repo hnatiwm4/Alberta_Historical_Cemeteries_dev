@@ -1,3 +1,10 @@
+# ##############################################################################
+# Author: Michael Hnatiw & Patrick Sawyer-Bennett
+# CMPT 498, Fall 2013 term
+# Alberta Historical Cemeteries Project
+# Email confirmation controller that defines methods for object use
+# ##############################################################################
+
 class EmailConfirmationController < ApplicationController
 
 # this method sends an email to the user to confirm their address

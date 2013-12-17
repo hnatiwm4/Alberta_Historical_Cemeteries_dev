@@ -1,3 +1,10 @@
+# ##############################################################################
+# Author: Michael Hnatiw & Patrick Sawyer-Bennett
+# CMPT 498, Fall 2013 term
+# Alberta Historical Cemeteries Project
+# User controller that defines methods for object use
+# ##############################################################################
+
 class UsersController < ApplicationController
   # restrict signed in user to edit action on own account
   before_action :signed_in_user, only: [:edit]
@@ -6,14 +13,18 @@ class UsersController < ApplicationController
   # give admin user access to view all users and remove accounts
   before_action :admin_user, only: [:index, :destroy]
 
+  # this method displays all users in the system and paginates the results
+  # only available for admin users
   def index
     @users = User.paginate(page: params[:page])
   end
 
+  # this method creates a user object from the id param
   def show
     @user = User.find(params[:id])
   end
 
+  # this method creates a new user object
   def new
     @user = User.new
   end
@@ -32,6 +43,8 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
+  # this method creates a new user and sends an account confirmation to 
+  # the users email.
   def create
     @user = User.new(user_params)
     if @user.save
@@ -83,6 +96,7 @@ class UsersController < ApplicationController
 
   private
 
+    # this method defines the accessable attributes
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email,
 				:password, :password_confirmation)

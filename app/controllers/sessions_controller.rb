@@ -1,3 +1,10 @@
+# ##############################################################################
+# Author: Michael Hnatiw & Patrick Sawyer-Bennett
+# CMPT 498, Fall 2013 term
+# Alberta Historical Cemeteries Project
+# Sessions controller that defines methods for object use
+# ##############################################################################
+
 class SessionsController < ApplicationController
 
   def new
@@ -6,6 +13,7 @@ class SessionsController < ApplicationController
   # this method creates a session for the user while they use the app
   def create
     user = User.find_by(email: params[:sessions][:email].downcase)
+    # authenticate user for session
     if user && user.authenticate(params[:sessions][:password]) 
       if user && user.email_confirmed == true
         sign_in user

@@ -1,29 +1,42 @@
 == README
 DEV BRANCH
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+===============================================================================
+		Alberta Historical Cemeteries Project
+			      CMPT 498
+	      Michael Hnatiw and Patrick Sawyer-Bennett
+===============================================================================
 
-Things you may want to cover:
+This README describes the steps needed to access the application
 
-* Ruby version
+* Ruby version 2.0.0
+* Rails version 4.0.0
+* Ubuntu version 12.04
+* Apache2 version 2.2.22
 
-* System dependencies
+* For Gem versions refer to Gemfile 
 
 * Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+To set which database to access and the mysql.sock refer to config/database.yml
+Development environment settings are in config/environments/development.rb
+Production environment settings are in config/environments/production.rb
 
 * Deployment instructions
+  The application runs on the Apache server with Phusion Passenger. 
+  To access it you should port forward into the students system and
+  then into the project2 virtual machine
+  Format:
+    ssh -L 88:localhost:<dest_port> <username>@students.cs.macewan.ca
+    ssh -L <src_port>:localhost:88 <username>@project2.cs.macewan.ca
+  Example:
+    ssh -L 88:localhost:1234 smithj@students.cs.macewan.ca
+    ssh -L 1234:localhost:88 smithj@project2.cs.macewan.ca
+  Then to view the application, navigate to localhost:88 on your browser. 
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Included test accounts
+  Admin - 	email: admin@example.com
+		password: admin1
+  Test1 - 	email: test1@example.com
+		password: tests1
+  Test2 - 	email: test2@example.com
+		password: tests2

@@ -16,5 +16,6 @@
 //= require turbolinks
 //= require underscore
 //= require gmaps/google
+//= require custom/tabs_search
 //= require_tree .
 
