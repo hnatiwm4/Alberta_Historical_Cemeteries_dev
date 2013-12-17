@@ -1,0 +1,277 @@
+/*******************************************************************************
+ * Author: Michael Hnatiw & Patrick Sawyer-Bennett
+ * CMPT 498, Fall 2013 term
+ * Alberta Historical Cemeteries Project
+ * Style page for specific CSS elements and Layout
+ ******************************************************************************/
+
+/* page setup */
+
+
+* { margin: 0; }
+
+html, body {
+    margin: 0 auto;
+    padding: 0 auto;
+    min-height: 100%;
+    overfow: hidden;
+    text-align: left;
+}
+
+/* used for expandable containers that must be the size of their children */
+span{
+    display: inline-block;
+}
+
+/* apge wrapper encompasses main page */
+#page_wrapper{
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    overfow: hidden;
+    position: relative;
+}
+
+/* main div */
+#page_main{
+    width: 100%;
+    height: 100%;
+    min-height: 940px; /* hardcoded height */
+    overflow: hidden;
+    text-align: left;
+    position: relative;
+    /* padding-botom: 300px; */
+}
+
+/*** NOTE: boostrap distorts some Google Maps Overlays, to fix added this css ***/
+/* Source: http://github.com/twbs/boostrap/issues/1552 */
+#map label{ 
+    width: auto;
+    display: inline;
+}
+#map img{
+    max-width: none;
+}
+
+/*** FULL SCREEN OVERIVEW MAP ***/
+#overview_map{
+    width: 100%;
+    min-height: 100%;
+    over-flow: hidden;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* container overlays onto google map */
+#search_sidebar{
+    width: 25%;
+    color: white;
+    position: absolute;
+    z-index: 2;
+    left: 73%;
+    top: 7%;
+    background: rgba(27,27,27,0.834);
+}
+
+
+/* container used for search page */
+#search_container{
+    border: 1px solid #E5E5E5;
+    padding: 10px;
+}
+
+/* sticky footer */
+#footer{
+    bottom: 0; /*** Ensures footer at bottom of container ***/
+    position: relative;
+    width: 100%;
+    height: 300px; /* height of footer */
+    background: rgba(38, 36, 36, 0.834);
+    clear: both;
+}
+
+/* div withiin footer containg contents */
+.footer-cell{
+    color: #999;
+    padding: 10px;
+    float: left;
+    width: 22%;
+    height: 100%;
+}
+/* after footer (for trademarks/copyrights) */
+#tm_container{
+    width: 100%;
+    height: 50px;
+    background: #1B1B1B;
+}
+
+/* class expanded content to be 100% */
+.fill{
+    min-height: 940px; /* hardcoded for map */
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* common attributes among the different map containers*/
+.map{
+    position: relative;
+    border: 1px solid black;
+}
+
+/* for search overlay on map */
+.map-overlay-header{
+    color: white;
+}
+.map-overlay-header:hover{
+    color: yellow;
+    text-decoration: none;
+}
+
+/* class used with div to create counded cornered containers */
+.rounded-div{
+    -moz-box-border-radius: 10px;
+    -webkit-box-border-radius: 10px;
+    border: 1px solid rgba(220,220,220,1);
+    border-radius: 10px;
+    padding: 0 10px;
+    /*float: left; /* causes widht to be that of its contents */
+    background: rgba(247,247,247,1);
+    position: relative; /* to make it clickable */
+}
+
+/* container that will hold the main image and possibly a small
+   image gallery with thumbnails */
+.indiv_imgs{
+    width: 280px;
+    margin-left: 10px;
+}
+/* main image used for individual burial pages */
+.img-main{
+    opacity: 1;
+    filter:alpha(opacity)=100; /* for IE 6 and earlier */
+}
+
+.img-main:hover{
+    opacity: 0.5;
+    filter:alpha(opacity)=50; /* for IE 6 and earlier */
+}
+
+/* thumbnail gallery used for individual burial pages */
+.img-thumbs{
+    /* same width as img-main */
+    width: 280px;
+    /* same as individual thumbnail size */
+    height: 80px;
+    float: left;
+    /* allows to horizontally scroll it */
+    overflow: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    opacity: 1;
+    filter:alpha(opacity)=100; /* for IE 6 and earlier */
+}
+
+/* thumbnail used for individual burial pages */
+/* ----------- 80x80px per thumb ---------- */
+.img-thumb{
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin-left: 10px;
+}
+.img-thumb:hover{
+    opacity: 0.5;
+    filter:alpha(opacity)=50; /* for IE 6 and earlier */
+}
+
+/* general thin border used for accordions */
+.accordion-border{
+    border: 1px solid #e5e5e5;
+    -moz-box-border-radius: 4px;
+    -webkit-box-border-radius: 4px;
+    border-radius: 4px;
+}
+
+/* for clickable rows within results table */
+.row-clickable{
+    cursor: pointer;
+}
+
+/* adds thin border around divs */
+.main-border{
+    border: 1px solid #E5E5E5;
+}
+
+/* for vertical seperators in the footer */
+.vertical-divider{
+    position: absolute;
+    float: left;
+    left: 50%;
+    top: 10%;
+    bottom: 10%;
+    border: 1px solid rgba(120,120,120,1);
+    margin: 0 10px;
+}
+
+/* organizaiton links */
+.source-link{
+    color: white;
+}
+.source-link:hover{
+    color: yellow;
+    text-decoration: none;
+}
+
+/* class for div when map doesnt exist on cemetery show page */
+.cem-alert{
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 20px;
+}
+
+/* class for div when image doesnt exist */
+.bur-alert{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 20px;
+}
+
+/* ========== MAIN LAYOUT CONTAINERS ========== */
+#burial-list, #monument-list, #inscription{
+    height: 250px;
+    padding-bottom: 5px;
+}
+#monument-list{
+    margin-left: 20px;
+}
+.burial-list-contents, .mon-list-contents{
+    height: 75%;
+    overflow-y: scroll;
+}
+#right-info-container{
+    width: 53.9362%;
+}
+#list-container{
+    width: 100%;
+    margin: 0;
+    margin-top: 20px;
+}
+.list-contents{
+    width: 45%;
+    float: left;
+}
+#advanced-container, #cem-container{
+    margin-top: 20px;
+    margin-left: 0;
+}
+#advanced-container{
+    width: 96.4894%;
+}
+#cem-container{
+    width: 100%;
+}
+

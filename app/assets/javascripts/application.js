@@ -17,5 +17,8 @@
 //= require underscore
 //= require gmaps/google
 //= require custom/tabs_search
+//= require custom/tabs_submit
+//= require custom/tabs_dashboard
+//= require custom/table_rows
 //= require_tree .
 
