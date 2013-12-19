@@ -31,14 +31,18 @@ end
 def search_results
   # return error to referrer page if al fields left blank
   if params[:burials].all? {|k,v| v.blank?}
-    flash[:notice] = 'No results Returned for Buial Search'
-    redirect_to :back and return 
-    # request.referer + "#burials/search" and return
+    if params[:b_date].all? {|k,v| v.blank?}
+      if params[:d_date].all? {|k,v| v.blank?}
+        flash[:notice] = 'No results Returned for Buial Search'
+        redirect_to :back and return 
+        # request.referer + "#burials/search" and return
+      end
+    end
   end
-  # call helper function to evaluate int/enum fields
-  eval_date(params,:burials,{b_date: "birth_date",d_date: "death_date"})
   # call helper to remove any blank values
   params_rm_blanks(params[:burials])
+  # call helper function to evaluate int/enum fields
+  eval_date(params,:burials,{b_date: "birth_date",d_date: "death_date"})
   # call helper to create query string for basic search
   query = basic_search(params,params[:burials])
   # find results (use limit and define order from form)

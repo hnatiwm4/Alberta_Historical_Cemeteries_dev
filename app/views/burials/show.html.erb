@@ -8,23 +8,25 @@
 	  <div class="span5">
 	    <!-- placeholder for main gravestone image (16:9) -->
 	    <div class="img-main">
-	      <% if @burial.photo_URL.blank? %>
 	      <div class="alert alert-notice bur-alert">
 		Picture for 
 		<strong>
 		  <%= @burial.last_name %>, <%= @burial.first_name %>
 		</strong>
 		is unavailable at the moment
-		<% unless get_contr_from_id(@burial).nil? %> 
-		   <% if get_contr_from_id(@burial).contr_id == 9 %>
+		<% if @burial.photo_URL.blank? %>
+		  <% unless get_contr_from_id(@burial).nil? %> 
+		     <% if get_contr_from_id(@burial).contr_id == 9 %>
 		   , but we do have a source link: <br/>
-		   <%= link_to 'Photo Source', photo_link(@burial), :target => "_blank" %>
-		   <% end %>
-		<% end %>
+		       <%= link_to 'Photo Source', photo_link(@burial), :target => "_blank" %>
+		     <% end %>
+		  <% end %>
+	        <% else %>
+	          <% if get_contr_from_id(@burial).contr_id == 9 %>
+	             <%= link_to image_tag(@burial.photo_URL), photo_link(@burial), :target => "_blank" %>
+		  <% end %>
+	        <% end %>
 	      </div>
-	      <% else %>
-	        <%= link_to image_tag(@burial.photo_URL), photo_link(@burial), :target => "_blank" %>
-	      <% end %>
 	    </div>
 	  </div>
 	  <!-- content container -->

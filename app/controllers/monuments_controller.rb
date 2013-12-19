@@ -28,15 +28,17 @@ end
 def search_results
   # produce error and return to referer page if all fields left blank
   if params[:monuments].all? {|k,v| v.blank?}
-    flash[:notice] = 'No results Returned for Monument Search'
-    redirect_to :back and return
-    # request.referer + "#monuments/search" and return
+    if params[:m_date].all? {|k,v| v.blank?}
+      flash[:notice] = 'No results Returned for Monument Search'
+      redirect_to :back and return
+      # request.referer + "#monuments/search" and return
+    end
   end
+  # remove blanks
+  params_rm_blanks(params[:monuments])
   # call helpers to evalute date and int/enum type returns
   eval_date(params,:monuments,{m_date: "mem_date"})
   eval_int(params[:monuments])
-  # remove blanks
-  params_rm_blanks(params[:monuments])
   # call helper to create query string for basic search
   query = basic_search(params,params[:monuments])
   # find results (use limit and define order from form)
