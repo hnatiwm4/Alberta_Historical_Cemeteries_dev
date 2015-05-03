@@ -14,8 +14,8 @@ development:
   database: hist_cem_db
   pool: 5
   username: root
-  password: c3m3t3ry
-  socket: /var/run/mysqld/mysqld.sock 
+  password: crimson
+  socket: /var/lib/mysql/mysql.sock 
   #/var/run/mysqld/mysqld.sock
   #/private/tmp/mysql.sock
 
@@ -25,11 +25,11 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: mydb
+  database: hist_cem_db
   pool: 5
   username: root
-  password: c3m3t3ry
-  socket: /var/run/mysqld/mysqld.sock
+  password: crimson
+  socket: /var/lib/mysql/mysql.sock 
   #/private/tmp/mysql.sock
 
 production:
@@ -38,6 +38,6 @@ production:
   database: hist_cem_db
   pool: 5
   username: root
-  password: c3m3t3ry
-  socket: /var/run/mysqld/mysqld.sock
+  password: crimson
+  socket: /var/lib/mysql/mysql.sock 
   #/private/tmp/mysql.sock

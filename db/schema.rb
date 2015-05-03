@@ -76,14 +76,14 @@ ActiveRecord::Schema.define(version: 20131213204619) do
     t.integer   "county_id"
     t.integer   "surveyor_id"
     t.timestamp "date_updated",                                      null: false
-    t.timestamp "date_created",                                      null: false
+    t.datetime  "date_created"
     t.integer   "user_id"
   end
 
   add_index "cem_lev", ["contr_rec_id"], name: "fk_cem_lev_contributer_idx", using: :btree
   add_index "cem_lev", ["county_id"], name: "fk_cem_lev_county1_idx", using: :btree
   add_index "cem_lev", ["surveyor_id"], name: "fk_cem_lev_surveyor1_idx", using: :btree
-  add_index "cem_lev", ["user_id"], name: "fk_cem_lev_users1", using: :btree
+  add_index "cem_lev", ["user_id"], name: "fk_cem_lev_users1_idx", using: :btree
 
   create_table "class", primary_key: "id_class", force: true do |t|
     t.string  "select",       limit: 10
@@ -105,14 +105,14 @@ ActiveRecord::Schema.define(version: 20131213204619) do
     t.integer   "ex_rec_id"
     t.integer   "contr_id"
     t.timestamp "date_updated",            null: false
-    t.timestamp "date_created",            null: false
+    t.datetime  "date_created"
   end
 
   create_table "county", primary_key: "id_county", force: true do |t|
     t.string    "name",         limit: 45, null: false
     t.integer   "contr_rec_id"
     t.timestamp "date_updated",            null: false
-    t.timestamp "date_created",            null: false
+    t.datetime  "date_created"
   end
 
   add_index "county", ["contr_rec_id"], name: "fk_county_contributor1_idx", using: :btree
@@ -222,7 +222,7 @@ ActiveRecord::Schema.define(version: 20131213204619) do
     t.integer   "county_id"
     t.integer   "surveyor_id"
     t.timestamp "date_updated",                                      null: false
-    t.timestamp "date_created",                                      null: false
+    t.datetime  "date_created"
     t.integer   "mon_level_id"
     t.integer   "user_id"
   end
@@ -232,7 +232,7 @@ ActiveRecord::Schema.define(version: 20131213204619) do
   add_index "indiv_lev", ["county_id"], name: "fk_indiv_lev_county1_idx", using: :btree
   add_index "indiv_lev", ["mon_level_id"], name: "fk_indiv_lev_mon_level1_idx", using: :btree
   add_index "indiv_lev", ["surveyor_id"], name: "fk_indiv_lev_surveyor1_idx", using: :btree
-  add_index "indiv_lev", ["user_id"], name: "fk_indiv_lev_users1", using: :btree
+  add_index "indiv_lev", ["user_id"], name: "fk_indiv_lev_users1_idx", using: :btree
 
   create_table "insc_tech", primary_key: "id_insc_tech", force: true do |t|
     t.string  "technique",    limit: 9
@@ -315,13 +315,13 @@ ActiveRecord::Schema.define(version: 20131213204619) do
     t.decimal   "lat",                      precision: 18, scale: 12
     t.decimal   "long",                     precision: 18, scale: 12
     t.string    "approved",      limit: 1
-    t.string    "photo_URL"
+    t.string    "photo_URL",     limit: 45
     t.string    "notes"
     t.integer   "contr_rec_id"
     t.integer   "surveyor_id"
     t.integer   "county_id"
     t.timestamp "date_updated",                                       null: false
-    t.timestamp "date_created",                                       null: false
+    t.datetime  "date_created"
     t.integer   "cem_lev_id"
     t.integer   "user_id"
   end
@@ -330,7 +330,7 @@ ActiveRecord::Schema.define(version: 20131213204619) do
   add_index "mon_level", ["contr_rec_id"], name: "fk_mon_level_contributer1_idx", using: :btree
   add_index "mon_level", ["county_id"], name: "fk_mon_level_county1_idx", using: :btree
   add_index "mon_level", ["surveyor_id"], name: "fk_mon_level_surveyor1_idx", using: :btree
-  add_index "mon_level", ["user_id"], name: "fk_mon_level_users1", using: :btree
+  add_index "mon_level", ["user_id"], name: "fk_mon_level_users1_idx", using: :btree
 
   create_table "mortality", primary_key: "id_mortality", force: true do |t|
     t.integer "select"
@@ -438,7 +438,7 @@ ActiveRecord::Schema.define(version: 20131213204619) do
     t.integer   "res_prox"
     t.string    "cem_assoc",      limit: 45
     t.timestamp "date_updated",              null: false
-    t.timestamp "date_created",              null: false
+    t.datetime  "date_created"
   end
 
   create_table "trade", primary_key: "id_trade", force: true do |t|
